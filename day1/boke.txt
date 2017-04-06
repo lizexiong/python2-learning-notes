@@ -1,0 +1,22 @@
+#!/usr/bin/env python
+# --*-- coding:utf8 --*--
+import os
+import sys
+userfile = file('test.txt', 'r+')
+userlist = []
+userdict = {}
+if os.path.isfile("test.txt"):
+    pass
+else:
+    print '122'
+    sys.exit
+#userfile.readlines()
+for userline in userfile:
+    useritem = userline.strip()
+    value_useritem = useritem.split(',')
+    value_username = value_useritem[0].strip()
+    value_passwd = value_useritem[1].strip()
+    lock_value = int(value_useritem[3])
+    logincount_value = int(value_useritem[2])
+    userdict[value_username] = {'name':value_username, 'pwd':value_passwd, 'lockcount':logincount_value, 'locknum':lock_value}
+		print userdict

@@ -1,0 +1,19 @@
+#/usr/bin/env python
+#--*-- coding:utf-8 --*--
+
+file_lzx=file('test.txt','r+')
+line_list = file_lzx.readlines()
+my_list=[]
+
+for i in line_list:
+	line=i.strip()
+	value_line=line.split(',')
+	last_value=int(value_line[-1])
+	last_value+=1
+	value_line[-1]=str(last_value)
+	value_str=';'.join(value_line)
+	my_list.append(value_str)
+	my_lizexiong='------------'.join(my_list)
+	
+file_lzx.write(my_lizexiong)
+file_lzx.close()
