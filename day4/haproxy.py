@@ -1,6 +1,14 @@
 #!/usr/bin/env python
 #--*-- coding:utf8 --*--
 
+"""
+本代码演示一个备份文件怎么添加，删除，以及查询
+本章使用的重点
+1.标志位
+2.字符串拼接
+3.if for if 嵌套
+"""
+
 import json
 import os
 
@@ -95,19 +103,28 @@ def add1(dict_info):
 # add1(data_dict)
 
 
+
+
+
+#由于还没有学会删除的方法，这里直接使用continue来跳出方法删除。
+
 def del1(del_info):
+#首先还是要取出需要对比的值
     backend_title = del_info.get('backend') #获取字典的的域名，也是人要输入域名
     fetch_list = fetch(backend_title)  #配置文件backend下主体内容
     cur_list = "backend %s" % backend_title #backup +域名需要匹配的值
     crrent_record = "server %s %s weight %d maxconn %d" %(del_info['record']['server'],del_info['record']['server'],del_info['record']['weight'],del_info['record']['maxconn'])
 #    print fetch_list
 
+
+#判断fetch_list主体文件是否存在，如果存在，那么才开始。
     if fetch_list:
         with open ('ha') as obj1,open('ha1','w') as obj2:
             flag = False
             #fetch_list.append(crrent_record)
             has=False
-
+#本章实现的主要是思路问题，一般有那几种情况，哪几种情况下有哪几种情况，和增加类似，
+#但是不同的是，这里的删除是找到这个值以后直接continue的方式不在记录来删除
             for line in obj1:
                 if crrent_record in fetch_list:
                     if line.strip() == cur_list:
