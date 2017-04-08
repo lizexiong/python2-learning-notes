@@ -1,0 +1,11 @@
+#本实验文本必须保证有[huawei] [huawei2]才能执行成功
+
+
+[huawei]
+k1 = lizexiong
+k2 = 121212
+
+[huawei2]
+name = 天青色等烟雨
+name2 = 天气色等艳遇
+
