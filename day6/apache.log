@@ -1,0 +1,93 @@
+2017-04-09 21:28:52,746 - mylogger - INFO - logger1 info message
+2017-04-09 21:28:52,746 - mylogger - WARNING - logger1 warning message
+2017-04-09 21:28:52,746 - mylogger - ERROR - logger1 error message
+2017-04-09 21:28:52,746 - mylogger - CRITICAL - logger1 critical message
+2017-04-09 21:28:52,746 - mylogger - INFO - logger2 info message
+2017-04-09 21:28:52,746 - mylogger - WARNING - logger2 warning message
+2017-04-09 21:28:52,746 - mylogger - ERROR - logger2 error message
+2017-04-09 21:28:52,746 - mylogger - CRITICAL - logger2 critical message
+2017-04-09 21:28:52,746 - mylogger.child1 - WARNING - logger3 warning message
+2017-04-09 21:28:52,746 - mylogger.child1 - WARNING - logger3 warning message
+2017-04-09 21:28:52,747 - mylogger.child1 - ERROR - logger3 error message
+2017-04-09 21:28:52,747 - mylogger.child1 - ERROR - logger3 error message
+2017-04-09 21:28:52,747 - mylogger.child1 - CRITICAL - logger3 critical message
+2017-04-09 21:28:52,747 - mylogger.child1 - CRITICAL - logger3 critical message
+2017-04-09 21:28:52,747 - mylogger.child1.child2 - DEBUG - logger4 debug message
+2017-04-09 21:28:52,747 - mylogger.child1.child2 - DEBUG - logger4 debug message
+2017-04-09 21:28:52,747 - mylogger.child1.child2 - DEBUG - logger4 debug message
+2017-04-09 21:28:52,749 - mylogger.child1.child2 - INFO - logger4 info message
+2017-04-09 21:28:52,749 - mylogger.child1.child2 - INFO - logger4 info message
+2017-04-09 21:28:52,749 - mylogger.child1.child2 - INFO - logger4 info message
+2017-04-09 21:28:52,749 - mylogger.child1.child2 - WARNING - logger4 warning message
+2017-04-09 21:28:52,749 - mylogger.child1.child2 - WARNING - logger4 warning message
+2017-04-09 21:28:52,749 - mylogger.child1.child2 - WARNING - logger4 warning message
+2017-04-09 21:28:52,750 - mylogger.child1.child2 - ERROR - logger4 error message
+2017-04-09 21:28:52,750 - mylogger.child1.child2 - ERROR - logger4 error message
+2017-04-09 21:28:52,750 - mylogger.child1.child2 - ERROR - logger4 error message
+2017-04-09 21:28:52,750 - mylogger.child1.child2 - CRITICAL - logger4 critical message
+2017-04-09 21:28:52,750 - mylogger.child1.child2 - CRITICAL - logger4 critical message
+2017-04-09 21:28:52,750 - mylogger.child1.child2 - CRITICAL - logger4 critical message
+2017-04-09 21:28:52,750 - mylogger.child1.child2.child3 - DEBUG - logger5 debug message
+2017-04-09 21:28:52,750 - mylogger.child1.child2.child3 - DEBUG - logger5 debug message
+2017-04-09 21:28:52,750 - mylogger.child1.child2.child3 - DEBUG - logger5 debug message
+2017-04-09 21:28:52,750 - mylogger.child1.child2.child3 - DEBUG - logger5 debug message
+2017-04-09 21:28:52,750 - mylogger.child1.child2.child3 - INFO - logger5 info message
+2017-04-09 21:28:52,750 - mylogger.child1.child2.child3 - INFO - logger5 info message
+2017-04-09 21:28:52,750 - mylogger.child1.child2.child3 - INFO - logger5 info message
+2017-04-09 21:28:52,750 - mylogger.child1.child2.child3 - INFO - logger5 info message
+2017-04-09 21:28:52,750 - mylogger.child1.child2.child3 - WARNING - logger5 warning message
+2017-04-09 21:28:52,750 - mylogger.child1.child2.child3 - WARNING - logger5 warning message
+2017-04-09 21:28:52,750 - mylogger.child1.child2.child3 - WARNING - logger5 warning message
+2017-04-09 21:28:52,750 - mylogger.child1.child2.child3 - WARNING - logger5 warning message
+2017-04-09 21:28:52,752 - mylogger.child1.child2.child3 - ERROR - logger5 error message
+2017-04-09 21:28:52,752 - mylogger.child1.child2.child3 - ERROR - logger5 error message
+2017-04-09 21:28:52,752 - mylogger.child1.child2.child3 - ERROR - logger5 error message
+2017-04-09 21:28:52,752 - mylogger.child1.child2.child3 - ERROR - logger5 error message
+2017-04-09 21:28:52,752 - mylogger.child1.child2.child3 - CRITICAL - logger5 critical message
+2017-04-09 21:28:52,752 - mylogger.child1.child2.child3 - CRITICAL - logger5 critical message
+2017-04-09 21:28:52,752 - mylogger.child1.child2.child3 - CRITICAL - logger5 critical message
+2017-04-09 21:28:52,752 - mylogger.child1.child2.child3 - CRITICAL - logger5 critical message
+2017-04-09 21:47:07,615 - root - DEBUG - logger debug message
+2017-04-09 21:47:07,615 - root - INFO - logger info message
+2017-04-09 21:47:07,615 - root - WARNING - logger warning message
+2017-04-09 21:47:07,615 - root - ERROR - logger error message
+2017-04-09 21:47:07,615 - root - CRITICAL - logger critical message
+2017-04-09 21:48:07,724 - root - DEBUG - logger debug message
+2017-04-09 21:48:07,726 - root - INFO - logger info message
+2017-04-09 21:48:07,726 - root - WARNING - logger warning message
+2017-04-09 21:48:07,726 - root - ERROR - logger error message
+2017-04-09 21:48:07,726 - root - CRITICAL - logger critical message
+2017-04-09 21:48:39,085 - root - DEBUG - logger debug message
+2017-04-09 21:48:39,085 - root - INFO - logger info message
+2017-04-09 21:48:39,085 - root - WARNING - logger warning message
+2017-04-09 21:48:39,085 - root - ERROR - logger error message
+2017-04-09 21:48:39,088 - root - CRITICAL - logger critical message
+2017-04-09 21:48:39,088 - root - DEBUG - fuck
+2017-04-09 21:48:47,733 - root - DEBUG - fuck
+2017-04-09 21:48:48,056 - root - DEBUG - fuck
+2017-04-09 21:48:49,371 - root - DEBUG - fuck
+2017-04-09 21:50:39,796 - root - DEBUG - 32332
+2017-04-09 21:51:55,964 - root - DEBUG - 2112
+2017-04-09 21:52:38,414 - root - DEBUG - banchengyansha
+2017-04-09 21:52:46,378 - root - DEBUG - 半城烟沙
+2017-04-09 21:53:34,802 - root - DEBUG - sldkjflsdf
+2017-04-09 21:53:40,178 - root - DEBUG - dfsdf
+2017-04-09 21:53:41,384 - root - DEBUG - ssdfsdfsdf
+2017-04-09 21:53:42,556 - root - DEBUG - sdfsdfsdf
+2017-04-09 21:53:43,881 - root - DEBUG - sdfsdfsdf
+2017-04-09 21:53:45,372 - root - DEBUG - sdfsdfsdf
+2017-04-09 21:53:46,815 - root - DEBUG - sdfsdfsdf
+2017-04-09 21:53:48,118 - root - DEBUG - sdfsdfsdf
+2017-04-09 21:53:49,450 - root - DEBUG - sdfsdfsdf
+2017-04-09 21:54:11,619 - root - DEBUG - sdfsdfsdf
+2017-04-09 21:54:13,157 - root - DEBUG - sdfsdfsdf
+2017-04-09 21:54:14,430 - root - DEBUG - sdfsdfsdf
+2017-04-09 21:54:53,736 - root - DEBUG - dsfdsf
+2017-04-09 21:54:54,759 - root - DEBUG - sdfsdf
+2017-04-09 21:54:55,783 - root - DEBUG - sdfsdf
+2017-04-09 21:54:56,950 - root - DEBUG - sdfsdfsdf
+2017-04-09 21:54:58,153 - root - DEBUG - sdfsdfsdf
+2017-04-09 21:55:19,732 - root - DEBUG - sdfsdfsdf
+2017-04-09 21:55:20,819 - root - DEBUG - sdfsdf
+2017-04-09 21:55:22,255 - root - DEBUG - sdfsdfsdf
+2017-04-09 21:55:23,424 - root - DEBUG - sdfsdf
