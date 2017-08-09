@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<div>
+    <form action="/index/" method="post">
+        <input type="text" name="user_email" />
+        <input type="text" name="user_pwd"/>
+        <input type="text" name="user_text"/>
+        <input type="submit" value="提交" />
+    </form>
+</div>
+
+<div>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>用户名</th>
+            <th>密码</th>
+            <th>描述</th>
+        </tr>
+        </thead>
+        <tbody>
+            {%  for i in user_info_list  %}
+            <tr>
+                <td>{{ i.email }}</td>
+                <td>{{ i.pwd }}</td>
+                <td>{{ i.memo }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

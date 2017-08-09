@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<form action="/add/" method="post" id="tb">
+    主机:<input type="text" /><br/>
+    端口:<input type="text" /><br/>
+    状态:<input type="text" /><br/>
+    业务:<input type="text" /><br/>
+    <input type="button" value="submit" onclick="Save('#tb')">
+    <span>{{ null }}</span>
+</form>
+
+<script  src='/static/js/jquery-3.2.1.js'></script>
+<script>
+    function Save(tb){
+        var inf_arr = new Array();
+        var test = $(tb).find(':input')
+        test.each(function(){
+            var i = $(this).val();
+            inf_arr.push(i)
+        })
+        $.ajax({
+            url:'/add/',
+            type:'post',
+            data:{h:inf_arr[0],p:inf_arr[1],s:inf_arr[2],b:inf_arr[3]},
+            success:function(arg){
+            }
+        })
+     window.location.href = window.location.href
+    }
+</script>
+</body>
+</html>

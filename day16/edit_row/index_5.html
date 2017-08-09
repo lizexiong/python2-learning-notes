@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<style>
+
+	.edit_mode {
+		background-color:#b3b3b3;
+		padding: 8px;
+		text-decoration: none;
+		color:white;
+	
+	}
+
+	.editing {
+		background-color: #f0ad4e;
+	}
+</style>
+</head>
+<body>
+
+	<div style="padding:20px">
+		<input type='button' onclick="CheckAll('#edit_mode', '#tb')" value='全选' />
+		<input type='button' onclick="CheckReverse('#edit_mode', '#tb')" value='反选'/>
+		<input type='button' onclick="CheckCancel('#edit_mode','#tb')" value='取消' />
+		<a id='edit_mode' class='edit_mode' href="javascript:void(0);" onclick="EditMode(this, '#tb');">进入编辑模式</a>
+	</div>
+
+<table border='1'>
+	<thead>
+		<tr>
+		<th>选择</th>
+		<th>主机</th>
+		<th>端口</th>
+		<th>状态</th>
+		<th>业务</th>
+		</tr>
+	</thead>
+	<tbody id='tb'>
+		<tr>
+			<td><input type='checkbox'></td>
+			<td edit='True'>192.168.1.1</td>
+			<td>22</td>
+			<td edit = "True" edit-type='select'  global-key='status1' select_val='2'>下线</td>
+			<td edit = "True" edit-type='select'  global-key='business'select_val='2'>周杰伦</td>
+		</tr>
+		
+		<tr>
+			<td><input type='checkbox'></td>
+			<td edit='True'>192.168.1.2</td>
+			<td >22</td>
+			<td edit = "True" edit-type='select'  global-key='status1' select_val='2'>下线</td>
+			<td edit = "True" edit-type='select'  global-key='business' select_val='3'>陈奕迅</td>
+		</tr>
+		
+	</tbody>
+</table>
+
+<script  src='js/jquery-3.2.1.js'></script>
+<script  src='js/edit_row.js'></script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+</head>
+<body>
+
+<input type='button' onclick='CheckAll();' value='全选'/>
+<input type='button' onclick='CheckReverse();' value='反选'/>
+<input type='button' onclick='CheckCancel();' value='取消'/>
+<table border='1'>
+<tbody id='tb1'>
+<tr>
+<td>11</td>
+<td><input type='checkbox'/></td>
+</tr>
+
+<tr>
+<td>22</td>
+<td><input type='checkbox'/></td>
+</tr>
+
+<tr>
+<td>33</td>
+<td><input type='checkbox'/></td>
+</tr>
+</tbody>
+</table>
+
+<script type='text/javascript' src='jquery-3.2.1.js'></script>
+<script type='text/javascript'>
+	function CheckAll(){
+		//$('#tb1').find(':checkbox').attr('checked','checked');
+		$('#tb1').find(':checkbox').prop('checked',true);
+	}
+
+	function CheckCancel(){
+		//$('#tb1').find(':checkbox').removeAttr('checked');
+		$('#tb1').find(':checkbox').prop('checked',false);
+	}
+	
+	function CheckReverse(){
+		$('#tb1').find(':checkbox').each(function(){
+			//$this代表每一个复选框
+			//$this.prop(checked)，检查每一个复选框的checked值是否存在
+			//为什么不用attr？因为attr只会设置checked=checked，而不是设置true，不方便
+			if($(this).prop('checked')){
+				$(this).prop('checked',false);
+			}else{
+				$(this).prop('checked',true);
+			}
+		})
+	}
+</script>
+
+</body>
+</html>

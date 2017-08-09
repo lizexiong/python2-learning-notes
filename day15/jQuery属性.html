@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<style>
+</style>
+</head>
+<body>
+
+<!-- <input type='text' id='name'/>
+<input type='button' onclick='GetValue();'/> -->
+
+<select id='name'>
+	<option value='1'>ÄÐ</option>
+	<option value='2'>Å®</option>
+</select>
+<input type='button' onclick='GetValue();'/>
+
+<script type='text/javascript' src='jquery-3.2.1.js'></script>
+<script type='text/javascript'>
+		function GetValue(){
+			var i = $("#name").val();
+			console.log(i);
+	}
+</script>
+</body>
+</html>

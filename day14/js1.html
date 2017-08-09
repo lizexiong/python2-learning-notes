@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+</head>
+<body>
+
+<div id='l1' name='lizexiong'>
+123
+</div>
+
+<p>456</p>
+
+<script>
+	/*var i = document.getElementById('l1');
+	innerText就是找到标签里面的字符然后改成定义的
+	i.innerText = "天青色等烟雨"
+	*/
+	/*
+	var i = document.getElementsByName('lizexiong');
+	for (var item in i){
+		i[item].innerText = "风起燕南下"
+	}
+	*/
+	var i = document.getElementsByTagName('p')
+	for(var item in i){
+		i[item].innerText = '而我路过那江南小镇惹你了'
+	}
+</script>
+</body>
+</html>

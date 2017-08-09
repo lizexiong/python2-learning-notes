@@ -1,0 +1,30 @@
+    .clearfix:after {
+        content: '.';
+        visibility: hidden;
+        display: block;
+        height:0;
+        clear:both;
+    }
+
+     .header {
+         height:50px;
+         background-color: lightgoldenrodyellow;
+         text-align:center;
+     }
+
+    .body {
+        background-color: bisque;
+    }
+
+    .body .menu {
+        background-color: aquamarine;
+        float:left;
+        width:20%;
+        height:100px;
+    }
+    .body .content {
+        background-color: darkorange;
+        float:left;
+        width:80%;
+        height:100px;
+    }

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../static/plugins/bootstrap/css/bootstrap.css" />
+    <style>
+        .form {
+            height:100px;
+            width:20%;
+            position:fixed;
+            top:100px;
+            left:550px;
+        }
+    </style>
+</head>
+<body>
+
+<div  class="form">
+    <form action="/login/" method="post">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+      </div >
+        <div  style="text-align: center">
+      <button type="submit" class="btn btn-default">登录</button>
+     <a href="/register/"><button type="button" class="btn btn-default">注册</button></a>
+        <a href="/BatchRegister/"><button type="button" class="btn btn-default">批量注册</button></a>
+            <span style="color:red;font-size:15px">{{ status }}</span>
+        </div>
+    </form>
+</div>
+
+<script type="text/javascript" src="../static/js/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="../static/plugins/bootstrap/js/bootstrap.js"></script>
+</body>
+</html>

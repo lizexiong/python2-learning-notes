@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+
+<div id='search_conditions'>
+	<div class="condition">
+		<a onclick="AddCondition(this,'#search_conditions')"> + </a>
+		<input/>
+	</div>
+</div>
+
+<script  src='jquery-3.2.1.js'></script>
+<script>
+
+function AddCondition(ths,conditions){
+	var cp = $(ths).parent().clone();
+	//这里有两种方法追加，这里演示复杂的。
+	//$('#search_conditions').append(cp);
+
+	//这里支持链式编程，就是得到一个结果继续在这里结果下操作。
+	cp.children(':first').text('-').attr('onclick',"RemCondition(this,'#search_conditions')");
+	cp.appendTo('#search_conditions');
+}
+
+function RemCondition(arg,conditions){
+	//这里使用arg，是为了提醒，形参的使用不能相同
+	$(arg).parent().remove();
+}
+
+</script>
+</body>
+</html>

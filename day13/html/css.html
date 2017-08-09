@@ -1,0 +1,260 @@
+<h4>CSS 背景</h4>
+background-color     		背景颜色<br>
+background-image			背景图像<br>
+background-repeat			背景图像 - 水平或垂直平铺<br>
+background-attachment		背景图像是否固定或者随着页面的其余部分滚动。<br>
+background-position			设置背景图像的起始位置。<br>
+{background:#ffffff url('img_tree.png') no-repeat right top;}		背景- 简写属性<br>
+
+
+<h4>CSS 文本格式</h4>
+body {color:red;}			文本颜色<br>
+{text-align:center;}	{text-align:right;} {text-align:justify;}	文本的对齐方式<br>
+a {text-decoration:none;}	
+h1 {text-decoration:overline;}
+h2 {text-decoration:line-through;}
+h3 {text-decoration:underline;} 文本修饰,删除链接的下划线<br>
+p.uppercase {text-transform:uppercase;}
+p.lowercase {text-transform:lowercase;}
+p.capitalize {text-transform:capitalize;}   
+文本转换	文本转换属性是用来指定在一个文本中的大写和小写字母。<br>
+p {text-indent:50px;}	文本缩进属性是用来指定文本的第一行的缩进。<br>
+h1 {letter-spacing:2px;}
+h2 {letter-spacing:-3px;} 			指定字符之间的空间<br>
+p.small {line-height:70%;}
+p.big {line-height:200%;}			指定行与行之间的空间<br>
+{direction:rtl;}					设置元素的文本方向<br>
+p{ 	word-spacing:30px;}				增加单词之间的空白空间<br>
+img.top {vertical-align:text-top;}
+img.bottom {vertical-align:text-bottom;}		垂直对齐图像<br>
+h1 {text-shadow:2px 2px #FF0000;}				添加文本阴影<br>
+
+
+<h4>CSS 字体</h4>
+CSS字体属性定义字体，加粗，大小，文字样式。<br>
+CSS字型<br>
+在CSS中，有两种类型的字体系列名称：<br>
+通用字体系列 - 拥有相似外观的字体系统组合（如 "Serif" 或 "Monospace"）<br>
+特定字体系列 - 一个特定的字体系列（如 "Times" 或 "Courier"）<br>
+字体系列<br>
+font-family 属性设置文本的字体系列。<br>
+font-family<br> 属性应该设置几个字体名称作为一种"后备"机制，如果浏览器不支持第一种字体，他将尝试下一种字体。<br>
+注意: 如果字体系列的名称超过一个字，它必须用引号，如Font Family："宋体"。<br>
+多个字体系列是用一个逗号分隔指明：<br>
+p{font-family:"Times New Roman", Times, serif;}<br>
+字体样式<br>
+p.normal {font-style:normal;}  正常 - 正常显示文本<br>
+p.italic {font-style:italic;} 斜体 - 以斜体字显示的文字<br>
+p.oblique {font-style:oblique;} 倾斜的文字 - 文字向一边倾斜<br>
+字体大小<br>
+设置字体大小像素<br>
+h1 {font-size:40px;}<br>
+h2 {font-size:30px;}<br>
+p {font-size:14px;}<br>
+p.normal {font-weight:normal;}
+p.light {font-weight:lighter;}
+p.thick {font-weight:bold;}
+p.thicker {font-weight:900;} 设置字体粗细<br>
+
+
+<h4>CSS 链接</h4>
+链接样式<br>
+a:link {color:#000000;}      /* 未访问链接*/<br>
+a:visited {color:#00FF00;}  /* 已访问链接 */<br>
+a:hover {color:#FF00FF;}  /* 鼠标移动到链接上 */<br>
+a:active {color:#0000FF;}  /* 鼠标点击时 */<br>
+文本修饰<br>
+text-decoration 属性主要用于删除链接中的下划线：<br>
+a:link {text-decoration:none;}<br>
+a:visited {text-decoration:none;}<br>
+a:hover {text-decoration:underline;}<br>
+a:active {text-decoration:underline;}<br>
+背景颜色<br>
+a:link {background-color:#B2FF99;}<br>
+a:visited {background-color:#FFFF85;}<br>
+a:hover {background-color:#FF704D;}<br>
+a:active {background-color:#FF704D;}<br>
+
+<h4>CSS 列表</h4>
+CSS列表属性作用如下：<br>
+设置不同的列表项标记为有序列表<br>
+设置不同的列表项标记为无序列表<br>
+设置列表项标记为图像<br>
+不同的列表项标记<br>
+ul.a {list-style-type: circle;}<br>
+ul.b {list-style-type: square;}<br>
+ 
+ol.c {list-style-type: upper-roman;}<br>
+ol.d {list-style-type: lower-alpha;}<br>
+
+更多列表请参考章节<br>
+
+<h4>CSS 表格</h4>
+表格宽度和高度<br>
+表格文字对齐<br>
+表格填充<br>
+表格颜色<br>
+
+
+<h4>CSS 盒子模型</h4>
+很少用到，需要在看<br>
+
+
+<h4>CSS 边框</h4>
+border-style:solid; border-width:5px; 边框宽度<br>
+border-style:solid;border-color:red;边框颜色<br>
+border-top-style:dotted;
+border-right-style:solid;
+border-bottom-style:dotted;
+border-left-style:solid;边框-单独设置各边<br>
+更多内容请参考<br>
+
+<h4>CSS 轮廓（outline）</h4>
+border:1px solid red;
+	outline:green dotted thick;<br>
+	
+<h4>CSS Margin(外边距)</h4>
+Margin - 单边外边距属性<br>
+	margin-top:100px;
+	margin-bottom:100px;
+	margin-right:50px;<
+	margin-left:50px;<br>
+Margin - 简写属性<br>
+margin:100px 50px;
+
+<h4>CSS Padding（填充）</h4>
+填充- 单边内边距属性<br>
+padding-top:25px;
+padding-bottom:25px;
+padding-right:50px;
+padding-left:50px;<br>
+
+<h4>CSS 分组 和 嵌套 选择器</h4>
+为了尽量减少代码，你可以使用分组选择器。
+每个选择器用逗号分隔.
+在下面的例子中，我们对以上代码使用分组选择器：<br>
+h1,h2,p
+{
+color:green;
+}<br>
+
+嵌套选择器<br>
+简单来说就是让几个标签全部应用。
+p
+{
+color:blue;
+text-align:center;
+}
+.marked
+{
+background-color:red;
+}
+.marked p
+{
+color:white;
+}<br>
+
+<h4>CSS 尺寸 (Dimension)</h4>
+略过
+
+<h4>CSS Display(显示) 与 Visibility（可见性）</h4>
+visibility:hidden可以隐藏某个元素，但隐藏的元素仍需占用与未隐藏之前一样的空间。也就是说，该元素虽然被隐藏了，但仍然会影响布局。<br>
+h1.hidden {visibility:hidden;}<br>
+display:none可以隐藏某个元素，且隐藏的元素不会占用任何空间。也就是说，该元素不但被隐藏了，而且该元素原本占用的空间也会从页面布局中消失。<br>
+h1.hidden {display:none;}<br>
+
+如何改变一个元素显示，将块级改为内联<br>
+li {display:inline;}<br>
+
+下面的示例把span元素作为块元素：<br>
+span {display:block;}<br>
+Fixed 定位,元素根据浏览器走动<br>
+<p class="pos_fixed">Some more text</p><br>
+
+<h4>定位</h4>
+Relative 定位<br>
+h2.pos_left
+{
+	position:relative;
+	left:-20px;<br>
+Absolute 定位<br>
+Absolutely定位使元素的位置与文档流无关，因此不占据空间。<br>
+position:absolute;<br>
+重叠的元素属性值为 -1, 所以它会显示在文字之后<br>
+position:absolute;
+left:0px;
+top:0px;
+z-index:-1;<br>
+如何使用滚动条来显示元素内溢出的内容<br>
+div.scroll
+{
+	background-color:#00FFFF;
+	width:100px;
+	height:100px;
+	overflow:scroll;
+}<br>
+更改光标<br>
+<span style="cursor:auto">auto</span><br>
+<span style="cursor:crosshair">crosshair</span><br>
+<span style="cursor:default">default</span><br>
+<span style="cursor:e-resize">e-resize</span><br>
+<span style="cursor:help">help</span><br>
+<span style="cursor:move">move</span><br>
+<span style="cursor:n-resize">n-resize</span><br>
+<span style="cursor:ne-resize">ne-resize</span><br>
+<span style="cursor:nw-resize">nw-resize</span><br>
+<span style="cursor:pointer">pointer</span><br>
+<span style="cursor:progress">progress</span><br>
+<span style="cursor:s-resize">s-resize</span><br>
+<span style="cursor:se-resize">se-resize</span><br>
+<span style="cursor:sw-resize">sw-resize</span><br>
+<span style="cursor:text">text</span><br>
+<span style="cursor:w-resize">w-resize</span><br>
+<span style="cursor:wait">wait</span><br>
+
+
+<h4>CSS Float(浮动)</h4>
+.thumbnail 
+{
+	float:left;
+	width:110px;
+	height:90px;
+	margin:5px;
+}<br>
+
+清除浮动 - 使用	指定不允许元素周围有浮动元素。 clear<br>
+.text_line
+{
+	clear:both;
+	margin-bottom:2px;
+}<br>
+
+CSS 水平对齐(Horizontal Align)
+中心对齐,使用margin属性<br>
+.center
+{
+  margin-left:auto;
+  margin-right:auto;
+  width:70%;
+  background-color:#b0e0e6;
+}<br>
+
+使用position属性设置左，右对齐<br>
+{
+  position:absolute;
+  right:0px;
+  width:300px;
+  background-color:#b0e0e6;
+}<br>
+
+<h4>CSS 组合选择符</h4>
+组合选择符说明了两个选择器直接的关系。
+
+
+<h4></h4>
+
+
+
+
+
+

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+
+<div id='i1'>
+天青色等烟雨
+</div>
+
+<script  src='jquery-3.2.1.js'></script>
+<script>
+
+$(function(){
+	//当dom文档加载完毕后，自动执行这里的代码
+	$('#i1').click(function(){
+		alert($(this).text());
+	});
+	//第二种方式，没必要使用
+	$('#i1').bind("click", function(){
+		alert('风起燕南下')
+	})
+});
+
+</script>
+</body>
+</html>

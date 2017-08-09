@@ -1,0 +1,6 @@
+{"group1": {
+			"192.168.100.50": {"password": "huawei", "username": "root", "port": 22}}, 
+ "group2": {
+			"192.168.20.217": {"password": "123456", "username": "root", "port": 22},
+			"192.168.20.219": {"password": "zyw@123", "username": "root", "port": 22}}
+			}

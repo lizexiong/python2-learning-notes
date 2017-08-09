@@ -1,0 +1,15 @@
+
+{% extends 'index.html' %}
+{% load custom_tags %}
+
+{% block page-container %}
+    <div class="article_detail">
+        <h4>{{ article_obj.title  }}</h4>
+        <h5>{{ article_obj.author }}</h5>
+        <p>{{ article_obj.content | safe }}</p>
+        <hr/>
+        {% build_comment_tree article_obj.comment_set.select_related %}
+    </div>
+{% endblock %}
+
+

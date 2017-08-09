@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<style>
+	.red {
+	background-color: red;
+	}
+
+</style>
+</head>
+<body>
+
+<div  name = 'lizexiong' id='l1' style="background-color:green;font-size:8px">
+天青色等烟雨
+</div>
+
+<!-- 将函数绑定到标签上面 -->
+<input type='button' onclick="edit();"  value='修改'/>
+<input type='button' onclick="rollback();" value='清空'/>
+<input type='text' onfocus="edit();">onfocus测试
+
+<form id="button_form" action="https://www.sogou.com/web?">
+	<input type="text" name="query" />
+	<input type="button" onclick="submit_form();" value="button">
+</form>
+
+<script>
+	/*
+	var i = document.getElementById('l1')
+	i.className = "red"
+	*/
+	function edit(){
+		var i = document.getElementById('l1')
+		console.log(i.className)
+		i.className = "red";
+	}
+	function rollback(){
+		var i = document.getElementById('l1')
+		i.setAttribute('name','wuxinzhe')
+		var result = i.getAttribute('name')
+		console.log(result);
+		i.style.backgroundColor = 'red'	
+	}
+	function submit_form(){
+		/*document.getElementById('button_form').submit()*/
+		window.location.href = "http://www.baidu.com"
+	}
+</script>
+</body>
+</html>

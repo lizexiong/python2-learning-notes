@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type"        
+            content="text/html; charset=utf-8"/>  
+<title></title>
+</head>
+<body>
+
+<input type='button' onclick='AjaxRequest();' value='请求'>
+<div class='con'></div>
+
+<script type='text/javascript' src='jquery-3.2.1.js'></script>
+<script type='text/javascript'>
+	function AjaxRequest(){
+		$.ajax({
+			url: 'http://www.jxntv.cn/data/jmd-jxtv2.html?callback=list&_=1454376870403',
+			type: 'GET',
+			dataType: 'jsonp',
+			jsonp: 'callback',
+			jsonpCallback: 'list',
+			success:function(data){
+					
+				$.each(data.data,function(i){
+					var v = data.data[i]
+					//console.log(v);
+					var str= "<p>"+ v.week +"</p>"
+					$('.con').append(str)
+				
+					$.each(v.list,function(j){
+						//console.log(v.list[j]);
+						var temp= "<a href='" + v.list[j].link + "'>" + v.list[j].name + "</a></br>"
+						//注意以上的字符串拼接，href这里双引号和单引号的使用
+						$('.con').append(temp)
+					})
+				$('.con').append('</br>')
+				})	
+			}
+		});
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+{% load staticfiles %}
+{% load xx %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <input id = 'tb' type="input" value="1.1.1.1">
+    <input type="button" value="test" onclick="test()"/>
+    <h1>{% static "js/jquery-3.2.1.js" %}</h1>
+    <form action="/login/" method="post">
+        <p>{{ obj.username }}</p>
+{#            <span style="color:red;">{% error_msg error.username %}</span>#}
+        <p>{{ obj.password }}</p>
+        <input type="submit" value="提交" onclick="SubmitAjax()"/>
+    </form>
+    <script  src="{% static "js/jquery-3.2.1.js" %}"></script>
+    <script>
+        function SubmitAjax() {
+            $.ajax({
+                url:'/login/',
+                type:'POST',
+                data:{'username':'','password':''},
+                success:function(arg){
+                    console.log(arg)
+                }
+            })
+        }
+    </script>
+</body>
+</html>

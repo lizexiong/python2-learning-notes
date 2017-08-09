@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<script type="text/javascript" src="jquery-3.2.1.js"></script>
+<table border='1'>
+<tbody>
+<tr>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td onclick='get_prev(this);'>编辑</td>
+</tr>
+</tbody>
+</table>
+
+<script type="text/javascript">
+	function get_prev(arg){
+		//$(arg).siblings找到td标签的所有兄弟。
+		//map循环多个标签中的标签。
+		//每一个标签循环时，都会执行map内部函数并获取返回值
+		//将所有返回值装到一个列表中，然后返回列表
+		var list = $(arg).siblings().map(function(){
+			//当前循环的标签的值返回给list列表。
+			return $(this).text();
+		});
+		console.log(list);
+		console.log(list[0],list[1],list[2],list[3],list[4]);
+	}
+</script>
+<body>
+</html>

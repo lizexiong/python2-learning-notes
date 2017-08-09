@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<form action="/create_user/" method="post">
+    <p>{{ obj.username }}</p>
+    <p>{{ obj.usergroup_id }}</p>
+    <input type="submit" value="提交"/>
+</form>
+
+<table border="1">
+    {% for i in user_list %}
+        <tr>
+            <td>{{ i.username }}</td>
+            <td>{{ i.usergroup.caption }}</td>
+            <td>{{ i.usergroup.vip.vip }}</td>
+        </tr>
+    {% endfor %}
+</table>
+</body>
+</html>

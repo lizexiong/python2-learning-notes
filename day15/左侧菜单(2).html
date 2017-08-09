@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<style>
+.hide{
+	display:none;
+}
+</style>
+</head>
+<body>
+
+<!-- 所有div标签定义2个id，后期判断使用 -->
+<div>
+<div  onclick="change(this)">许嵩</div>
+	<div class="content">
+<div>宿敌</div>
+<div>半城烟沙</div>
+<div>山水之间</div>
+	</div>
+</div>
+<br>
+<div>
+<div  onclick="change(this)">周杰伦</div>
+	<div class="content hide">
+<div>彩虹</div>
+<div>龙战骑士</div>
+<div>给我一首歌的时间</div>
+	</div>
+</div>
+<br>
+
+<div>
+<div  onclick="change(this)">陈奕迅</div>
+	<div class="content hide">
+<div>十面埋伏</div>
+<div>好久不见</div>
+<div>不要说话</div>
+	</div>
+</div>
+<script src="jquery-3.2.1.js" type="text/javascript"></script>
+<script type="text/javascript">
+	function change(arg){
+		//var  t=$(arg).text();
+		//console.log(t)	
+		//这里的操作，找到点击的标签的下一个div，移除hide,$(arg).next()下一个标签
+		$(arg).next().removeClass('hide');//仅这一步就完成了显示的功能
+		//第二步:找到其它的标签，内容隐藏，添加hide。
+		//首先找到当前标签的父标签，比如出现周杰伦这一个div的上一个标签，因为这样，他们的父标签都相同，所以找父标签$(arg).parent()
+		//然后找到父亲标签的兄弟标签$(arg).parent().siblings()
+		//然后根据class字段content来定位和添加hide。
+		$(arg).parent().siblings().find('.content').addClass('hide');
+	}
+</script>
+</body>
+</html>

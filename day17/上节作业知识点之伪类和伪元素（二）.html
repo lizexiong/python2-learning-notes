@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+
+<style>
+
+.clearfix:after {
+	content:".";			//插入文字.
+	visibility:hidden;		//把.不显示，但是还是占了位置	
+	display:block;			//把内联标签变成块级
+	height:0;				//这个块级高度为0
+	clear:both;				//清除所有float样式
+}
+
+</style>
+<body>
+
+<div style="background-color:green" class="clearfix">
+	<div style="float:left">左浮动</div>
+	<div style="float:right">右浮动</div>
+</div>
+
+</body>
+</html>

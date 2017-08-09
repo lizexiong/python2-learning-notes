@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../static/plugins/bootstrap/css/bootstrap.css" />
+    <style>
+        .form {
+            height:100px;
+            width:20%;
+            position:fixed;
+            top:100px;
+            left:550px;
+        }
+
+        .input_form {
+            background-color: transparent;
+            border:1px solid;
+            width:150px;
+            height:20px;
+        }
+    </style>
+</head>
+<body>
+
+<div  class="form">
+    <form action="/login/" method="post">
+        <p>邮箱{{ obj.email }}<span>{{ errors.email }}</span></p>
+        <p>密码{{ obj.password }}<span>{{ errors.password }}</span> </p>
+        <p><input type="submit" value="登录"/><span>{{ status }}</span></p>
+    </form>
+</div>
+
+<script type="text/javascript" src="../static/js/jquery-3.2.1.js"></script>
+<script type="text/javascript" src="../static/plugins/bootstrap/js/bootstrap.js"></script>
+</body>
+</html>

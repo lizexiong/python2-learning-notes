@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+</head>
+<body>
+
+<input type='checkbox' checked='checked' />
+<input type='checkbox'  />
+<input type='button' onclick='Li()' value='点击'>
+
+<script type='text/javascript' src='jquery-3.2.1.js'></script>
+<script type='text/javascript'>
+	function Li(){
+		$('input').each(function(){
+			$(this).prop('checked',true);
+		})
+	}
+</script>
+</body>
+</html>

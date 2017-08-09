@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .input {
+            position:fixed;
+            left:590px;
+            top:180px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="input">
+    <form action="/login/" method="post">
+        <p>{{ obj.username }}</p>
+        <p>{{ obj.password }}</p>
+    <input type="submit" value="登录"/>
+        <span style="color:red">{{ status }}</span>
+    </form>
+</div>
+
+</body>
+</html>

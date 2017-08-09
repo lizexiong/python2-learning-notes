@@ -1,0 +1,15 @@
+
+{% extends 'index.html' %}
+
+
+{% block page-container %}
+    <div class="article_detail">
+        <h4>{{ article_obj.title  }}</h4>
+        <h5>{{ article_obj.author }}</h5>
+        <p>{{ article_obj.content | safe }}</p>
+        <hr/>
+
+    </div>
+{% endblock %}
+
+

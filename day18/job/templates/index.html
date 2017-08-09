@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+
+        .height {
+            height:100px;
+            width:100%;
+        }
+
+        .float-right {
+            float:right;
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="height" >
+    <span class="float-right"> {{ username }} <span>
+    <a href="/logout/"><input type="button" value="退出" /></a>
+</div>
+
+<div style="padding:20px">
+		<input type='button' onclick="CheckAll('#edit_mode', '#tb')" value='全选' />
+		<input type='button' onclick="CheckReverse('#edit_mode', '#tb')" value='反选'/>
+		<input type='button' onclick="CheckCancel('#edit_mode','#tb')" value='取消' />
+		<a id='edit_mode' class='edit_mode' href="javascript:void(0);" onclick="EditMode(this, '#tb');">进入编辑模式</a>
+        <a href="javascript:void(0)"><input type='button' onclick="Save('#edit_mode','#tb')" value='保存' /></a>
+        <a href="/add/"><input type="button"  value="增加"/></a>
+	</div>
+
+<form>
+<table border='1'>
+	<thead>
+		<tr>
+		<th>选择</th>
+		<th>主机</th>
+		<th>端口</th>
+		<th>状态</th>
+		<th>业务</th>
+		</tr>
+	</thead>
+	<tbody id='tb'>
+    {% for i in sql_host %}
+		<tr>
+			<td><input type='checkbox'></td>
+			<td edit='True'>{{ i.host }}</td>
+			<td>{{ i.port }}</td>
+			<td edit = "True" edit-type='select'  global-key='status1' select_val='2'>{{ i.status }}</td>
+			<td edit = "True" edit-type='select'  global-key='business'select_val='2'>{{ i.business }}</td>
+		</tr>
+    {% endfor %}
+	</tbody>
+</table>
+<form>
+
+<script  src='/static/js/jquery-3.2.1.js'></script>
+<script  src='/static/js/edit_row.js'></script>
+
+
+</body>
+</html>

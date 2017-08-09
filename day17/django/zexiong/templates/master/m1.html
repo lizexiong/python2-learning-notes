@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+<link rel="stylesheet" href="/static/css/commons.css">
+</head>
+<body>
+
+    <div class="header">天青色等烟雨</div>
+    <div class="body">
+            <div class="menu">左侧菜单</div>
+            <div class="content">
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+<!--其实在js或者css也可以用模版语言来套，但是这里先不使用-->
+<!--{% block js %}{% endblock %}-->
+</body>
+</html>
+

@@ -1,0 +1,61 @@
+{% load form_tag %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<form action="/user_list/" method="post" >
+    <p>用户类型{{ obj.user_type }}</p>
+    <p>主机{{ obj.host }}
+        <span>{% error_message errors.host %}</span>
+    </p>
+    <p>端口{{ obj.port }}<span>{{ errors.port }}</span></p>
+    <p>邮箱{{ obj.email }}<span>{{ errors.email }}</span></p>
+    <p>手机{{ obj.mobile }}<span>{{ errors.mobile }}</span></p>
+
+        <input type="submit" value="submit"/>
+</form>
+<input type="button" onclick="AjaxSubmit();" value="提交" />
+<input type="button" onclick="AjaxSubmitSet()" value="集合提交">
+
+<script type='text/javascript' src="/static/jquery-3.2.1.js"></script>
+<script>
+    function AjaxSubmit(){
+        var host='1.1.1.1';
+        var port='22';
+        $.ajax({
+            url:'/ajax_data/',
+                type:'POST',
+                data:{h:host,p:port},
+                success:function(arg){
+                }
+        });
+    }
+
+    function AjaxSubmitSet() {
+        var arr_user = [
+            {'username': 'zexiong', 'age': '24'},
+            {'username': 'xinzhe', 'age': '34'},
+            {'username': 'liuwen', 'age': '26'},
+    ]
+        $.ajax({
+            url: '/ajax_data_set/',
+            type: 'POST',
+            tradition:true,
+            data: {data: JSON.stringify(arr_user)},
+            success: function (arg) {
+                var callback_dict = $.parseJSON(arg);
+                if (callback_dict.status) {
+                    alert('成功')
+                } else {
+                    alert(callback_dict.error)
+                }
+            }
+        })
+    }
+</script>
+</body>
+</html>

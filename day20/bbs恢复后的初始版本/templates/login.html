@@ -1,0 +1,21 @@
+{% extends 'index.html' %}
+
+{% block page-container %}
+    <div style="position:fixed; left:600px">
+        <form class="form-signin" active="{% url 'login' %}" method="post">{% csrf_token %}
+            <h2 class="form-signin-heading">Please sign in</h2>
+            <label for="inputEmail" class="sr-only">用户名</label>
+            <input type="text" name='username' id="inputEmail" class="form-control" placeholder="用户名" required="" autofocus="">
+            <label for="inputPassword"  class="sr-only">密码</label>
+            <input type="password"  name="password" id="inputPassword" class="form-control" placeholder="密码" required="">
+{#            <div class="checkbox">#}
+{#              <label>#}
+{#                <input type="checkbox" value="remember-me"> Remember me#}
+{#              </label>#}
+{#            </div>#}
+            <br/>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            <p style="color: #419641">{{ err_msg }}</p>
+      </form>
+    </div>
+{% endblock %}

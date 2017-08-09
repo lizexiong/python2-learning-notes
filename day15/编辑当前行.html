@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<style>
+ .hide {
+	display:none;
+ }
+ .model {
+	background:#ddd;
+	position:fixed;
+	left:50%;
+	top:50%;
+	width:400px;
+	height:300px;
+	margin-left:-200px;
+	margin-top:-150px;
+ }
+
+</style>
+</head>
+<body>
+
+<table border='1'>
+<tr>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td onclick='GetPrev(this);'>编辑</td>
+</tr>
+</table>
+
+<table border='1'>
+<tr>
+<td>11</td>
+<td>22</td>
+<td>33</td>
+<td onclick='GetPrev(this)'>编辑</td>
+</tr>
+</table>
+
+<table border='1'>
+<tr>
+<td>111</td>
+<td>222</td>
+<td>333</td>
+<td onclick='GetPrev(this)'>编辑</td>
+</tr>
+</table>
+
+	<input type='button' onclick='Toggle();' value='toggle'/>
+
+<div id='dialog' class='model hide'>
+	<form action="" method="get">
+	<p>hostname:<input type='text' id='hostname'/></p>
+	<p>&nbsp&nbsp&nbspIP:<input type='text' id='ip'/></p>
+	<p>&nbsp&nbspport:<input type='text' id='port'/></p>
+	<input type='submit' onclick='return SubmitForm();' value='提交'/>
+	<input type='button' onclick='Cancel();' value='取消'/>
+	</form>
+</div>
+
+<script type='text/javascript' src='jquery-3.2.1.js'></script>
+<script type='text/javascript'>
+	
+	function SubmitForm(){
+		//首先获取input里面的值，判断是否为空
+		var ret = true;
+		//遍历所有的input，只要有空值，就将ret设置为false
+		$(":text").each(function(){
+			//$(this)是每一个要循环的元素
+			var value= $(this).val()
+			if(value.trim().length==0){
+				$(this).css('border-color','red');
+				ret = false;
+			}else{
+				$(this).css('border-color','green');
+			}
+		});
+		return ret;
+	}
+	
+	function Cancel(){
+		$("#dialog").addClass('hide');
+	}
+	
+	function GetPrev(arg){
+		var list = [];
+		var pre = $(arg).prevAll()
+		$.each(pre,function(i){
+			var item = pre[i]
+			//console.log(item);  //这里打印出了标签加内容，现在我只要内容
+			var item = $(item).text(); //到这里注意，重新给item加了一个$符号，如果不加是无法使用js的。
+			//console.log(item);
+			list.push(item);
+		})
+		var list= list.reverse();
+		//接下来，在弹出的框设置值
+		$('#hostname').val(list[0]);		//val如果后面不接参数就是获取value的值，否则就是设置值
+		$('#ip').val(list[1]);
+		$('#port').val(list[2]);
+		$('#dialog').removeClass('hide')	
+	}
+
+	function Toggle(){
+		$("#dialog").toggleClass('hide')
+	}
+</script>
+</body>
+</html>

@@ -1,2 +1,3 @@
 lizexiong,n,0,0
-wuxinzhe,y,2,0
+wuxinzhe,y,2,0lizexiong,n,0,1
+wuxinzhe,y,2,1

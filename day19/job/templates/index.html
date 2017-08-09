@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .float-right{
+            height:50px;
+            float:right;
+        }
+
+        .float-center{
+            position:fixed;
+            top:0px;
+            left:200px;
+        }
+
+        .float-center1{
+            position:fixed;
+            top:0px;
+            left:400px;
+        }
+
+        .float-center2{
+            position:fixed;
+            top:0px;
+            left:600px;
+        ｝
+    </style>
+</head>
+<body>
+
+<div class="float-right">
+    <span>{{ username }}</span>
+    <a href="/logout/"><input type="button" value="退出"/></a>
+</div>
+
+<div >
+    <form action="/index/" method="post">
+            <p>{{ obj.ip }}</p>
+            <p>{{ obj.port }}</p>
+            <p>{{ obj.hostgroup }}</p>
+            <input type="submit" value="增加"  />
+    </form>
+</div>
+
+<div>
+    <table border="1" style="text-align: center">
+        <tr>
+            <td>ID</td>
+        <td>IP</td>
+        <td>端口</td>
+        <td>组</td>
+        </tr>
+    {% for i in user_list %}
+        <tr>
+        <td>{{ i.id }}</td>
+        <td>{{ i.ip }}</td>
+            <td>{{ i.port }}</td>
+        <td>{{ i.groupname.groupname }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+</div>
+
+<div class="float-center">
+    <form action="/index/" method="post">
+{#        <input type="text" name="groupname"  />#}
+        <p>{{ obj_group.hostgroupname }}</p>
+        <input type="submit" value="增加组"/>
+    </form>
+</div>
+
+<div class="float-center1">
+    <form action="/index/" method="post">
+        <p>{{ del_host.delhost }}</p>
+        <input type="submit" value="删除主机"/>
+    </form>
+</div>
+
+<div class="float-center2">
+    <form action="/index/" method="post">
+        <p>{{ update_host.updateid }}</p>
+        <p>{{ update_host.updateip }}</p>
+        <p>{{ update_host.updateport }}</p>
+        <input type="submit" value='更新主机信息'/>
+    </form>
+</div>
+
+</body>
+</html>
+

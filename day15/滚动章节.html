@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+</head>
+<body>
+<div>
+	<div id='currentPosition' style='position:fixed; top:0px;right:0px'></div>
+<div class='chapter' style='height:500px'>
+<h4>第一章</h4>
+</div>
+
+<div class='chapter' style='height:1000px'>
+<h4>第二章</h4>
+</div>
+
+<div class='chapter' style='height:30px'>
+<h4>第三章</h4>
+</div>
+</div>
+
+<script type='text/javascript' src='jquery-3.2.1.js'></script>
+<script type='text/javascript'>
+	$(function(){
+		$(window).scroll(function(){		//这里意思是$window绑定了scroll这个事件，然后执行一个function，只要滚动滑轮，
+											//这个里面就会执行。
+				var scroll_top = $(window).scrollTop(); 	//那么首先获取滚动的高度
+				var list = [];				//声明一个列表，存储每一章离顶部的高度
+				$.each($('.chapter'),function(i){
+				//通过循环把每个内容距离html页面的距离放入列表。
+					var current_height = $($('.chapter')[i]).offset().top;
+					list.push(current_height);
+				});
+				
+				$.each(list,function(i){
+					if(scroll_top>list[i]){	//如果 滚动条的高度> 每一个标签离顶部的高度（也可以说是章节的高度），那么就可以显示内容了
+						$('#currentPosition').text($($('.chapter')[i]).text());		//在这个div里面显示 .chapter的内容。
+					}
+				
+				
+					//以下还有一种极端环境，就是第三章如果高度只有30，且是最后一个标签，达到不了显示的条件
+					//如果滚动条到最底部了，把信息显示出来。
+					if(scroll_top+$(window).height() == $(document).height()){	
+					//总滚动数+ 当前html窗体的高度  == 整个html的高度
+						$('#currentPosition').text($('.chapter').last().text());	
+						//那么就把.chapter的最后一个标签中的内容给显示出来
+					}
+				})	
+		})
+	})
+
+
+</script>
+</body>
+</html>

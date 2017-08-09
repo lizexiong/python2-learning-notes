@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+</title>
+</head>
+<body>
+
+<div id='myDiv'>id='myDiv'</div>
+
+<input name="apple" />
+<input name="flower" checked="checked" />
+
+
+<script type="text/javascript" src="jquery-3.2.1.js"></script>
+<script>
+	//当页面框架加载完成后，自动执行里面的值。
+	$(function () {
+	/*	$("#myDiv").text('天青色等烟雨') */
+	
+		$('li:first').text('123')
+	});
+
+		$("input:not(:checked)").text(12)
+	
+</script>
+</body>
+</html>
