@@ -1,6 +1,256 @@
 {% extends 'index.html' %}
 
 {% block page-container %}
-    <h1>聊天专区</h1>
+    {% csrf_token %}
+    <div>
 
+      <ul class="nav nav-tabs" role="tablist">
+{#          这里的href连接的是下面的id#}
+        <li role="presentation" class="active"><a href="#contacts"  role="tab" data-toggle="tab">联系人</a></li>
+        <li role="presentation"><a href="#groups"  role="tab" data-toggle="tab">群组</a></li>
+        <li role="presentation"><a href="#notifications"  role="tab" data-toggle="tab">通知</a></li>
+        <li role="presentation"><a href="#settings"  role="tab" data-toggle="tab">设置</a></li>
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="contacts">
+
+            <div class="chat-container row" >
+                <div class="contact-list col-md-3" >
+
+                    <div class="list-group">
+                    </div>
+
+                </div>
+                <div class="chat-box col-md-9" >
+                    <div class="chat-header" >聊天框信息</div>
+                    <div class="chat-content">聊天内容</div>
+                    <div class="chat-send col-md-9" >
+                        <textarea>
+
+                        </textarea>
+                    </div>
+                    <div class="chat-send-btn col-md-2">
+                        <button type="button" class="btn btn-success" style="margin-left: 10px; margin-top:50px;">发送</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div role="tabpanel" class="tab-pane" id="groups">...</div>
+        <div role="tabpanel" class="tab-pane" id="notifications">...</div>
+        <div role="tabpanel" class="tab-pane" id="settings">...</div>
+      </div>
+
+    </div>
+{% endblock %}
+
+
+
+
+{% block bottom-js %}
+        <script>
+            $(document).ready(function(){
+
+                GLOBAL_SESSION_CACHE ={
+                    'single_contact':{},
+                    'group_contact':{},
+                }
+
+                LoadContacts()
+{#                setInterval 设置时间间隔，设置的里面函数每次执行的间隔#}
+{#                var RefreshNewMsgs = setInterval(function(){#}
+                       GetNewMsgs()
+{#                },3000)#}
+
+
+{#                监听body标签下textarea的键盘输入，把获取的值给e#}
+                $("body").delegate("textarea","keydown",function(e){
+{#                    如果等于回车#}
+                    if(e.which == 13){
+{#                        那么就把textarea标签里的值获取到复制给变量msg_text#}
+                        var msg_text = $("textarea").val()
+{#                        如果清楚空格之后还大于0#}
+                        if ($.trim(msg_text).length>0){
+                            console.log(msg_text)
+{#                            如果不为空，那么就发送到后台，此函数是往后台发的函数#}
+                            SendMsg(msg_text);
+                            }
+                        {#                            把收到的消息传入到函数里面#}
+                        AddSentMsgIntoBox(msg_text)
+{#                        然后在清空textarea里面的值#}
+                        $("textarea").val('')
+                    }
+                })
+            })
+
+{#            收取消息将消息展示的前端字符串拼接#}
+        function AddRecvMsgToChatBox(msg_item){
+            var msg_ele = "<div class='msg-item-recv'>" + "<p>" + msg_item.from_name + msg_item['timestamp'] + "</p>" +
+                            "<p>" + msg_item.msg + "</p>" +
+                                    "</div>";
+            $(".chat-content").append(msg_ele)
+            $(".chat-content").animate({
+                scrollTop:$('.chat-content')[0].scrollHeight},500
+            )
+        }
+
+        function AddSentMsgIntoBox(msg_text){
+            var d=new Date()
+            var send_time = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds()
+{#            这里就是字符串拼接了#}
+            var msg_ele = "<div class='msg-item-sent'>" + "<p>" + "{{ request.user.userprofile.name }} &nbsp;&nbsp" +
+                            send_time + "</p>" +
+                            "<p>" + msg_text + "</p>" +
+                            "</div>"
+            $(".chat-content").append(msg_ele)
+{#            animate是js注册动画效果的意思,scrollTop设置匹配元素的滚动条的垂直位置，#}
+{#            $('.chat-content')[0]还是到这个事件上面返回的还是一个列表，所以出去下标为0,#}
+{#                    scrollHeight返回元素的完整的高度，以像素为单位. 500是消息显示的时间#}
+
+{#            个人简单理解，scrollTop设置了$.('.chat-content')的这个标签的高度,要配合overflow使用，#}
+{#            .chat-content[0]的值就是 当前标签的最高高度，然后通过scrollTop设置到最下方#}
+            $(".chat-content").animate({
+                scrollTop:$('.chat-content')[0].scrollHeight},500
+            )
+        }
+
+        function LoadContacts(){
+                    $.get("{% url 'load_contact_list' %}",function(callback) {
+                        console.log(callback)
+{#                        JSON.parse把字符串转换成前端js字典格式#}
+                        var data = JSON.parse(callback)
+{#                        因为contacts_list是一个列表，所以要返回索引和值，但是这里索引不需要#}
+                        $.each(data.contact_list,function(index,ele){
+{#                               这里在来个字符串拼接，把值返回给前端#}
+{#                                然后还加一个contact_id隐藏在这里，否则我不可能通过name判断点击链接指向谁的聊天框#}
+{#                                然后在加一个标志contact_type区分我是单人聊天还是群聊天#}
+                           var  ele =  "<a href='#' onclick='OpenDialogBox(this);' class='list-group-item' contact_id='"+ ele.id +"' contact_type = 'single_contact' >"
+                            + ele.name + "</a>";
+                            $(".contact-list .list-group").append(ele)
+                        })
+                    })
+        }
+
+{#            将联系人信息放在聊天框头部#}
+        function OpenDialogBox(ele){
+            var contact_id = $(ele).attr('contact_id');
+            var contact_type = $(ele).attr('contact_type')
+            var contact_name = $(ele).text();
+{#            要在改聊天人信息头之前把当前聊天记录保存下来#}
+            DumpSession();
+{#            字符串拼接，将聊天用户信息发在聊天框#}
+            var ele = "<h4><span contact_id='"+ contact_id +"'" + "contact_type='"+ contact_type +"'>" +
+                            contact_name + "<span></h4>";
+{#                然后把这些信息加入到聊天框头部#}
+            $(".chat-header").html(ele)
+{#            把聊天人信息更换后马上把这个联系人的记录加载出来显示在网页上#}
+            LoadSession(contact_id,contact_type);
+        }
+
+{#            保存聊天记录#}
+        function DumpSession(){
+{#                在OpenDialogBox获取的是当前点击的标签，所以，这里我们使用.chat-header在聊天框页面获取的id,#}
+{#                    那么就是在执行第二次openDialogBox的时候，ele为最新的id，但是第一次执行时, .chat-header span#}
+{#                获取的就是第一次执行的聊天框信息的id，因为第二次点击OpenDialog的时候，还每把最新的id更新到页面上#}
+{#            所以获取的就是上一次的id#}
+                var current_contact_id = $(".chat-header span").attr('contact_id')
+                var current_contact_type = $('.chat-header span').attr('contact_type')
+{#                第一次打开界面，没有选择聊天人信息是没有current_contact_id的，会报错，所以要判断一下#}
+                if(current_contact_id){
+                    GLOBAL_SESSION_CACHE[current_contact_type][current_contact_id] =$(".chat-content").html()
+                }
+            }
+
+{#            这里传入了2个当前的参数，是因为，我要显示点击的这个人的聊天记录，那么就要动态的当前的id#}
+{#            加载聊天记录#}
+        function LoadSession(contact_id,contact_type){
+{#            如果在字典里面查找这个id的记录，那么就拿出来，如果没有找到，就设置为空#}
+            if(GLOBAL_SESSION_CACHE[contact_type].hasOwnProperty(contact_id)){
+                var session_html = GLOBAL_SESSION_CACHE[contact_type][contact_id];
+            }else{
+                var session_html = ''
+            }
+            $(".chat-content").html(session_html)
+        }
+
+{#            发送消息到后台#}
+        function SendMsg(msg_text){
+            var contact_id = $(".chat-header h4 span").attr("contact_id");
+            var contact_type = $(".chat-header h4 span").attr("contact_type");
+{#            要发送给谁，以及消息来自谁的一些信息以及contact_type类型，来确定我的id是群还是个人聊天#}
+            var msg_dic ={
+                'contact_type':contact_type,
+                'to':contact_id,
+                'from':'{{ request.user.userprofile.id }}',
+                'from_name':'{{ request.user.userprofile.name }}',
+                'msg':msg_text,
+            }
+{#            后面的data是给url send_msg传的,data里面包含了csrfmiddlewaretoken，这个token埋藏在网页上，#}
+{#            字典csrfmiddlewaretoken这个字段键是固定的，不能更改，否则取的时候找不到#}
+{#            $.post("{% url 'send_msg' %}",{'data':JSON.stringify(msg_dic),'csrfmiddlewaretoken':GetCsrfToken},function(callback){#}
+            $.post("{% url 'send_msg' %}",{'data':JSON.stringify(msg_dic),},function(callback){
+                console.log(callback)
+            })
+        }
+
+{#            收取新消息#}
+        function GetNewMsgs(){
+            $.get("{% url 'get_new_msgs' %}",function(callback){
+                console.log(callback,'回调后台返回的值')
+{#                把收到的字符串格式化成前端字典#}
+                var msg_list = JSON.parse(callback)
+{#                取出当前页面的id和类型，等会好做对比#}
+                var current_open_session_id = $(".chat-header span").attr('contact_id')
+                var current_open_session_type = $(".chat-header span").attr('contact_type')
+{#                开始返回的值，返回的值是一个列表包含一个字典，类型下面的类型，所以循环要取索引和值#}
+{#                [{"from_name": "\u674e\u6cfd\u96c4", "from": "1", "contact_type": "single_contact", "timestamp": 1502446182.081, "to": "2", "msg": "\n                        1111"}]#}
+                $.each(msg_list,function(index,msg_item){
+{#                    如果等于会话类型和当前聊天窗口的id，那么就是我跟你在聊天，那么就可以展示收取到的消息了#}
+                    if(msg_item.contact_type == current_open_session_type){
+                        if(msg_item.from == current_open_session_id){
+                            console.log(msg_item)
+{#                            接下来还是字符串拼接，这个功能放在一个函数里#}
+                            AddRecvMsgToChatBox(msg_item)
+                        }//end msg_item.contact_id == current_open_session_id
+                    }//end msg_item.contact_type == current_open_session_type
+                });
+                GetNewMsgs()
+            })
+        }
+
+        function GetCsrfToken(){
+            return $("input[name='csrfmiddlewaretoken']").val();
+        }
+
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie != '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        var csrftoken = getCookie('csrftoken');
+
+        function csrfSafeMethod(method) {
+            // these HTTP methods do not require CSRF protection
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+        $.ajaxSetup({
+            beforeSend: function(xhr, settings) {
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
+            }
+        });
+        </script>
 {% endblock %}

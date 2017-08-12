@@ -26,3 +26,40 @@
     border-top: 0px;
     margin-bottom: 10px;
 }
+
+.chat-container {
+    height:600px;
+    border: solid chartreuse;
+}
+
+.chat-box {
+        padding:0px;
+}
+
+.contact-list {
+    border:solid lawngreen 0.1px;
+    height:597px
+}
+
+.chat-header {
+    height:60px;
+    border:solid lavender 0.1px;
+}
+
+.chat-content{
+    height:450px;
+    border:solid lavender 0.1px;
+    overflow: auto;
+}
+
+.chat-send{
+    padding:0px;
+    height:87px;
+    border:solid lavender 0.1px;
+}
+
+.chat-box textarea {
+    height:86px;
+    width:100%;
+}
+
