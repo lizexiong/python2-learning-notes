@@ -96,6 +96,31 @@
             )
         }
 
+{#            last改动,步骤5的函数，生成新的唯独的消息#}
+        function GenerateNewMsgItem(msg_item){
+            var msg_ele = "<div class='msg-item-recv'>" + "<p>" + msg_item.from_name + msg_item['timestamp'] + "</p>" +
+                            "<p>" + msg_item.msg + "</p>" +
+                                    "</div>";
+            return msg_ele
+        }
+{#        last改动，步骤7的函数，保存不是当前窗口的会话到字典里面#}
+        function DumpSession2(contact_id,contact_type,content){
+            if(contact_id){
+                GLOBAL_SESSION_CACHE[contact_type][contact_id] = content;
+            }
+        }
+
+{#        last改动，步骤8函数，将未读消息条目显示出来#}
+        function UpdateUnreadMsgNums(contact_id,contact_type){
+{#            msg_num获取的是一个列表对象，所以要把下标为0的拿出来，因为只有一个span标签，下标肯定为0#}
+            var msg_num = $(".contact-list a[contact_id = '"+  contact_id +"']").find("span")[0];
+            console.log(msg_num)
+{#            12.last 更改,更新的时候把未读消息样式给加载出来#}
+            $(msg_num).show()
+{#            把获取到的数字每次加1#}
+            $(msg_num).text( parseInt($(msg_num).text()) + 1)
+        }
+
         function AddSentMsgIntoBox(msg_text){
             var d=new Date()
             var send_time = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds()
@@ -127,7 +152,8 @@
 {#                                然后还加一个contact_id隐藏在这里，否则我不可能通过name判断点击链接指向谁的聊天框#}
 {#                                然后在加一个标志contact_type区分我是单人聊天还是群聊天#}
                            var  ele =  "<a href='#' onclick='OpenDialogBox(this);' class='list-group-item' contact_id='"+ ele.id +"' contact_type = 'single_contact' >"
-                            + ele.name + "</a>";
+{#                            9.last改动,显示未知消息的数量#}
+                                   + ele.name + "<span class='badge' style='display:none'>0</sapn></a>";
                             $(".contact-list .list-group").append(ele)
                         })
                     })
@@ -141,12 +167,19 @@
 {#            要在改聊天人信息头之前把当前聊天记录保存下来#}
             DumpSession();
 {#            字符串拼接，将聊天用户信息发在聊天框#}
-            var ele = "<h4><span contact_id='"+ contact_id +"'" + "contact_type='"+ contact_type +"'>" +
+{#            10.last改动,ele和下面11步骤的冲突了，所以要更改#}
+            var ele_last = "<h4><span contact_id='"+ contact_id +"'" + "contact_type='"+ contact_type +"'>" +
                             contact_name + "<span></h4>";
 {#                然后把这些信息加入到聊天框头部#}
-            $(".chat-header").html(ele)
+            $(".chat-header").html(ele_last)
+{#            2.last改动,直接在这里把函数的结果载入进去,可以说是优化写法#}
+            $(".chat-content").html(LoadSession(contact_id,contact_type))
 {#            把聊天人信息更换后马上把这个联系人的记录加载出来显示在网页上#}
-            LoadSession(contact_id,contact_type);
+{#            LoadSession(contact_id,contact_type);#}
+{#            11.last改动，点击到未读消息窗口，显示消息，并把未读条目清空#}
+            var clear_num = $(ele).find("span")[0]
+            $(clear_num).text(0)
+            $(clear_num).css("display","none");
         }
 
 {#            保存聊天记录#}
@@ -172,7 +205,9 @@
             }else{
                 var session_html = ''
             }
-            $(".chat-content").html(session_html)
+{#            1.last 改动，这里已经不在需要把加载到的信息 "在这里"加载到页面上#}
+{#            $(".chat-content").html(session_html)#}
+            return session_html
         }
 
 {#            发送消息到后台#}
@@ -213,6 +248,18 @@
                             console.log(msg_item)
 {#                            接下来还是字符串拼接，这个功能放在一个函数里#}
                             AddRecvMsgToChatBox(msg_item)
+{#                            3.last更改,如果不等于当前窗口，那么有消息来了#}
+                        }else{
+{#                            4.last 改动,那么就把老的消息先拿到，因为有新消息，那么肯定有老的消息在页面上#}
+                            var old_session_content = LoadSession(msg_item.from,msg_item.contact_type)
+{#                            5.last 改动,那么也会有新的消息要展示。#}
+                            var new_msg_ele = GenerateNewMsgItem(msg_item)
+{#                            6.last改动，然后把老消息，新消息加起来#}
+                            var new_session_content = old_session_content + new_msg_ele
+{#                            7.last改动，就把不是当前聊天窗口的信息保存下来#}
+                            DumpSession2(msg_item.from,msg_item.contact_type,new_session_content)
+{#                            8.last改动，更新未读消息条数#}
+                            UpdateUnreadMsgNums(msg_item.from,msg_item.content_type)
                         }//end msg_item.contact_id == current_open_session_id
                     }//end msg_item.contact_type == current_open_session_type
                 });
