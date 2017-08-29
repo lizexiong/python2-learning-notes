@@ -1,0 +1,155 @@
+#!/usr/bin/python
+#-*- coding:UTF-8 -*-
+
+from xml.dom import minidom
+import sys,os
+import getopt 
+import socket
+
+servers={}
+apps={}
+props={}
+debug=False
+cmd="help"
+cmdtarget=[]
+cmdkey=["help", "start", "stop", "restart", "status", "log", "syslog"]
+
+def usage():
+	print "usage: app.py [-dh] (help|start|stop|restart|log|status|syslog) (all|[appname...])"
+	print "e.g: \n 1. app.py start solr client \n 2. app.sh log batch  \n 3. app.sh start all \n ..."
+	sys.exit(0)
+
+#加载配置文件，分析配置文件
+def parse_xml(f = "%s/server.xml"%os.path.dirname(__file__)):
+	global props, servers, apps
+
+	xmldoc = minidom.parse(f)
+	rootNode = xmldoc.firstChild	
+	#解析prop元数据
+	propNodeList = rootNode.getElementsByTagName("prop")
+	for node in propNodeList:
+		attrName = node.attributes["name"];
+		attrValue = node.attributes["value"];
+		props[attrName.value] = attrValue.value
+	for key in props.keys():
+		props[key] = place_holder(props[key])
+	#解析apps元数据
+	appRootNode = rootNode.getElementsByTagName("apps")[0]
+	appNodeList = appRootNode.getElementsByTagName("app")
+	for node in appNodeList:
+		app = {}
+		for attr in node.attributes.values():
+			app[attr.name] = attr.value
+		apps[app["name"]] = app 
+		
+	#解析server元数据
+	serverNodeList = rootNode.getElementsByTagName("server")
+	for node in serverNodeList:
+		server = {}
+		for attr in node.attributes.values():
+			server[attr.name] = attr.value
+		servers[server["name"]] = server
+
+
+def parse_args(argv):
+	global debug, cmd, cmdtarget
+	try:
+		opts,args = getopt.getopt(argv, "dh", [])
+	except getopt.GetoptError:
+		usage()
+	
+	for opt,arg in opts:
+		if opt == "-d":
+			debug = True
+		elif opt in ("-h", "--help"):
+			usage()
+	
+	for ck in cmdkey:
+		if ck in args:
+			args.remove(ck)
+			cmd = ck
+			break;
+	if not args and cmd != 'status':
+		usage()
+
+	cmdtarget.extend(args)
+
+def place_holder(str):
+	for key in props.keys():
+		str = str.replace("{" + key + "}", props[key])
+	return str
+
+
+def start_app(app):
+	app_path = place_holder(apps[app]["path"])
+	app_exec = app_path + "/bin/startup.sh"
+	return os.system(app_exec);
+
+
+def stop_app(app):
+	app_path = place_holder(apps[app]["path"])
+	app_exec = app_path + "/bin/shutdown.sh"
+	return os.system(app_exec);
+
+
+def show_log(app, type="app"):
+	app_path = place_holder(apps[app]["path"])
+	app_log_path = app_path + "/logs/%s"
+	if type == "sys":
+		log_file = app_log_path%"catalina.out"
+	else:
+		log_file = app_log_path%"app.log"
+	app_exec = "tail -f %s" % log_file
+	os.system(app_exec);
+
+def show_status(app):
+	app_path = place_holder(apps[app]["path"])
+	psinfo = os.popen("ps -u djb -opid,command --no-headers").readlines()
+	ls = [line for line in psinfo if line.find(app_path) >= 0]
+	if len(ls) > 0:
+		print "%s(%s) is running"%(app,ls[0].split()[0])
+	else:
+		print "%s is stoped"%app
+
+def execute(apps):
+	for app in apps:
+		if cmd == 'start':
+			start_app(app)
+		elif cmd == 'stop':
+			stop_app(app)
+		elif cmd == 'restart':
+			stop_app(app)
+			start_app(app)
+		elif cmd == 'log':
+			show_log(app, "app")
+			sys.exit(0)
+		elif cmd == 'syslog':
+			show_log(app, "sys")
+			sys.exit(0)
+		elif cmd == 'status':
+			show_status(app)
+	 
+
+def execute_cmd():
+	global cmdtarget
+	hostname = socket.gethostname()
+	ip = socket.gethostbyname(hostname)
+	localserver = {}
+	if "localhost" in servers.keys():
+		localserver = servers["localhost"]
+	if "127.0.0.1" in servers.keys():
+		localserver = servers["127.0.0.1"]
+	if hostname in servers.keys():
+		localserver = servers[hostname]
+	if ip in servers.keys():
+		localserver = servers[ip]
+        if "all" in cmdtarget or len(cmdtarget) == 0: 	
+		cmdtarget = localserver['apps'].split(",");
+
+	execute([app for app in cmdtarget if app in localserver["apps"]])
+								
+
+if __name__ == '__main__':
+	parse_xml() 
+	parse_args(sys.argv[1:])
+	execute_cmd()

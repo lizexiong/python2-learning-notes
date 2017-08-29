@@ -1,0 +1,65 @@
+
+
+.left-content-panel{
+    border:2px solid crimson;
+}
+
+.right-sidebar{
+    border:2px solid black;
+}
+
+.articles-head-img img{
+    height:125px;
+    width:220px;
+}
+
+.articles-summary{
+    margin-left:35px;
+}
+
+.articles-box {
+    margin-bottom: 25px;
+}
+
+.comment-node{
+    border: 2px dashed #00ff00;
+    border-top: 0px;
+    margin-bottom: 10px;
+}
+
+.chat-container {
+    height:600px;
+    border: solid chartreuse;
+}
+
+.chat-box {
+        padding:0px;
+}
+
+.contact-list {
+    border:solid lawngreen 0.1px;
+    height:597px
+}
+
+.chat-header {
+    height:60px;
+    border:solid lavender 0.1px;
+}
+
+.chat-content{
+    height:450px;
+    border:solid lavender 0.1px;
+    overflow: auto;
+}
+
+.chat-send{
+    padding:0px;
+    height:87px;
+    border:solid lavender 0.1px;
+}
+
+.chat-box textarea {
+    height:86px;
+    width:100%;
+}
+

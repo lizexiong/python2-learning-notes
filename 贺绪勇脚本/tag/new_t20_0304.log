@@ -1,0 +1,1264 @@
+ab -t 20 -c 5 http://shanghai.dajiabao.com/
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking shanghai.dajiabao.com (be patient)
+
+
+Server Software:        
+Server Hostname:        shanghai.dajiabao.com
+Server Port:            80
+
+Document Path:          /
+Document Length:        28151 bytes
+
+Concurrency Level:      5
+Time taken for tests:   20.090 seconds
+Complete requests:      124
+Failed requests:        82
+   (Connect: 0, Receive: 0, Length: 82, Exceptions: 0)
+Write errors:           0
+Total transferred:      3528722 bytes
+HTML transferred:       3490617 bytes
+Requests per second:    6.17 [#/sec] (mean)
+Time per request:       810.077 [ms] (mean)
+Time per request:       162.015 [ms] (mean, across all concurrent requests)
+Transfer rate:          171.53 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        4   21 126.5      4    1005
+Processing:   624  773 118.4    746    1342
+Waiting:      609  714  64.8    708     958
+Total:        628  793 173.4    755    1860
+
+Percentage of the requests served within a certain time (ms)
+  50%    755
+  66%    784
+  75%    843
+  80%    885
+  90%    935
+  95%    977
+  98%   1346
+  99%   1698
+ 100%   1860 (longest request)
+ab -t 20 -c 5 http://baojia.dajiabao.com/
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking baojia.dajiabao.com (be patient)
+
+
+Server Software:        
+Server Hostname:        baojia.dajiabao.com
+Server Port:            80
+
+Document Path:          /
+Document Length:        141529 bytes
+
+Concurrency Level:      5
+Time taken for tests:   20.103 seconds
+Complete requests:      107
+Failed requests:        51
+   (Connect: 0, Receive: 0, Length: 51, Exceptions: 0)
+Write errors:           0
+Total transferred:      15368473 bytes
+HTML transferred:       15335120 bytes
+Requests per second:    5.32 [#/sec] (mean)
+Time per request:       939.375 [ms] (mean)
+Time per request:       187.875 [ms] (mean, across all concurrent requests)
+Transfer rate:          746.58 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        4   38 200.9      4    1404
+Processing:   303  792 1287.2    423    9995
+Waiting:      218  258  36.4    245     437
+Total:        308  830 1314.3    435   10000
+
+Percentage of the requests served within a certain time (ms)
+  50%    434
+  66%    561
+  75%    627
+  80%    657
+  90%   1385
+  95%   2521
+  98%   5345
+  99%   6854
+ 100%  10000 (longest request)
+ab -t 20 -c 5 http://www.dajiabao.com/jihua/
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking www.dajiabao.com (be patient)
+
+
+Server Software:        
+Server Hostname:        www.dajiabao.com
+Server Port:            80
+
+Document Path:          /jihua/
+Document Length:        69571 bytes
+
+Concurrency Level:      5
+Time taken for tests:   20.169 seconds
+Complete requests:      62
+Failed requests:        61
+   (Connect: 0, Receive: 0, Length: 61, Exceptions: 0)
+Write errors:           0
+Total transferred:      4334479 bytes
+HTML transferred:       4315511 bytes
+Requests per second:    3.07 [#/sec] (mean)
+Time per request:       1626.568 [ms] (mean)
+Time per request:       325.314 [ms] (mean, across all concurrent requests)
+Transfer rate:          209.87 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        4   24 152.4      5    1204
+Processing:  1136 1542 282.8   1526    2520
+Waiting:     1100 1435 249.5   1352    2270
+Total:       1141 1566 307.5   1549    2527
+
+Percentage of the requests served within a certain time (ms)
+  50%   1549
+  66%   1600
+  75%   1704
+  80%   1732
+  90%   1900
+  95%   2055
+  98%   2525
+  99%   2527
+ 100%   2527 (longest request)
+ab -t 20 -c 5 http://www.dajiabao.com/jihua/1230739.html
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking www.dajiabao.com (be patient)
+
+
+Server Software:        
+Server Hostname:        www.dajiabao.com
+Server Port:            80
+
+Document Path:          /jihua/1230739.html
+Document Length:        889 bytes
+
+Concurrency Level:      5
+Time taken for tests:   20.004 seconds
+Complete requests:      1022
+Failed requests:        0
+Write errors:           0
+Non-2xx responses:      1022
+Total transferred:      1266225 bytes
+HTML transferred:       908558 bytes
+Requests per second:    51.09 [#/sec] (mean)
+Time per request:       97.865 [ms] (mean)
+Time per request:       19.573 [ms] (mean, across all concurrent requests)
+Transfer rate:          61.82 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        4   67 398.0      5    4206
+Processing:    15   25  36.2     20     645
+Waiting:       15   22  14.9     20     227
+Total:         21   92 401.2     25    4434
+
+Percentage of the requests served within a certain time (ms)
+  50%     25
+  66%     26
+  75%     27
+  80%     28
+  90%     33
+  95%     47
+  98%   1375
+  99%   3024
+ 100%   4434 (longest request)
+ab -t 20 -c 5 http://www.dajiabao.com/guwen/
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking www.dajiabao.com (be patient)
+
+
+Server Software:        
+Server Hostname:        www.dajiabao.com
+Server Port:            80
+
+Document Path:          /guwen/
+Document Length:        47334 bytes
+
+Concurrency Level:      5
+Time taken for tests:   20.033 seconds
+Complete requests:      47
+Failed requests:        46
+   (Connect: 0, Receive: 0, Length: 46, Exceptions: 0)
+Write errors:           0
+Total transferred:      2236020 bytes
+HTML transferred:       2221638 bytes
+Requests per second:    2.35 [#/sec] (mean)
+Time per request:       2131.123 [ms] (mean)
+Time per request:       426.225 [ms] (mean, across all concurrent requests)
+Transfer rate:          109.00 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        4   26 145.7      5    1004
+Processing:  1103 2012 554.1   2084    2863
+Waiting:     1034 1861 552.3   1935    2797
+Total:       1108 2038 561.0   2183    2868
+
+Percentage of the requests served within a certain time (ms)
+  50%   2174
+  66%   2422
+  75%   2569
+  80%   2614
+  90%   2707
+  95%   2732
+  98%   2868
+  99%   2868
+ 100%   2868 (longest request)
+ab -t 20 -c 5 http://www.dajiabao.com/guwen/228157.html
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking www.dajiabao.com (be patient)
+
+
+Server Software:        
+Server Hostname:        www.dajiabao.com
+Server Port:            80
+
+Document Path:          /guwen/228157.html
+Document Length:        22335 bytes
+
+Concurrency Level:      5
+Time taken for tests:   21.063 seconds
+Complete requests:      203
+Failed requests:        100
+   (Connect: 0, Receive: 0, Length: 100, Exceptions: 0)
+Write errors:           0
+Total transferred:      4607763 bytes
+HTML transferred:       4545019 bytes
+Requests per second:    9.64 [#/sec] (mean)
+Time per request:       518.782 [ms] (mean)
+Time per request:       103.756 [ms] (mean, across all concurrent requests)
+Transfer rate:          213.64 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        4   29 169.5      5    1405
+Processing:   241  430 143.1    464    1097
+Waiting:      231  301  50.2    291     560
+Total:        246  459 227.6    475    1893
+
+Percentage of the requests served within a certain time (ms)
+  50%    475
+  66%    503
+  75%    523
+  80%    539
+  90%    580
+  95%    609
+  98%   1101
+  99%   1637
+ 100%   1893 (longest request)
+ab -t 20 -c 5 http://www.dajiabao.com/baoxian/
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking www.dajiabao.com (be patient)
+
+
+Server Software:        
+Server Hostname:        www.dajiabao.com
+Server Port:            80
+
+Document Path:          /baoxian/
+Document Length:        162337 bytes
+
+Concurrency Level:      5
+Time taken for tests:   20.192 seconds
+Complete requests:      75
+Failed requests:        74
+   (Connect: 0, Receive: 0, Length: 74, Exceptions: 0)
+Write errors:           0
+Total transferred:      12343819 bytes
+HTML transferred:       12320570 bytes
+Requests per second:    3.71 [#/sec] (mean)
+Time per request:       1346.129 [ms] (mean)
+Time per request:       269.226 [ms] (mean, across all concurrent requests)
+Transfer rate:          597.00 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        4    5   0.6      5       8
+Processing:  1015 1294 179.3   1269    1946
+Waiting:      895 1087 116.9   1077    1386
+Total:       1020 1299 179.3   1273    1950
+
+Percentage of the requests served within a certain time (ms)
+  50%   1270
+  66%   1344
+  75%   1383
+  80%   1437
+  90%   1492
+  95%   1613
+  98%   1901
+  99%   1950
+ 100%   1950 (longest request)
+ab -t 20 -c 5 http://www.dajiabao.com/baoxian/10923.html
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking www.dajiabao.com (be patient)
+
+
+Server Software:        
+Server Hostname:        www.dajiabao.com
+Server Port:            80
+
+Document Path:          /baoxian/10923.html
+Document Length:        196560 bytes
+
+Concurrency Level:      5
+Time taken for tests:   20.206 seconds
+Complete requests:      60
+Failed requests:        59
+   (Connect: 0, Receive: 0, Length: 59, Exceptions: 0)
+Write errors:           0
+Total transferred:      12042195 bytes
+HTML transferred:       12017007 bytes
+Requests per second:    2.97 [#/sec] (mean)
+Time per request:       1683.804 [ms] (mean)
+Time per request:       336.761 [ms] (mean, across all concurrent requests)
+Transfer rate:          582.01 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        4    4   0.5      4       6
+Processing:  1169 1599 247.8   1603    2312
+Waiting:      992 1366 213.9   1327    1767
+Total:       1173 1604 248.1   1608    2318
+
+Percentage of the requests served within a certain time (ms)
+  50%   1608
+  66%   1682
+  75%   1754
+  80%   1812
+  90%   1922
+  95%   2058
+  98%   2131
+  99%   2318
+ 100%   2318 (longest request)
+ab -t 20 -c 5 http://wenda.dajiabao.com/
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking wenda.dajiabao.com (be patient)
+
+
+Server Software:        
+Server Hostname:        wenda.dajiabao.com
+Server Port:            80
+
+Document Path:          /
+Document Length:        27067 bytes
+
+Concurrency Level:      5
+Time taken for tests:   20.020 seconds
+Complete requests:      75
+Failed requests:        73
+   (Connect: 0, Receive: 0, Length: 73, Exceptions: 0)
+Write errors:           0
+Total transferred:      2102995 bytes
+HTML transferred:       2079146 bytes
+Requests per second:    3.75 [#/sec] (mean)
+Time per request:       1334.644 [ms] (mean)
+Time per request:       266.929 [ms] (mean, across all concurrent requests)
+Transfer rate:          102.58 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        4    5   0.5      4       6
+Processing:   980 1245 212.7   1195    1844
+Waiting:      956 1192 191.2   1149    1829
+Total:        985 1250 212.6   1200    1848
+ERROR: The median and mean for the initial connection time are more than twice the standard
+       deviation apart. These results are NOT reliable.
+
+Percentage of the requests served within a certain time (ms)
+  50%   1195
+  66%   1257
+  75%   1345
+  80%   1438
+  90%   1620
+  95%   1649
+  98%   1790
+  99%   1848
+ 100%   1848 (longest request)
+ab -t 20 -c 5 http://wenda.dajiabao.com/1131423.html
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking wenda.dajiabao.com (be patient)
+
+
+Server Software:        
+Server Hostname:        wenda.dajiabao.com
+Server Port:            80
+
+Document Path:          /1131423.html
+Document Length:        83770 bytes
+
+Concurrency Level:      5
+Time taken for tests:   22.286 seconds
+Complete requests:      26
+Failed requests:        8
+   (Connect: 0, Receive: 0, Length: 8, Exceptions: 0)
+Write errors:           0
+Total transferred:      2185984 bytes
+HTML transferred:       2178024 bytes
+Requests per second:    1.17 [#/sec] (mean)
+Time per request:       4285.847 [ms] (mean)
+Time per request:       857.169 [ms] (mean, across all concurrent requests)
+Transfer rate:          95.79 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        4    5   0.7      4       7
+Processing:  2854 3682 713.5   3573    5117
+Waiting:     2740 3521 685.5   3374    4788
+Total:       2859 3686 713.7   3577    5121
+WARNING: The median and mean for the initial connection time are not within a normal deviation
+        These results are probably not that reliable.
+
+Percentage of the requests served within a certain time (ms)
+  50%   3577
+  66%   3904
+  75%   3988
+  80%   4362
+  90%   4889
+  95%   4902
+  98%   5121
+  99%   5121
+ 100%   5121 (longest request)
+ab -t 20 -c 5 http://www.dajiabao.com/zixun
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking www.dajiabao.com (be patient)
+
+
+Server Software:        
+Server Hostname:        www.dajiabao.com
+Server Port:            80
+
+Document Path:          /zixun
+Document Length:        24177 bytes
+
+Concurrency Level:      5
+Time taken for tests:   20.142 seconds
+Complete requests:      83
+Failed requests:        34
+   (Connect: 0, Receive: 0, Length: 34, Exceptions: 0)
+Write errors:           0
+Total transferred:      2051908 bytes
+HTML transferred:       2026211 bytes
+Requests per second:    4.12 [#/sec] (mean)
+Time per request:       1213.388 [ms] (mean)
+Time per request:       242.678 [ms] (mean, across all concurrent requests)
+Transfer rate:          99.48 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        4   31 170.3      5    1204
+Processing:   809 1119 248.6   1074    2254
+Waiting:      681  862  96.2    855    1085
+Total:        814 1150 294.8   1084    2260
+
+Percentage of the requests served within a certain time (ms)
+  50%   1083
+  66%   1117
+  75%   1181
+  80%   1211
+  90%   1293
+  95%   2039
+  98%   2259
+  99%   2260
+ 100%   2260 (longest request)
+ab -t 20 -c 5 http://www.dajiabao.com/zixun/1271.html
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking www.dajiabao.com (be patient)
+
+
+Server Software:        
+Server Hostname:        www.dajiabao.com
+Server Port:            80
+
+Document Path:          /zixun/1271.html
+Document Length:        26789 bytes
+
+Concurrency Level:      5
+Time taken for tests:   20.025 seconds
+Complete requests:      80
+Failed requests:        78
+   (Connect: 0, Receive: 0, Length: 78, Exceptions: 0)
+Write errors:           0
+Total transferred:      2189357 bytes
+HTML transferred:       2164575 bytes
+Requests per second:    3.99 [#/sec] (mean)
+Time per request:       1251.580 [ms] (mean)
+Time per request:       250.316 [ms] (mean, across all concurrent requests)
+Transfer rate:          106.77 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        4    4   0.5      4       7
+Processing:   894 1216 195.4   1197    1851
+Waiting:      725 1079 156.2   1089    1437
+Total:        898 1221 195.4   1202    1855
+
+Percentage of the requests served within a certain time (ms)
+  50%   1202
+  66%   1294
+  75%   1366
+  80%   1381
+  90%   1453
+  95%   1512
+  98%   1665
+  99%   1855
+ 100%   1855 (longest request)
+ab -t 20 -c 5 http://www.dajiabao.com/help/map.html
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking www.dajiabao.com (be patient)
+
+
+Server Software:        
+Server Hostname:        www.dajiabao.com
+Server Port:            80
+
+Document Path:          /help/map.html
+Document Length:        889 bytes
+
+Concurrency Level:      5
+Time taken for tests:   21.962 seconds
+Complete requests:      1099
+Failed requests:        0
+Write errors:           0
+Non-2xx responses:      1099
+Total transferred:      1361561 bytes
+HTML transferred:       977011 bytes
+Requests per second:    50.04 [#/sec] (mean)
+Time per request:       99.920 [ms] (mean)
+Time per request:       19.984 [ms] (mean, across all concurrent requests)
+Transfer rate:          60.54 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        4   73 667.9      5    9005
+Processing:    10   13   2.0     13      31
+Waiting:       10   13   1.9     13      31
+Total:         14   86 667.9     18    9021
+
+Percentage of the requests served within a certain time (ms)
+  50%     18
+  66%     18
+  75%     19
+  80%     19
+  90%     20
+  95%     23
+  98%     29
+  99%   3017
+ 100%   9021 (longest request)
+ab -t 20 -c 5 http://www.dajiabao.com/zhuanti_7
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking www.dajiabao.com (be patient)
+
+
+Server Software:        
+Server Hostname:        www.dajiabao.com
+Server Port:            80
+
+Document Path:          /zhuanti_7
+Document Length:        26195 bytes
+
+Concurrency Level:      5
+Time taken for tests:   20.003 seconds
+Complete requests:      96
+Failed requests:        53
+   (Connect: 0, Receive: 0, Length: 53, Exceptions: 0)
+Write errors:           0
+Total transferred:      2544076 bytes
+HTML transferred:       2514710 bytes
+Requests per second:    4.80 [#/sec] (mean)
+Time per request:       1041.806 [ms] (mean)
+Time per request:       208.361 [ms] (mean, across all concurrent requests)
+Transfer rate:          124.21 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        4   17 122.5      4    1205
+Processing:   636 1011 149.5   1027    1509
+Waiting:      596  810  92.2    827     969
+Total:        641 1028 198.8   1031    2302
+
+Percentage of the requests served within a certain time (ms)
+  50%   1031
+  66%   1084
+  75%   1105
+  80%   1120
+  90%   1163
+  95%   1187
+  98%   1514
+  99%   2302
+ 100%   2302 (longest request)
+ab -t 20 -c 10 http://shanghai.dajiabao.com/
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking shanghai.dajiabao.com (be patient)
+
+
+Server Software:        
+Server Hostname:        shanghai.dajiabao.com
+Server Port:            80
+
+Document Path:          /
+Document Length:        28150 bytes
+
+Concurrency Level:      10
+Time taken for tests:   20.111 seconds
+Complete requests:      233
+Failed requests:        137
+   (Connect: 0, Receive: 0, Length: 137, Exceptions: 0)
+Write errors:           0
+Total transferred:      6630198 bytes
+HTML transferred:       6558925 bytes
+Requests per second:    11.59 [#/sec] (mean)
+Time per request:       863.149 [ms] (mean)
+Time per request:       86.315 [ms] (mean, across all concurrent requests)
+Transfer rate:          321.95 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        4   50 242.3      5    1405
+Processing:   620  796 134.7    752    1454
+Waiting:      600  725  55.9    718    1009
+Total:        625  846 288.1    758    2447
+
+Percentage of the requests served within a certain time (ms)
+  50%    758
+  66%    803
+  75%    863
+  80%    899
+  90%    992
+  95%   1398
+  98%   2128
+  99%   2337
+ 100%   2447 (longest request)
+ab -t 20 -c 10 http://baojia.dajiabao.com/
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking baojia.dajiabao.com (be patient)
+
+
+Server Software:        
+Server Hostname:        baojia.dajiabao.com
+Server Port:            80
+
+Document Path:          /
+Document Length:        141529 bytes
+
+Concurrency Level:      10
+Time taken for tests:   20.104 seconds
+Complete requests:      120
+Failed requests:        68
+   (Connect: 0, Receive: 0, Length: 68, Exceptions: 0)
+Write errors:           0
+Total transferred:      17350227 bytes
+HTML transferred:       17311376 bytes
+Requests per second:    5.97 [#/sec] (mean)
+Time per request:       1675.315 [ms] (mean)
+Time per request:       167.532 [ms] (mean, across all concurrent requests)
+Transfer rate:          842.81 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        4  108 414.0      5    3004
+Processing:   301 1185 1650.6    640   13589
+Waiting:      199  294  65.1    273     491
+Total:        305 1292 1832.7    676   14992
+
+Percentage of the requests served within a certain time (ms)
+  50%    676
+  66%   1048
+  75%   1278
+  80%   1691
+  90%   2109
+  95%   5169
+  98%   6775
+  99%   7417
+ 100%  14992 (longest request)
+ab -t 20 -c 10 http://www.dajiabao.com/jihua/
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking www.dajiabao.com (be patient)
+
+
+Server Software:        
+Server Hostname:        www.dajiabao.com
+Server Port:            80
+
+Document Path:          /jihua/
+Document Length:        69582 bytes
+
+Concurrency Level:      10
+Time taken for tests:   20.021 seconds
+Complete requests:      95
+Failed requests:        93
+   (Connect: 0, Receive: 0, Length: 93, Exceptions: 0)
+Write errors:           0
+Total transferred:      6641089 bytes
+HTML transferred:       6612015 bytes
+Requests per second:    4.75 [#/sec] (mean)
+Time per request:       2107.451 [ms] (mean)
+Time per request:       210.745 [ms] (mean, across all concurrent requests)
+Transfer rate:          323.94 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        4    5   0.9      5       9
+Processing:  1281 2043 418.4   1998    3346
+Waiting:     1209 1901 360.0   1856    3072
+Total:       1286 2048 418.5   2003    3350
+
+Percentage of the requests served within a certain time (ms)
+  50%   1997
+  66%   2164
+  75%   2276
+  80%   2329
+  90%   2681
+  95%   2863
+  98%   3067
+  99%   3350
+ 100%   3350 (longest request)
+ab -t 20 -c 10 http://www.dajiabao.com/jihua/1230739.html
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking www.dajiabao.com (be patient)
+
+
+Server Software:        
+Server Hostname:        www.dajiabao.com
+Server Port:            80
+
+Document Path:          /jihua/1230739.html
+Document Length:        889 bytes
+
+Concurrency Level:      10
+Time taken for tests:   20.005 seconds
+Complete requests:      1317
+Failed requests:        0
+Write errors:           0
+Non-2xx responses:      1320
+Total transferred:      1635464 bytes
+HTML transferred:       1173480 bytes
+Requests per second:    65.83 [#/sec] (mean)
+Time per request:       151.899 [ms] (mean)
+Time per request:       15.190 [ms] (mean, across all concurrent requests)
+Transfer rate:          79.84 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        4  128 865.6      5    9006
+Processing:    15   22  17.8     20     280
+Waiting:       15   21   9.4     19     243
+Total:         20  150 866.4     25    9039
+
+Percentage of the requests served within a certain time (ms)
+  50%     25
+  66%     26
+  75%     27
+  80%     27
+  90%     31
+  95%     40
+  98%   3023
+  99%   3029
+ 100%   9039 (longest request)
+ab -t 20 -c 10 http://www.dajiabao.com/guwen/
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking www.dajiabao.com (be patient)
+
+
+Server Software:        
+Server Hostname:        www.dajiabao.com
+Server Port:            80
+
+Document Path:          /guwen/
+Document Length:        47220 bytes
+
+Concurrency Level:      10
+Time taken for tests:   20.120 seconds
+Complete requests:      108
+Failed requests:        107
+   (Connect: 0, Receive: 0, Length: 107, Exceptions: 0)
+Write errors:           0
+Total transferred:      5135205 bytes
+HTML transferred:       5102164 bytes
+Requests per second:    5.37 [#/sec] (mean)
+Time per request:       1862.938 [ms] (mean)
+Time per request:       186.294 [ms] (mean, across all concurrent requests)
+Transfer rate:          249.25 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        4  116 374.2      5    1605
+Processing:  1063 1693 319.7   1684    3407
+Waiting:      960 1497 183.2   1473    1917
+Total:       1074 1809 445.1   1721    3411
+
+Percentage of the requests served within a certain time (ms)
+  50%   1721
+  66%   1813
+  75%   1909
+  80%   1985
+  90%   2504
+  95%   2889
+  98%   3064
+  99%   3114
+ 100%   3411 (longest request)
+ab -t 20 -c 10 http://www.dajiabao.com/guwen/228157.html
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking www.dajiabao.com (be patient)
+
+
+Server Software:        
+Server Hostname:        www.dajiabao.com
+Server Port:            80
+
+Document Path:          /guwen/228157.html
+Document Length:        22334 bytes
+
+Concurrency Level:      10
+Time taken for tests:   20.005 seconds
+Complete requests:      383
+Failed requests:        304
+   (Connect: 0, Receive: 0, Length: 304, Exceptions: 0)
+Write errors:           0
+Total transferred:      8714083 bytes
+HTML transferred:       8596269 bytes
+Requests per second:    19.15 [#/sec] (mean)
+Time per request:       522.313 [ms] (mean)
+Time per request:       52.231 [ms] (mean, across all concurrent requests)
+Transfer rate:          425.39 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        4   52 237.5      5    1529
+Processing:   238  459 150.8    461    1063
+Waiting:      219  336  79.3    324     789
+Total:        243  512 272.0    469    2024
+
+Percentage of the requests served within a certain time (ms)
+  50%    469
+  66%    530
+  75%    576
+  80%    591
+  90%    661
+  95%    966
+  98%   1579
+  99%   1712
+ 100%   2024 (longest request)
+ab -t 20 -c 10 http://www.dajiabao.com/baoxian/
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking www.dajiabao.com (be patient)
+
+
+Server Software:        
+Server Hostname:        www.dajiabao.com
+Server Port:            80
+
+Document Path:          /baoxian/
+Document Length:        162319 bytes
+
+Concurrency Level:      10
+Time taken for tests:   20.104 seconds
+Complete requests:      89
+Failed requests:        87
+   (Connect: 0, Receive: 0, Length: 87, Exceptions: 0)
+Write errors:           0
+Total transferred:      14617790 bytes
+HTML transferred:       14589645 bytes
+Requests per second:    4.43 [#/sec] (mean)
+Time per request:       2258.924 [ms] (mean)
+Time per request:       225.892 [ms] (mean, across all concurrent requests)
+Transfer rate:          710.05 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        4   20 143.1      5    1354
+Processing:   993 2000 1517.4   1473    8062
+Waiting:      891 1141 125.4   1145    1794
+Total:        998 2020 1522.2   1478    8066
+
+Percentage of the requests served within a certain time (ms)
+  50%   1476
+  66%   1632
+  75%   2115
+  80%   2255
+  90%   3159
+  95%   5530
+  98%   8060
+  99%   8066
+ 100%   8066 (longest request)
+ab -t 20 -c 10 http://www.dajiabao.com/baoxian/10923.html
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking www.dajiabao.com (be patient)
+
+
+Server Software:        
+Server Hostname:        www.dajiabao.com
+Server Port:            80
+
+Document Path:          /baoxian/10923.html
+Document Length:        198323 bytes
+
+Concurrency Level:      10
+Time taken for tests:   20.383 seconds
+Complete requests:      82
+Failed requests:        80
+   (Connect: 0, Receive: 0, Length: 80, Exceptions: 0)
+Write errors:           0
+Total transferred:      16549820 bytes
+HTML transferred:       16514711 bytes
+Requests per second:    4.02 [#/sec] (mean)
+Time per request:       2485.688 [ms] (mean)
+Time per request:       248.569 [ms] (mean, across all concurrent requests)
+Transfer rate:          792.93 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        4   17 110.3      5    1004
+Processing:  1285 2127 549.0   1989    5103
+Waiting:     1163 1679 279.4   1627    2720
+Total:       1290 2144 547.1   2011    5110
+
+Percentage of the requests served within a certain time (ms)
+  50%   2011
+  66%   2208
+  75%   2419
+  80%   2465
+  90%   2738
+  95%   2929
+  98%   3447
+  99%   5110
+ 100%   5110 (longest request)
+ab -t 20 -c 10 http://wenda.dajiabao.com/
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking wenda.dajiabao.com (be patient)
+
+
+Server Software:        
+Server Hostname:        wenda.dajiabao.com
+Server Port:            80
+
+Document Path:          /
+Document Length:        27081 bytes
+
+Concurrency Level:      10
+Time taken for tests:   20.219 seconds
+Complete requests:      111
+Failed requests:        110
+   (Connect: 0, Receive: 0, Length: 110, Exceptions: 0)
+Write errors:           0
+Total transferred:      3171759 bytes
+HTML transferred:       3135655 bytes
+Requests per second:    5.49 [#/sec] (mean)
+Time per request:       1821.526 [ms] (mean)
+Time per request:       182.153 [ms] (mean, across all concurrent requests)
+Transfer rate:          153.19 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        4   75 272.1      5    1204
+Processing:  1005 1528 444.8   1469    4748
+Waiting:      990 1397 240.8   1364    2061
+Total:       1010 1602 527.8   1478    4752
+
+Percentage of the requests served within a certain time (ms)
+  50%   1476
+  66%   1640
+  75%   1763
+  80%   1895
+  90%   2209
+  95%   2570
+  98%   3009
+  99%   3295
+ 100%   4752 (longest request)
+ab -t 20 -c 10 http://wenda.dajiabao.com/1131423.html
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking wenda.dajiabao.com (be patient)
+
+
+Server Software:        
+Server Hostname:        wenda.dajiabao.com
+Server Port:            80
+
+Document Path:          /1131423.html
+Document Length:        83771 bytes
+
+Concurrency Level:      10
+Time taken for tests:   20.049 seconds
+Complete requests:      51
+Failed requests:        36
+   (Connect: 0, Receive: 0, Length: 36, Exceptions: 0)
+Write errors:           0
+Total transferred:      4287876 bytes
+HTML transferred:       4272270 bytes
+Requests per second:    2.54 [#/sec] (mean)
+Time per request:       3931.154 [ms] (mean)
+Time per request:       393.115 [ms] (mean, across all concurrent requests)
+Transfer rate:          208.86 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        4   32 196.0      5    1405
+Processing:  3003 3448 271.6   3389    4230
+Waiting:     2949 3281 181.9   3269    3762
+Total:       3009 3481 323.5   3404    4715
+
+Percentage of the requests served within a certain time (ms)
+  50%   3394
+  66%   3527
+  75%   3612
+  80%   3673
+  90%   3838
+  95%   4061
+  98%   4238
+  99%   4715
+ 100%   4715 (longest request)
+ab -t 20 -c 10 http://www.dajiabao.com/zixun
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking www.dajiabao.com (be patient)
+
+
+Server Software:        
+Server Hostname:        www.dajiabao.com
+Server Port:            80
+
+Document Path:          /zixun
+Document Length:        24177 bytes
+
+Concurrency Level:      10
+Time taken for tests:   20.227 seconds
+Complete requests:      135
+Failed requests:        67
+   (Connect: 0, Receive: 0, Length: 67, Exceptions: 0)
+Write errors:           0
+Total transferred:      3337591 bytes
+HTML transferred:       3295682 bytes
+Requests per second:    6.67 [#/sec] (mean)
+Time per request:       1498.302 [ms] (mean)
+Time per request:       149.830 [ms] (mean, across all concurrent requests)
+Transfer rate:          161.14 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        4    5   0.7      5       8
+Processing:  1011 1406 203.3   1406    2732
+Waiting:      872 1171 118.2   1181    1776
+Total:       1016 1410 203.3   1410    2737
+
+Percentage of the requests served within a certain time (ms)
+  50%   1409
+  66%   1440
+  75%   1469
+  80%   1488
+  90%   1569
+  95%   1772
+  98%   1914
+  99%   1999
+ 100%   2737 (longest request)
+ab -t 20 -c 10 http://www.dajiabao.com/zixun/1271.html
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking www.dajiabao.com (be patient)
+
+
+Server Software:        
+Server Hostname:        www.dajiabao.com
+Server Port:            80
+
+Document Path:          /zixun/1271.html
+Document Length:        26772 bytes
+
+Concurrency Level:      10
+Time taken for tests:   20.243 seconds
+Complete requests:      107
+Failed requests:        106
+   (Connect: 0, Receive: 0, Length: 106, Exceptions: 0)
+Write errors:           0
+Total transferred:      2943273 bytes
+HTML transferred:       2909610 bytes
+Requests per second:    5.29 [#/sec] (mean)
+Time per request:       1891.866 [ms] (mean)
+Time per request:       189.187 [ms] (mean, across all concurrent requests)
+Transfer rate:          141.99 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        4   72 368.3      4    3003
+Processing:  1107 1634 536.9   1523    4362
+Waiting:     1070 1350 143.6   1355    1694
+Total:       1142 1706 626.0   1539    4367
+
+Percentage of the requests served within a certain time (ms)
+  50%   1537
+  66%   1683
+  75%   1721
+  80%   1743
+  90%   2512
+  95%   2945
+  98%   4147
+  99%   4354
+ 100%   4367 (longest request)
+ab -t 20 -c 10 http://www.dajiabao.com/help/map.html
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking www.dajiabao.com (be patient)
+
+
+Server Software:        
+Server Hostname:        www.dajiabao.com
+Server Port:            80
+
+Document Path:          /help/map.html
+Document Length:        889 bytes
+
+Concurrency Level:      10
+Time taken for tests:   20.172 seconds
+Complete requests:      1086
+Failed requests:        0
+Write errors:           0
+Non-2xx responses:      1086
+Total transferred:      1345525 bytes
+HTML transferred:       965454 bytes
+Requests per second:    53.84 [#/sec] (mean)
+Time per request:       185.744 [ms] (mean)
+Time per request:       18.574 [ms] (mean, across all concurrent requests)
+Transfer rate:          65.14 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        4  146 945.5      6    9005
+Processing:    10   14   6.6     13     224
+Waiting:       10   14   1.5     13      21
+Total:         15  159 945.4     20    9020
+
+Percentage of the requests served within a certain time (ms)
+  50%     20
+  66%     21
+  75%     21
+  80%     22
+  90%     23
+  95%     25
+  98%   3018
+  99%   3020
+ 100%   9020 (longest request)
+ab -t 20 -c 10 http://www.dajiabao.com/zhuanti_7
+This is ApacheBench, Version 2.3 <$Revision: 655654 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking www.dajiabao.com (be patient)
+
+
+Server Software:        
+Server Hostname:        www.dajiabao.com
+Server Port:            80
+
+Document Path:          /zhuanti_7
+Document Length:        26196 bytes
+
+Concurrency Level:      10
+Time taken for tests:   20.180 seconds
+Complete requests:      160
+Failed requests:        123
+   (Connect: 0, Receive: 0, Length: 123, Exceptions: 0)
+Write errors:           0
+Total transferred:      4309803 bytes
+HTML transferred:       4259937 bytes
+Requests per second:    7.93 [#/sec] (mean)
+Time per request:       1261.222 [ms] (mean)
+Time per request:       126.122 [ms] (mean, across all concurrent requests)
+Transfer rate:          208.57 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        4   77 385.0      5    3004
+Processing:   565 1152 1197.2    839    9694
+Waiting:      523  623  86.6    609    1245
+Total:        569 1229 1308.3    843   11098
+
+Percentage of the requests served within a certain time (ms)
+  50%    843
+  66%    876
+  75%   1045
+  80%   1231
+  90%   2095
+  95%   3745
+  98%   6961
+  99%   7005
+ 100%  11098 (longest request)

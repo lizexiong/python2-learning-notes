@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+    <form  id='form' action="{% url 'to_background' %}" method="post">
+        主机:<input type="text" name="host_list"/>
+        管理员:<select name="host_admin">
+                {% for i in host_admin %}
+                <option value="{{ i.id }}">{{ i.host_admin}}</option>
+                {% endfor %}
+            </select>
+        主机组:<select name="host_group">
+                    {% for i in host_group %}
+                        <option value="{{ i.id }}">{{ i.host_group }}</option>
+                    {% endfor %}
+                </select>
+        状态:<select name="host_status">
+                <option value="1">在线</option>
+                <option value="2">下线</option>
+            </select>
+{#        <button type="submit" onclick="submit_form()" >搜索</button>#}
+        <input type="button" id='button_form'  value="搜索"/>
+    </form>
+
+{#    {% for i in host_result %}#}
+{##}
+{#    <p>{{ i }}</p>#}
+{#{% endfor %}#}
+
+    {% block page-container %}
+        <div >
+        <table border="1px" class="results_display">
+
+        </table>
+        </div>
+    {% endblock %}
+
+<script src="/static/js/jquery-3.2.1.js"></script>
+<script>
+{#    function submit_form(){#}
+{#       a =  document.getElementById('button_form').submit()#}
+{#            var a = $("#button_form")#}
+{#            console.log(a)#}
+{#            $.post("{% url 'to_background' %}",function(callback){#}
+{#            console.log(callback)#}
+{#        })#}
+{#    }#}
+
+{#这里的按钮的id点击了就执行函数里面的内容，按钮必须是button，因为submit会提交数据#}
+    $('#button_form').click(function(){
+        $.ajax({
+{#            通过ajax把数据发送到后台，url一定要加上/#}
+        url:'/to_background/',
+        type:"POST",
+{#            获取这个form表单的数据提交到后台#}
+        data:$('#form').serialize(),
+        success: function(arg) {
+            var data=eval("("+arg+")");
+            console.log(data)
+{#            清空当前标签的所有内容#}
+            $('.results_display').empty()
+            var th = "<tr><th>ip</th> <th>状态</th> <th>管理员</th> <th>组</th> </tr>"
+            $('.results_display').append(th)
+            $.each(data,function(index,ele){
+                $.each(ele,function(i,j){
+                    var result =
+                            "<tr><td>" + j.ip  + "</td><td>" + j.host_status__host_status + "</td><td>" + j.host_admin__host_admin + "</td><td>" +
+                            j.host_group__host_group + "</td></tr>"
+                    console.log(result)
+                    $('.results_display').append(result)
+                })
+            })
+
+             }
+         });
+    })
+</script>
+</body>
+</html>

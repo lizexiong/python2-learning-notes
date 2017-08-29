@@ -1,0 +1,15 @@
+{% extends 'layout.html'%}
+
+
+{% block RenderBody %}
+    <h1>Index</h1>
+
+    <ul>
+    {%  for item in range(10) %}
+        <li>{{item}}</li>
+    {% end %}
+    </ul>
+
+{% end %}
+
+

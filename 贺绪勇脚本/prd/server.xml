@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<servers>
+        <prop name="app.home" value="/home/djb/apps"/>
+        <prop name="app.logs" value="{app.home}/{app.name}/logs"/>
+        <apps>
+                <app name="admin" path="{app.home}/web-admin" />
+                <app name="client" path="{app.home}/web-client" />
+                <app name="seller" path="{app.home}/web-seller" />
+                <app name="batch" path="{app.home}/batch" />
+                <app name="service" path="{app.home}/web-service" />
+                <app name="agent" path="{app.home}/web-agent" />
+                <app name="sales" path="{app.home}/web-sales" />
+                <app name="solr" path="{app.home}/solr" />
+                <app name="wap" path="{app.home}/wap-portal" />
+                <app name="web" path="{app.home}/web-portal" />
+                <app name="crm" path="{app.home}/web-crm" />
+                <app name="fi" path="{app.home}/free-insurance" />
+        </apps>
+
+        <server name="dev03" apps="admin,client,seller,service,agent,sales,batch,solr,wap,web,crm,fi" />
+</servers>

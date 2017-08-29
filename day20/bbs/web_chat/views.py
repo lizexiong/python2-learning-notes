@@ -3,18 +3,20 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render,HttpResponse
 from web.models import UserProfile
-import json
-import Queue
-import time
+import json,Queue,time
+from web_chat import models
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
 
 GLOBAL_MQ = {}
 
+@login_required
 def dashboard(request):
     return render(request,'web_chat/dashboard.html')
 
+@login_required
 def contacts(request):
     contact_dic = {}
     contacts = request.user.userprofile.friends.select_related().values('id','name')
@@ -30,19 +32,34 @@ def contacts(request):
     return HttpResponse(json.dumps(contact_dic))
 
 i = 0
+@login_required
 def new_msg(request):
     global i
     if request.method == 'POST':
         print (request.POST.get('data'))
         data = json.loads(request.POST.get('data'))
         send_to = data['to']
-        print send_to,'send_to，存入字典之前是int，存入后是str'
-        if send_to not in GLOBAL_MQ:
-            GLOBAL_MQ[send_to] = Queue.Queue()
+        msg_from = data['from']
         data['timestamp'] = time.time()
-        #生成队列之后把人的标识通过队列的方式put进入data里面。
-        GLOBAL_MQ[send_to].put(data)
-        #给前端返回一下这个字典队列里有几条消息
+        contact_type = data['contact_type']
+        # 如果类型是组的数据来了
+        if contact_type == 'group_contact':
+            # 那么反向查看出这个组id
+            group_obj = models.QQGroup.objects.get(id=send_to)
+            # 根据组id查询有多少用户
+            for member in group_obj.members.select_related():
+                if(str(member.id)) not in GLOBAL_MQ:
+                     GLOBAL_MQ[str(member.id)] = Queue.Queue()
+                # 如果id不是自己，那么酒吧消息给put给每一个不是自己的用户，另post不需要返回值，只有get时候才需要
+                if(str(member.id)) != msg_from:
+                    GLOBAL_MQ[str(member.id)].put(data)
+        else:
+            print send_to,'send_to，存入字典之前是int，存入后是str'
+            if send_to not in GLOBAL_MQ:
+                GLOBAL_MQ[send_to] = Queue.Queue()
+            #生成队列之后把人的标识通过队列的方式put进入data里面。
+            GLOBAL_MQ[send_to].put(data)
+            #给前端返回一下这个字典队列里有几条消息
         return HttpResponse(GLOBAL_MQ[send_to].qsize())
     else:
         #这里为什么要转换成字符串，因为GLOBAL_MQ存储的用户id虽然是数字，但是确实str类型，

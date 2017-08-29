@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+    {% for i in result %}
+        <div>{{ i.username }}&nbsp;{{ i.age }}</div>
+    {% endfor %}
+
+
+        <div>{{ page_str | safe }}</div>
+
+</body>
+</html>

@@ -6,8 +6,9 @@
 
       <ul class="nav nav-tabs" role="tablist">
 {#          这里的href连接的是下面的id#}
-        <li role="presentation" class="active"><a href="#contacts"  role="tab" data-toggle="tab">联系人</a></li>
-        <li role="presentation"><a href="#groups"  role="tab" data-toggle="tab">群组</a></li>
+{#          chat-type和contact-type是埋藏的标记#}
+        <li role="presentation" chat-type='contact_list' contact-type='single_contact' class="active"><a href="#contacts" onclick="LoadContacts();"  role="tab" data-toggle="tab">联系人</a></li>
+        <li role="presentation" chat-type="groups" contact-type="group_contact"><a href="#contacts" onclick="LoadContacts();"  role="tab" data-toggle="tab">群组</a></li>
         <li role="presentation"><a href="#notifications"  role="tab" data-toggle="tab">通知</a></li>
         <li role="presentation"><a href="#settings"  role="tab" data-toggle="tab">设置</a></li>
       </ul>
@@ -146,12 +147,20 @@
                         console.log(callback)
 {#                        JSON.parse把字符串转换成前端js字典格式#}
                         var data = JSON.parse(callback)
-{#                        因为contacts_list是一个列表，所以要返回索引和值，但是这里索引不需要#}
-                        $.each(data.contact_list,function(index,ele){
+{#                        查找当前点击的哪个导航栏，联系人还是群组#}
+                        var current_tab = $(".nav-tabs li").filter(".active")[0];
+{#                        取出聊天类型#}
+                        var chat_type = $(current_tab).attr("chat-type");
+{#                        取出列表类型#}
+                        var contact_type = $(current_tab).attr("contact-type");
+{#                         因为contacts_list是一个列表，所以要返回索引和值，但是这里索引不需要#}
+{#                        这里循环的时候，字后台字典都是有字段的，所以可以使用变量#}
+                        $(".contact-list .list-group").empty()
+                        $.each(data[chat_type],function(index,ele){
 {#                               这里在来个字符串拼接，把值返回给前端#}
 {#                                然后还加一个contact_id隐藏在这里，否则我不可能通过name判断点击链接指向谁的聊天框#}
 {#                                然后在加一个标志contact_type区分我是单人聊天还是群聊天#}
-                           var  ele =  "<a href='#' onclick='OpenDialogBox(this);' class='list-group-item' contact_id='"+ ele.id +"' contact_type = 'single_contact' >"
+                           var  ele =  "<a href='#' onclick='OpenDialogBox(this);' class='list-group-item' contact_id='"+ ele.id +"' contact_type = '"+ contact_type +"' >"
 {#                            9.last改动,显示未知消息的数量#}
                                    + ele.name + "<span class='badge' style='display:none'>0</sapn></a>";
                             $(".contact-list .list-group").append(ele)
@@ -242,27 +251,41 @@
 {#                开始返回的值，返回的值是一个列表包含一个字典，类型下面的类型，所以循环要取索引和值#}
 {#                [{"from_name": "\u674e\u6cfd\u96c4", "from": "1", "contact_type": "single_contact", "timestamp": 1502446182.081, "to": "2", "msg": "\n                        1111"}]#}
                 $.each(msg_list,function(index,msg_item){
+                    if(msg_item.contact_type == 'single_contact'){
 {#                    如果等于会话类型和当前聊天窗口的id，那么就是我跟你在聊天，那么就可以展示收取到的消息了#}
-                    if(msg_item.contact_type == current_open_session_type){
-                        if(msg_item.from == current_open_session_id){
-                            console.log(msg_item)
-{#                            接下来还是字符串拼接，这个功能放在一个函数里#}
-                            AddRecvMsgToChatBox(msg_item)
-{#                            3.last更改,如果不等于当前窗口，那么有消息来了#}
-                        }else{
-{#                            4.last 改动,那么就把老的消息先拿到，因为有新消息，那么肯定有老的消息在页面上#}
-                            var old_session_content = LoadSession(msg_item.from,msg_item.contact_type)
-{#                            5.last 改动,那么也会有新的消息要展示。#}
-                            var new_msg_ele = GenerateNewMsgItem(msg_item)
-{#                            6.last改动，然后把老消息，新消息加起来#}
-                            var new_session_content = old_session_content + new_msg_ele
-{#                            7.last改动，就把不是当前聊天窗口的信息保存下来#}
-                            DumpSession2(msg_item.from,msg_item.contact_type,new_session_content)
-{#                            8.last改动，更新未读消息条数#}
-                            UpdateUnreadMsgNums(msg_item.from,msg_item.content_type)
-                        }//end msg_item.contact_id == current_open_session_id
-                    }//end msg_item.contact_type == current_open_session_type
-                });
+                        if(msg_item.contact_type == current_open_session_type){
+                            if(msg_item.from == current_open_session_id){
+                                console.log(msg_item)
+    {#                            接下来还是字符串拼接，这个功能放在一个函数里#}
+                                AddRecvMsgToChatBox(msg_item)
+    {#                            3.last更改,如果不等于当前窗口，那么有消息来了#}
+                            }else{
+    {#                            4.last 改动,那么就把老的消息先拿到，因为有新消息，那么肯定有老的消息在页面上#}
+                                var old_session_content = LoadSession(msg_item.from,msg_item.contact_type)
+    {#                            5.last 改动,那么也会有新的消息要展示。#}
+                                var new_msg_ele = GenerateNewMsgItem(msg_item)
+    {#                            6.last改动，然后把老消息，新消息加起来#}
+                                var new_session_content = old_session_content + new_msg_ele
+    {#                            7.last改动，就把不是当前聊天窗口的信息保存下来#}
+                                DumpSession2(msg_item.from,msg_item.contact_type,new_session_content)
+    {#                            8.last改动，更新未读消息条数#}
+                                UpdateUnreadMsgNums(msg_item.from,msg_item.content_type)
+                            }//end msg_item.contact_id == current_open_session_id
+                        }//end msg_item.contact_type == current_open_session_type
+                    }else{
+                        if(msg_item.contact_type == current_open_session_type){
+                            if(msg_item.to == current_open_session_id){
+                                AddRecvMsgToChatBox(msg_item)
+                            }else{
+                                var old_session_content = LoadSession(msg_item.to,msg_item.contact_type)
+                                var new_msg_ele = GenerateNewMsgItem(msg_item)
+                                var new_session_content = old_session_content + new_msg_ele
+                                DumpSession2(msg_item.to,msg_item.contact_type,new_session_content)
+                                UpdateUnreadMsgNums(msg_item.to,msg_item.content_type)
+                            }
+                        }
+                    }//for group contact
+                }); //end each
                 GetNewMsgs()
             })
         }
