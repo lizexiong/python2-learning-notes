@@ -18,6 +18,7 @@ class Session(object):
 # 4.这里的构造方法，当请求来的时候应该现在浏览器找一找有没有session,
     def __init__(self, request):
         session_value = request.get_cookie(Session.session_id)
+        print session_value
 # 5如果没有就创建一个随机字符串
         if not session_value:
             self._id = create_session_id()
@@ -25,8 +26,8 @@ class Session(object):
 #6 否则直接将客户端的随机字符串设置为_id
             self._id = session_value
 #7.然后设置cookie
-        request.set_cookie(Session.session_id, self._id)
-  
+        a = request.set_cookie(Session.session_id, self._id)
+        print a
     def __getitem__(self, key):
         #额外注释，由于可能没有登录，是没有self.id值，那么就会报错，所以这里要异常处理。
         ret = None

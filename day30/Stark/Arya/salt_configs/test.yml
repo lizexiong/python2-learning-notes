@@ -1,0 +1,29 @@
+apache:
+  #pkg.installed: []
+  #service.running:
+  #  - reload: True
+  #  - watch:
+  #    - file: /etc/httpd/conf/httpd.conf
+  user.present:
+    - uid: 87
+    #- username: alex
+    - gid: 87
+    - home: /var/www/html
+    - shell: /bin/nologin
+    - password: huawei
+    - require:
+      - group: apache
+      - file: /etc/httpd/conf/httpd.conf
+  group.present:
+    - gid: 87
+    - require:
+      - pkg: apache
+
+/etc/httpd/conf/httpd.conf:
+  file.managed:
+    - source: http://apache/httpd.conf
+    - user: root
+    - group: root
+    - mode: 644
+    - require:
+      - pkg: nginx
