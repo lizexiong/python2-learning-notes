@@ -1,0 +1,64 @@
+/*body {  */
+    /*background-image: url("../unity/img/docker.jpg");*/
+    /*background-repeat: no-repeat;*/
+    /*background-attachment: scroll;*/
+/*}*/
+
+/*原理：隐藏横向滚动，垂直滚动根据内容自适应*/
+html { overflow-x: hidden; overflow-y: auto; }
+
+.backgrounddiv {
+    position:fixed;
+    left:0px;
+    top:0px;
+    width:100%;
+    height:100% ;
+    Z-INDEX:-100;
+}
+
+.backgroundimg {
+    width:100%;
+    height:100%;
+    opacity:0.9;
+}
+
+.logindiv {
+    position:absolute;
+    Z-INDEX:-99;
+}
+
+.loginimg {
+    width:100%;
+    height:100%;
+    opacity:0.9;
+}
+
+.indexdescribe {
+    text-align: center;
+    font-size:35px;
+    font-family:Georgia;
+    font-style:oblique;
+}
+
+.fromtable {
+    position:fixed;
+    left:480px;
+    top:180px;
+    white-space:nowrap;
+    border: 4px springgreen;
+    width:380px;
+    height:100px;
+    /*background-color:goldenrod;*/
+}
+
+.form-horizontal {
+    margin-top: 18%;
+    margin-left:15%;
+    position:relative;
+    text-align: left;
+}
+
+.form-control {
+    width:200px;
+    height: 30px;
+}
