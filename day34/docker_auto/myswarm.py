@@ -6,6 +6,7 @@ import time
 import docker,errno
 from curl import Curl
 
+
 from docker_auto.model.node import NodeInfo
 
 class Myswarm(object):

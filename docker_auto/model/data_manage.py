@@ -20,6 +20,7 @@ class DataManage(object):
             tmp_dict["kernel_version"] = line[11]
             tmp_dict["docker_version"] = line[12]
             node_data[num] = tmp_dict
+            #这里循环是为了防止以后有多个node条件进来
             num += 1
         return node_data
 
@@ -68,9 +69,10 @@ class DataManage(object):
             tmp_dict["con_id"] = line[0]
             tmp_dict["con_ip"] = line[1]
             tmp_dict["node_ip"] = line[2]
-            tmp_dict["user_name"] = line[3]
-            tmp_dict["con_app"] = line[4]
-            tmp_dict["con_desc"] = line[5]
+            tmp_dict['state'] = line[3]
+            tmp_dict["user_name"] = line[4]
+            tmp_dict["con_app"] = line[5]
+            tmp_dict["con_desc"] = line[6]
             dict_data[num] = tmp_dict
             num += 1
         return dict_data

@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-from docker_auto.handler.user import Login,Logout
-from docker_auto.handler.node import Main,Top,LeftGroup,NodeManage,ConManage,GroupList,ConModify,RightNode, \
-                                        ConCreate,ConAction,ConStart,ConStop,ConRestart,ConDestory
+from handler.user import Login,Logout
+from handler.node import Main,Top,LeftGroup,NodeManage,ConManage,GroupList,ConModify,RightNode, \
+                                        ConCreate,ConAction,ConStart,ConStop,ConRestart,ConDestory,NodeAdd, \
+                                        NodeModify
 
 urls = [
     (r"/", Login),
@@ -21,6 +22,8 @@ urls = [
     (r'/constart',      ConStart),
     (r'/constop',        ConStop),
     (r'/conrestart',      ConRestart),
-    (r'/condestroy',      ConDestory)
+    (r'/condestroy',      ConDestory),
+    (r'/nodeadd',           NodeAdd),
+    (r'/nodemodify',        NodeModify),
 ]
 

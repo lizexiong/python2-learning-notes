@@ -55,7 +55,7 @@ class ConUsageDB(Base):
     __tablename__ = "con_usage"
     id = Column(Integer,primary_key=True)
     con_id = Column(String(64))                                     #容器ID
-    con_addr = Column(String(32))                                   #容器IP地址
+    con_ip = Column(String(32))                                   #容器IP地址
     node_ip = Column(String(32))                                    #容器所在节点IP
     user_name = Column(String(32))                                  #容器用户名
     con_app = Column(String(512))                                    #容器上运行APP

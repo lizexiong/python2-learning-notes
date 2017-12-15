@@ -4,7 +4,7 @@ import os
 
 import tornado.web
 
-from docker_auto.url import urls
+from url import urls
 
 PORT = 8888
 SETTINGS = dict(

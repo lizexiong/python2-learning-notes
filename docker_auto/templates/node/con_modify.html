@@ -13,6 +13,7 @@
          <input type="text" class="form-control" name="con_id" value="{{single_con_usage_data[1]['con_id']}}" disabled/>
       </div>
     </div>
+    </div>
     <div class="form-group">
       <label for="firstname" class="col-sm-2 control-label">容器IP</label>
       <div class="col-sm-10">
@@ -45,10 +46,19 @@
     </div>
     <div class="form-group">
       <div class="col-sm-offset-1 col-sm-10">
-         <button type="submit" class="btn btn-default" name="modify_con_usage">提交</button>
+         <button type="submit" id='update' class="btn btn-default" name="modify_con_usage">提交</button>
          <button type="cancle" class="btn btn-default" data-dismiss="modal">关闭</button>
       </div>
     </div>
 </form>
+
+
+{#<script>#}
+{##}
+{#        $('#update').on('click', function () {#}
+{#            layer.msg('信息更新中,请等待页面自动刷新...');#}
+{#        });#}
+{##}
+{#</script>#}
 
 {% end %}

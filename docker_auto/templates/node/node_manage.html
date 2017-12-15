@@ -11,9 +11,23 @@ $(document).ready(function() {
     <ul>
         <h2>节点管理</h2>
     </ul>
+
     <div >
-        <input type="button" class="btn btn-default" onclick="javascript:window.location.href='/nodeadd'" value="新增"> 
+        <div style="float:left;">
+            {% if is_admin == "1" %}
+            <input type="button" class="btn btn-default" onclick="javascript:window.location.href='/nodeadd'" value="新增">
+            {% end %}
+             <a href="/nodemanage?action=online"> <input type="button" class="btn btn-default"  value="在线节点"></a>
+            <a href="/nodemanage?action=offline"> <input type="button" class="btn btn-default"  value="离线节点"></a>
+        </div>
+        <div style="text-align:right;" >
+            <button  id='refresh' type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" >
+                    刷新
+            </button>
+        </div>
     </div>
+
+
 </head>
 
 <table id="nodelist" class="display" cellspacing="0" width="100%">
@@ -51,7 +65,14 @@ $(document).ready(function() {
             <td>{{node_data[node]["os_version"]}}</td>
             <td>{{node_data[node]["kernel_version"]}}</td>
             <td>{{node_data[node]["docker_version"]}}</td>
+
+         {% if is_admin == "1" %}
             <th><a data-toggle="modal" href="/nodemodify?action=modify&node_ip={{node_data[node]["node_ip"]}}" data-target="#myModal"><img src='{{static_url("unity/img/modify.png")}}' alt='修改' title='修改' /><a onClick="return confirm('注意：确定要删除此条目吗？')" href="/nodemodify?action=delete&node_ip={{node_data[node]["node_ip"]}}"><img src='{{static_url("unity/img/remove.png")}}' alt='删除' title='删除' /></a></th>
+        {% elif is_admin != "1" %}
+            <th>无权限</th>
+        {% end %}
+
+
         </tr>
         {% end %}
         </tbody>
@@ -63,7 +84,7 @@ $(document).ready(function() {
       <div class="modal-content">
          <div class="modal-header">
             <h4 class="modal-title" id="myModalLabel"> 
-                 容器修改
+                 节点修改
             </h4>
          </div>
          <div class="modal-body">
@@ -72,10 +93,19 @@ $(document).ready(function() {
 </div><!-- /.modal -->
 </div>
 
+
+
 <script type="text/javascript">
     $("#myModal").on("hidden.bs.modal", function() {
         $(this).removeData("bs.modal");
     });
+
+    $(function(){
+        $('refresh').click(function(){
+            var node_ip =
+        })
+    })
 </script>
+
 
 {% end %}

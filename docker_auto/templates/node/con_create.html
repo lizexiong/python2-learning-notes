@@ -9,6 +9,12 @@
 
 <form class="form-horizontal" action="/concreate?node_ip={{node_ip}}" method="post">
     <div class="form-group">
+      <label for="firstname" class="col-sm-1 control-label">容器名称</label>
+      <div class="col-sm-10">
+         <input type="text" class="form-control" name="name" value="" placeholder="容器名称" />
+      </div>
+    </div>
+    <div class="form-group">
       <label for="firstname" class="col-sm-1 control-label">CPU时间</label>
       <div class="col-sm-10">
          <input type="text" class="form-control" name="cpuperiod" value="100000" readonly/>
@@ -29,39 +35,61 @@
         </select>
       </div>
     </div>
+{#    <div class="form-group">#}
+{#      <label for="firstname" class="col-sm-1 control-label">CPU相对值</label>#}
+{#      <div class="col-sm-10">#}
+{#         <select name='cpushares'>#}
+{#                <option >64</option>#}
+{#                <option >128</option>#}
+{#                <option >256</option>#}
+{#                <option >512</option>#}
+{#                <option >1024</option>#}
+{#        </select>#}
+{#      </div>#}
+{#    </div>#}
+{#    <div class="form-group">#}
+{#      <label for="firstname" class="col-sm-1 control-label">内存大小</label>#}
+{#      <div class="col-sm-10">#}
+{#         <select name='memory'>#}
+{#                <option >1073741824</option>#}
+{#                <option >2147483648</option>#}
+{#                <option >3221225472</option>#}
+{#                <option >4294967296</option>#}
+{#                <option >6442450944</option>#}
+{#                <option >8589934592</option>#}
+{#                <option >12884901888</option>#}
+{#                <option >17179869184</option>#}
+{#        </select>#}
+{#      </div>#}
+{#    </div>#}
     <div class="form-group">
-      <label for="firstname" class="col-sm-1 control-label">CPU相对值</label>
+      <label for="firstname" class="col-sm-1 control-label">端口映射</label>
       <div class="col-sm-10">
-         <select name='cpushares'>
-                <option >64</option>
-                <option >128</option>
-                <option >256</option>
-                <option >512</option>
-                <option >1024</option>
-        </select>
+         <input type="text" class="form-control" name="connat" value="" placeholder="80,81,82" />
       </div>
     </div>
     <div class="form-group">
-      <label for="firstname" class="col-sm-1 control-label">内存大小</label>
+      <label for="firstname" class="col-sm-1 control-label">磁盘映射</label>
       <div class="col-sm-10">
-         <select name='memory'>
-                <option >1073741824</option>
-                <option >2147483648</option>
-                <option >3221225472</option>
-                <option >4294967296</option>
-                <option >6442450944</option>
-                <option >8589934592</option>
-                <option >12884901888</option>
-                <option >17179869184</option>
-                <option >34359738368</option>
-                <option >68719476736</option>
+         <input type="text" class="form-control" name="binds" value="" placeholder="/tools:/tools,/tmp:/tmp" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="firstname" class="col-sm-1 control-label">容器磁盘关联</label>
+      <div class="col-sm-10">
+
+         <select name='mounts'>
+             <option>None</option>
+             {% for i in mounts %}
+                <option>{{ i }}</option>
+             {% end %}
         </select>
       </div>
     </div>
     <div class="form-group">
       <label for="firstname" class="col-sm-1 control-label">运行命令</label>
       <div class="col-sm-10">
-         <input type="text" class="form-control" name="cmd" placeholder="/usr/sbin/sshd -D" />
+         <input type="text" class="form-control" name="cmd" placeholder="/bin/bash" />
       </div>
     </div>
     <div class="form-group">

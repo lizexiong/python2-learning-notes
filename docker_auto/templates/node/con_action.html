@@ -8,9 +8,9 @@
 </head>
 
 <div>
-    <input type="button" class="btn btn-primary" onclick="javascript:window.location.href='/constart?node_ip={{node_ip}}&port={{node_port}}&con_id={{con_id}}'" value="启动">
-    <input type="button" class="btn btn-primary" onclick="javascript:window.location.href='/constop?node_ip={{node_ip}}&port={{node_port}}&con_id={{con_id}}'" value="停止">
-    <input type="button" class="btn btn-primary" onclick="javascript:window.location.href='/conrestart?node_ip={{node_ip}}&port={{node_port}}&con_id={{con_id}}'" value="重启">
+    <button id='start' type="button" class="btn btn-primary" data-toggle="popover" title="Popover title" onclick="javascript:window.location.href='/constart?node_ip={{node_ip}}&port={{node_port}}&con_id={{con_id}}'" data-content="容器正在启动中,请等待网页自动刷新....">启动</button>
+    <button id='stop' type="button" class="btn btn-primary" data-toggle="popover" title="Popover title" onclick="javascript:window.location.href='/constop?node_ip={{node_ip}}&port={{node_port}}&con_id={{con_id}}'" data-content="容器正在停止中,请等待网页自动刷新....">停止</button>
+    <button id='restart' type="button" class="btn btn-primary" data-toggle="popover" title="Popover title" onclick="javascript:window.location.href='/conrestart?node_ip={{node_ip}}&port={{node_port}}&con_id={{con_id}}'" data-content="容器正在重启中,请等待网页自动刷新....">重启</button>
     <input type="button" class="btn btn-primary" onclick="javascript:window.location.href='/condestroy?node_ip={{node_ip}}&port={{node_port}}&con_id={{con_id}}'" value="销毁">
 </div>
 
@@ -29,23 +29,23 @@
             <td>{{con_data[1]['name']}}</td>
         </tr> 
         <tr>
-            <td>容器镜像</td>
-            <td>{{con_data[1]['image']}}</td>
             <td>创建时间</td>
             <td>{{con_data[1]['created']}}</td>
+            <td>启动时间</td>
+            <td>{{con_data[1]['started']}}</td>
         </tr> 
         <tr>
             <td>容器状态</td>
             <td>{{con_data[1]['state']}}</td>
-            <td>容器内存</td>
-            <td>{{con_data[1]['memory']}}</td>
+            <td>容器镜像</td>
+            <td>{{con_data[1]['image']}}</td>
         </tr>
-        <tr>
-            <td>CPU时间</td>
-            <td>{{con_data[1]['cpuperiod']}}</td>
-            <td>CPU配额</td>
-            <td>{{con_data[1]['cpuquota']}}</td>
-        </tr>
+{#        <tr>#}
+{#            <td>CPU时间</td>#}
+{#            <td>{{con_data[1]['port']}}</td>#}
+{#            <td>CPU配额</td>#}
+{#            <td>{{con_data[1]['cpuquota']}}</td>#}
+{#        </tr>#}
         <tr>
             <td >HostName</td>
             <td>{{con_data[1]['hostname']}}</td>
@@ -54,4 +54,37 @@
         </tr>
     </tbody>
 </table>
+<div class="alert alert-success" role="alert">容器映射至主机端口对应表</div>
+
+<table class="table table-striped">
+    <tbody>
+    {% for port_group in show_port %}
+        <tr>
+            <td>服务器</td>
+            <td>{{show_port[port_group]['ser_port']}}&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            <td>容器</td>
+            <td>{{show_port[port_group]['con_port']}}&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        </tr>
+    {% end %}
+    </tbody>
+</table>
+
+<script type="text/javascript">
+$(document).ready(function() {
+     $('[data-toggle="popover"]').popover()
+
+    $('#start').on('click', function(){
+        layer.msg('容器启动中,请等待页面自动刷新...');
+  });
+
+    $('#stop').on('click', function(){
+        layer.msg('容器停止中,请等待页面自动刷新...');
+  });
+
+    $('#restart').on('click', function(){
+        layer.msg('容器重启中,请等待页面自动刷新...');
+  });
+} );
+</script>
+
 {% end %}

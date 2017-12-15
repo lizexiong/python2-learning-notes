@@ -4,17 +4,19 @@
 <script type="text/javascript">
 $(document).ready(function() {
     $('#conlist').DataTable({
-        "paging":   false
+        "paging":   true
     });
 } );
 </script>
 <div id="content">
 <head>
     <ul>
-        <h2>节点管理</h2>
+        <h2>容器状态管理</h2>
     </ul>
     <div>
         <input type="button" class="btn btn-primary" onclick="javascript:window.location.href='/concreate?node_ip={{node_ip}}'" value="创建容器">
+        <input type="button" class="btn btn-primary" onclick="javascript:window.location.href='/node?action=online&node_ip={{node_ip}}'" value="运行中容器">
+        <input type="button" class="btn btn-primary" onclick="javascript:window.location.href='/node?action=offline&node_ip={{node_ip}}'" value="其它状态">
     </div>
 </head>
 
@@ -25,12 +27,12 @@ $(document).ready(function() {
             <th >容器ID</th>
             <th >容器IP</th>
             <th >容器名</th>
-            <th >CPU时间</th>
-            <th >CPU配额</th>
-            <th >内存</th>
+{#            <th >CPU时间</th>#}
+{#            <th >CPU配额</th>#}
+{#            <th >内存</th>#}
             <th >状态</th>
             <th >运行命令</th>
-            <th >创建时间</th>
+            <th >启动时间</th>
             <th >操作</th>
         </tr>
     </thead>
@@ -41,12 +43,12 @@ $(document).ready(function() {
             <td>{{con_data[con]['id_num']}}</td>
             <td>{{con_data[con]["con_ip"]}}</td>
             <td>{{con_data[con]["name"]}}</td>
-            <td>{{con_data[con]["cpuperiod"]}}</td>
-            <td>{{con_data[con]["cpuquota"]}}</td>
-            <td>{{con_data[con]["memory"]}}</td>
+{#            <td>{{con_data[con]["cpuperiod"]}}</td>#}
+{#            <td>{{con_data[con]["cpuquota"]}}</td>#}
+{#            <td>{{con_data[con]["memory"]}}</td>#}
             <td>{{con_data[con]["state"]}}</td>
             <td>{{con_data[con]["cmd"]}}</td>
-            <td>{{con_data[con]["created"]}}</td>
+            <td>{{con_data[con]["started"]}}</td>
             <td>
                 <input type="button" class="btn btn-default" onclick="javascript:window.location.href='/conaction?node_ip={{node_ip}}&con_id={{con_data[con]["id_num"]}}'" value="操作"> 
             </td>

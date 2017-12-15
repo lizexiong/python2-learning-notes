@@ -3,6 +3,8 @@ basejson = (['{\
     "Hostname": "container-testing",\
     "Domainname": "",\
     "User": "",\
+    "Port": {}, \
+    "Binds": {}, \
     "AttachStdin": true,\
     "AttachStdout": true,\
     "AttachStderr": true,\
@@ -24,7 +26,7 @@ basejson = (['{\
         "Binds": null,\
         "Links": null,\
         "LxcConf": {},\
-        "Memory": 8589934592,\
+        "Memory": 1073741824,\
         "MemorySwap": 0,\
         "MemoryReservation": 0,\
         "KernelMemory": 0,\

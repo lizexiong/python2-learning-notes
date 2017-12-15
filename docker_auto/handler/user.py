@@ -1,22 +1,22 @@
 # -*- coding: utf-8 -*-
 
-from docker_auto.handler.base import BaseHandler
-from docker_auto.model.check import Check
-from docker_auto.settings import COOKIE_NAME
+from handler.base import BaseHandler
+from model.check import Check
+from settings import COOKIE_NAME
 
 class Login(BaseHandler):
     def get(self,*args,**kwargs):
-        self.render("users/login.html",login_strings=dict(password="Password"))
+        self.render("users/login.html",login_strings=dict(username="Email",password="Password"))
 
     def post(self,*args,**kwargs):
         input_username = self.get_argument("username")
         input_password = self.get_argument("password")
-        print (input_username)
+        # print (input_username)
         check_result = Check.login_check(input_username,input_password)
         if check_result == "Invalid username":
-           self.render("users/login.html",login_strings=dict(password="Invalid username"))
+           self.render("users/login.html",login_strings=dict(username="Invalid username",password='Password'))
         elif check_result == "Incorrect password":
-            self.render("users/login.html",login_strings=dict(password="Incorrect password"))
+            self.render("users/login.html",login_strings=dict(username="Email",password="Incorrect password"))
         elif check_result == "1":
             self.set_secure_cookie(COOKIE_NAME,input_username,expires_days=1)
             self.redirect("/main")
