@@ -16,6 +16,7 @@ function CheckAll(mode,tb){
 			//$(this)代表循环过程中,每一个tr,每一行数据
 			//这里要使用for循环把tr拿出来是因为有很多个tr
 			var tr=$(this);
+			//  :checkbox  : 代表查找当前tr下的td
 			var isChecked = $(this).find(':checkbox').prop('checked');
 			if(isChecked == true){
 			}else{
@@ -109,7 +110,7 @@ function RowIntoEditMode(tr){
 	var td=$(this);
 	if(td.attr('edit') == 'True'){
 		if(td.attr('edit-type') == "select"){
-			var all_values = window[td.attr('global-key')];			#获取全局变量，简单来说就是找到这个文件中global-key的字典
+			var all_values = window[td.attr('global-key')];			//获取全局变量，简单来说就是找到这个文件中global-key的字典
 			var select_val = td.attr('select_val');
 			select_val = parseInt(select_val);
 			var options = "";

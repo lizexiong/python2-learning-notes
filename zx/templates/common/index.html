@@ -17,15 +17,20 @@
 <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}H-ui-admin/lib/Hui-iconfont/1.0.8/iconfont.css" />
 <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}H-ui-admin/static/h-ui.admin/skin/default/skin.css" id="skin" />
 <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}H-ui-admin/static/h-ui.admin/css/style.css" />
+<link rel="stylesheet" href="{{ STATIC_URL }}H-ui-admin/lib/zTree/v3/css/zTreeStyle/zTreeStyle.css" type="text/css">
+<link rel="stylesheet" href="{{ STATIC_URL }}bootstrap/css/bootstrap.min.css">
 <!--[if IE 6]>
 <script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script>
 <![endif]-->
+
+
 <title>IPOP</title>
 <meta name="keywords" content="H-ui.admin v3.1,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
 <meta name="description" content="H-ui.admin v3.1，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
 </head>
 <body>
+
 <header class="navbar-wrapper">
 	<div class="navbar navbar-fixed-top">
 {#        			<span class="logo navbar-slogan f-l mr-10 hidden-xs">v3.1</span>#}
@@ -71,8 +76,10 @@
 	</div>
 </div>
 </header>
+
 {% block left  %}{% endblock %}
 <div class="dislpayArrow hidden-xs"><a class="pngfix" href="javascript:void(0);" onClick="displaynavbar(this)"></a></div>
+
 {% block content %}{% endblock %}
 
 <div class="contextMenu" id="Huiadminmenu">
@@ -83,9 +90,36 @@
 </div>
 <!--_footer 作为公共模版分离出去-->
 <script type="text/javascript" src="{{ STATIC_URL }}H-ui-admin/lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}H-ui-admin/lib/zTree/v3/js/jquery.ztree.all-3.5.min.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}H-ui-admin/lib/layer/2.4/layer.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}H-ui-admin/static/h-ui/js/H-ui.min.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}H-ui-admin/static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="{{ STATIC_URL }}bootstrap/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+    var zTree;
+    var setting = {
+        view: {
+            dblClickExpand: false
+        },
+        async: { //异步加载请求数据
+            enable: true,
+            url:"/ipop_zx/group_list/",
+            autoParam:["id", "name=n", "level=lv"], //请求的参数即groupid=nodeid
+            otherParam:{"otherParam":"zTreeAsyncTest"},
+            type: "post"
+        },
+        callback: {
+
+        }
+    };
+
+$(document).ready(function(){
+    $.fn.zTree.init($("#treeDemo"), setting);
+    //右键菜单
+    zTree = $.fn.zTree.getZTreeObj("treeDemo");
+});
+</script>
 
 <!--请在下方写此页面业务相关的脚本-->
 <script type="text/javascript" src="{{ STATIC_URL }}H-ui-admin/lib/jquery.contextmenu/jquery.contextmenu.r2.js"></script>

@@ -30,16 +30,14 @@ class DataManage(object):
         num = 1
         for line in result:
             tmp_dic = {}
-            if num < 10:
-                tmp_dic['id'] = "0" + str(num)
-            else:
-                tmp_dic['id'] = str(num)
+            tmp_dic['id'] = str(line[0])
             tmp_dic['name'] = line[0]
             tmp_dic['isParent'] = "true"
             tmp_dic['target'] = "rightFrame"
-            tmp_dic['url'] = "group?group_id=" + tmp_dic['id']
+            tmp_dic['url'] = "groupgraph?group_id=" + tmp_dic['id']
             group_data.append(tmp_dic)
             num += 1
+        # print (group_data,'group_data')
         return group_data
 
     @staticmethod
@@ -76,3 +74,16 @@ class DataManage(object):
             dict_data[num] = tmp_dict
             num += 1
         return dict_data
+
+class DataManageAjax(object):
+    @staticmethod
+    def status_list(result):
+        node_data = dict()
+        num = 1
+        for line in result:
+            tmp_dict = dict()
+            tmp_dict["state"] = line[7]
+            node_data[num] = tmp_dict
+            #这里循环是为了防止以后有多个node条件进来
+            num += 1
+        return node_data

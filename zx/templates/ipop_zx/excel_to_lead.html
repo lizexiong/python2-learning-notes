@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5shiv.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}H-ui-admin/static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}H-ui-admin/static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}H-ui-admin/lib/Hui-iconfont/1.0.8/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}H-ui-admin/static/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}H-ui-admin/static/h-ui.admin/css/style.css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+
+<title>历史主机管理</title>
+</head>
+<body>
+
+
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i>excel导入  <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<div class="page-container">
+	<div class="text-c">
+        	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a   download="w3logo" href="{{ template }}"  class="btn btn-success radius"><i class="Hui-iconfont">&#xe6e2;</i> 模版下载</a></span>
+        &nbsp;
+	</div>
+	<div class="cl pd-5 bg-1 bk-gray mt-20">
+        &nbsp;
+        请选择要导入的文件
+	<div class="mt-20">
+
+
+
+{#  <input type="file" onchange="showPreview(this)">#}
+{#<p class="show"></p>#}
+
+        <form class="form-inline" role="form"  action="ipop_zx/excel_to_lead/" method="post" enctype="multipart/form-data" accept-charset="utf-8">
+              <div class="form-group">
+                    <span class="btn-upload form-group">
+                        <input class="input-text upload-url radius" type="text" name="uploadfile-1" id="uploadfile-1" readonly><a href="javascript:void();" class="btn btn-primary radius"><i class="iconfont">+</i> 浏览文件</a>
+                        <input type="file" name="file" multiple name="file-1" class="input-file" onchange="showPreview(this)">
+                    </span>
+                        <a class="btn btn-primary radius"  href="ipop_zx/host_list" ><i class="Hui-iconfont"></i> 主机列表</a>
+              </div>
+            <p class="show"></p>
+{#              <div class="form-group">#}
+{#                  <input type="submit" value="上传文件">#}
+{#              </div>#}
+          </form>
+
+
+	</div>
+</div>
+<script>
+    function showPreview(source) {
+        var arrs = $(source).val().split('\\'); var filename=arrs[arrs.length-1]; $(".show").html(filename);
+        var file = source.files[0];
+        var total = file.size;
+        if(window.FileReader) {   //检测浏览器对FileReader的支持
+            var fr = new FileReader();
+            fr.onprogress = function(e) {
+                $(".progress1").show();
+            };
+            fr.onabort=function () {
+                layer.msg("文件上传中断,请重试")
+             };
+            fr.onerror=function () {
+                layer.msg("文件上传出错，请重试")
+            };
+            fr.onload=function () {
+                $(".progress1").hide();
+                layer.msg("文件上传成功,等待后台处理")
+                var form_data = new FormData();
+                var file_info =$( '.input-file')[0].files[0];       //获取文件
+                form_data.append('file',file_info);
+                $.ajax({
+                    type : "post",
+                    url: "ipop_zx/excel_to_lead/",
+                    data: form_data,
+                    processData: false,  // tell jquery not to process the data
+                    contentType: false, // tell jquery not to set contentType
+                    success:function(callback){
+                        result = JSON.parse(callback)
+                        console.log(result)
+                        if(typeof result == "object"){
+                            if(result[0].length <=0){
+                                $(".show").html("<h3 style='color:green'>" + "全部导入成功,导入" +  result[1] + "条</h3>")
+                            }else{
+                                $(".show").html("<h3 style='color:red'>" + "导入成功" +  result[1] + "条," + "失败条数为" +  result[0] + "</h3>")
+                            }
+                        }else{
+                            if (result == "file type error"){
+                                error_msg(result)
+                            }else if(result == "file format error"){
+                                error_msg(result)
+                            }else{
+                                error_msg(result)
+                            }
+                        }
+                    }
+                })
+             };
+            fr.readAsDataURL(file);
+        }
+}
+
+    function error_msg(result){
+        $(".show").html("<h3 style='color:red'>" + result + "</h3>")
+    }
+</script>
+
+<!--_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="{{ STATIC_URL }}H-ui-admin/lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}H-ui-admin/lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}H-ui-admin/static/h-ui/js/H-ui.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}H-ui-admin/static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
+
+<!--自定义js-->
+<script type="text/javascript" src="{{ STATIC_URL }}js/ipop_zx-host_list.js"></script>
+
+<!--请在下方写此页面业务相关的脚本-->
+<script type="text/javascript" src="{{ STATIC_URL }}H-ui-admin/lib/My97DatePicker/4.8/WdatePicker.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}H-ui-admin/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}H-ui-admin/lib/laypage/1.2/laypage.js"></script>
+
+
+
+
+</body>
+</html>

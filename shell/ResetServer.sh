@@ -1,4 +1,5 @@
 #!/bin/bash
+#流媒体服务器重启服务后删除视频文件脚本
 source /etc/profile
 
 curTime=$(date "+%Y-%m-%d-%H:%M:%S")

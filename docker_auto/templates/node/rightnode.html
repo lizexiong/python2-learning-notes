@@ -1,6 +1,10 @@
 {% extends "../head.html" %}
 {% block div %}
 
+<link href="{{static_url("css/rightnode.css")}}" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="{{static_url('js/rightnode.js')}}"></script>
+<script type="text/javascript" src="{{static_url('js/layer.js')}}"></script>
+
 <script type="text/javascript">
 $(document).ready(function() {
     $('#conlist').DataTable({
@@ -8,21 +12,29 @@ $(document).ready(function() {
     });
 } );
 </script>
+
+
 <div id="content">
 <head>
     <ul>
         <h2>容器状态管理</h2>
+        <p hidden class="node_ip">{{ node_ip }}</p>
     </ul>
-    <div>
+    <div style=" float: left">
         <input type="button" class="btn btn-primary" onclick="javascript:window.location.href='/concreate?node_ip={{node_ip}}'" value="创建容器">
         <input type="button" class="btn btn-primary" onclick="javascript:window.location.href='/node?action=online&node_ip={{node_ip}}'" value="运行中容器">
         <input type="button" class="btn btn-primary" onclick="javascript:window.location.href='/node?action=offline&node_ip={{node_ip}}'" value="其它状态">
     </div>
+
+    <div style=" float: right" class="MultiSelect">
+		<a  id='edit_mode' class='edit_mode' href="javascript:void(0);" onclick="EditMode(this, '#tb');">Go to multimode</a>
+    </div>
 </head>
 
 <table id="conlist" class="display" cellspacing="0" width="100%">
-    <thead>
+    <thead id="th">
         <tr>
+{#            <th>选择</th>#}
             <th >序号</th>
             <th >容器ID</th>
             <th >容器IP</th>
@@ -36,11 +48,12 @@ $(document).ready(function() {
             <th >操作</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody id="tb">
         {% for con in con_data %}
         <tr>
+{#            <td><input type='checkbox'></td>#}
             <td>{{con}}</td>
-            <td>{{con_data[con]['id_num']}}</td>
+            <td class="con_id">{{con_data[con]['id_num']}}</td>
             <td>{{con_data[con]["con_ip"]}}</td>
             <td>{{con_data[con]["name"]}}</td>
 {#            <td>{{con_data[con]["cpuperiod"]}}</td>#}
@@ -57,5 +70,6 @@ $(document).ready(function() {
     </tbody>
 </table>
 </div>
+
 
 {% end %}

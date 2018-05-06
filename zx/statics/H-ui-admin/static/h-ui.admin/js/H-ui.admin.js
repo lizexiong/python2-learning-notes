@@ -59,7 +59,8 @@ function Hui_admin_tab(obj){
 		iframe_box = topWindow.find("#iframe_box");
 	//console.log(topWindow);
 	if(!href||href==""){
-		alert("data-href不存在，v2.5版本之前用_href属性，升级后请改为data-href属性");
+		//alert("data-href不存在12，v2.5版本之前用_href属性，升级后请改为data-href属性");
+		console.log('data-href不存在12，v2.5版本之前用_href属性，升级后请改为data-href属性')
 		return false;
 	}if(!title){
 		alert("v2.5版本之后使用data-title属性");

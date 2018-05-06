@@ -2,6 +2,7 @@
 
 import socket
 import time
+import threading
 
 import docker,errno
 from curl import Curl
@@ -134,7 +135,7 @@ class Myswarm(object):
     def create_container(self, node_ip, node_port, conf):
         client_ins = docker.APIClient(base_url='tcp://' + node_ip + ":" + node_port, version=DOCKER_API_VERSION, timeout=5)
 
-        port_list = [8080,8081,80,3306,3000,22,5672,]
+        port_list = [8080,80,3306,22,27017]
         if conf['Port']:  #检查port有没有值，一般为key，有key就是用户有自定义端口号输入
             for i in conf['Port'].keys():
                 port_list.append(i)
@@ -247,6 +248,7 @@ class Myswarm(object):
         tmp_dict = {}
         ip_ret = ""
         ret_json = self._container_detail(node_ip, node_port, container_id)
+        print ('ret_json----------',ret_json)
         if len(ret_json) < 1:
             return con_data
 
@@ -270,7 +272,12 @@ class Myswarm(object):
         tmp_dict['cpuquota'] = ret_json['HostConfig']['CpuQuota']
         tmp_dict['hostname'] = str(ret_json['Config']['Hostname'])
         tmp_dict['cmd'] = str(ret_json['Config']['Cmd'])
-        tmp_dict['port'] = ret_json['HostConfig']['PortBindings']
+        if ret_json['HostConfig']['PortBindings']:
+            tmp_dict['port'] = ret_json['HostConfig']['PortBindings']
+        elif ret_json['NetworkSettings']['Ports']:
+            tmp_dict['port'] = ret_json['NetworkSettings']['Ports']
+        else:
+            tmp_dict['port'] = None
         con_data[1] = tmp_dict
         return con_data
 
@@ -301,8 +308,26 @@ class Myswarm(object):
             print("Please enter the Container ID")
             return 1
 
-    def online_node_con_info(self,node_ip,node_port,con_id):
-        pass
+
+    def docker_info(self,node_ip_list):
+        docker_info = {}
+        num = 1
+        for i in node_ip_list:
+            tmp_dict = {}
+            url = ('http://' + i[0] + ":" + i[1] + "/info")
+            container_more_url = Curl(url)
+            ret_json = container_more_url.get_value()
+
+            tmp_dict['Containers'] = ret_json['Containers']
+            tmp_dict['ContainersRunning'] = ret_json['ContainersRunning']
+            tmp_dict['Images'] = ret_json['Images']
+            tmp_dict['DataSpaceTotal'] = ret_json['DriverStatus'][7][1]
+            tmp_dict['DataSpaceAvailable'] = ret_json['DriverStatus'][8][1]
+            tmp_dict['MemTotal'] = ret_json['MemTotal'] / 1048576
+
+            docker_info[i[0]] = tmp_dict
+        return docker_info
+
 
     def check_volumes_from(self,node_ip,node_port):
         containers = self.container_list(node_ip,node_port,all)
@@ -333,15 +358,64 @@ class Myswarm(object):
         port_dict = {}
 
         con_info = self.container_info(node_ip,node_port,con_id)
+        print ("con_info",con_info)
         port_all = con_info[1]['port']
-        print (port_all)
+        print ("port_all",port_all,)
         num = 1
-        port_dict[num] = {}
-        for i,j in port_all.items():
-            tmp_dict = {}
-            con_port = i.split('/')[0]
-            tmp_dict['con_port'] = con_port
-            tmp_dict['ser_port'] = j[0]['HostPort']
-            port_dict[num] = tmp_dict
-            num += 1
+        if port_all:
+            port_dict[num] = {}
+            for i,j in port_all.items():
+                tmp_dict = {}
+                con_port = i.split('/')[0]
+                tmp_dict['con_port'] = con_port
+                tmp_dict['ser_port'] = j[0]['HostPort']
+                port_dict[num] = tmp_dict
+                num += 1
+        else:
+            port_dict = None
         return port_dict
+
+class online_check(object):
+    def __init__(self,action=None):
+        self.action = action
+
+    def trigger(self):
+        threads = []
+        node_update = threading.Thread(target=self._update_node())
+        threads.append(node_update)
+        print (1)
+
+        for t in threads:
+            #设置这些线程为守护线程，当所有常规线程运行完毕以后，守护线程不管运行到哪里，虚拟机都会退出运行。
+            t.setDaemon(True)
+            t.start()
+
+    #原代码中,这里的函数就是为了检测节点是否在线,else后面的语句没有任何作用
+    #检查节点是否为空
+    def _update_node(self):
+        node_data =NodeInfo.node_info(all)
+        myswarm = Myswarm()
+
+        for line in node_data:
+            node_ip = line[2]
+            node_port = line[3]
+            if myswarm.ping_port(node_ip,node_port) == 1:
+                result = {'status':'offline','node_ip':node_ip}
+                NodeInfo.node_status_update(result)
+            else:
+                result = {'status':'online','node_ip':node_ip}
+                NodeInfo.node_status_update(result)
+        if self.action == "image":
+            online_node_ip = NodeInfo.node_info('online')
+            result = {}
+            for line in online_node_ip:
+                online_node_ip = line[2]
+                online_node_port = line[3]
+                images = myswarm.images_list(online_node_ip,online_node_port)
+                containers = myswarm.container_list(online_node_ip,online_node_port)
+                result['online_node_ip'] = online_node_ip
+                result['online_node_port'] = online_node_port
+                result['images'] = len(images)
+                result['containers'] = len(containers)
+
+                NodeInfo.node_update(result)

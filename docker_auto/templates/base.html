@@ -2,10 +2,33 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" dir="ltr">
 <head>
 <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
-<link href="{{static_url("css/all.css")}}" rel="stylesheet" type="text/css"/>
+            <link href="{{static_url("css/all.css")}}" rel="stylesheet" type="text/css"/>
+            <script type="text/javascript" src="{{static_url('js/jquery.min.js')}}"></script>
+            <script type="text/javascript" src="{{static_url('js/bootstrap.min.js')}}"></script>
+            <link href="{{static_url('css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
 </head>
 
+
+
 <body>
+
+{#<div class="btn-group" style="z-index: 100000">#}
+{#	<button type="button" class="btn btn-default dropdown-toggle"#}
+{#			data-toggle="dropdown">#}
+{#		默认 <span class="caret"></span>#}
+{#	</button>#}
+{#	<ul class="dropdown-menu" role="menu">#}
+{#		<li><a href="#">功能</a></li>#}
+{#		<li><a href="#">另一个功能</a></li>#}
+{#		<li><a href="#">其他</a></li>#}
+{#		<li class="divider"></li>#}
+{#		<li><a href="#">分离的链接</a></li>#}
+{#	</ul>#}
+{#</div>#}
+
+
+
+
 <div id="wrapper">
     <div id="head">
         <div id='top1'><span class='l'>上海询诺 Docker 管理系统</span></div>
@@ -20,4 +43,8 @@
 </div>
 </body>
 
+<script>
+$('.dropdown').dropdown()
+    $().dropdown('toggle')
+</script>
 </html>

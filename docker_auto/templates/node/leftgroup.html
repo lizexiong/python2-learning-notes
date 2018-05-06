@@ -47,8 +47,25 @@
     <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
         <ul id="treeDemo" class="ztree" style="height:100%;"></ul>
     </div>
+
+    {% if is_admin == "1" %}
+    <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingThree">
+      <h4 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+          设置
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
+        <a href="/userreset" target="rightFrame" class="list-group-item">密码重置</a>
+    </div>
   </div>
+    {% end %}
+
   </div>
+
+
 
 <script type="text/javascript">
 
@@ -77,6 +94,9 @@
 
     });
 
+
+    $(function () { $('#collapseTwo').collapse('hide')});
+    $(function () { $('#collapseThree').collapse('hide')});
 </script>
 
 </body>

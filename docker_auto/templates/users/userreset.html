@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Wopop</title>
+<link href="../../static/Wopop_files/style_log.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{{static_url("Wopop_files/style.css")}}">
+<link rel="stylesheet" type="text/css" href="{{static_url("Wopop_files/userpanel.css")}}">
+<script src="{{static_url('js/userreset.js')}}"></script>
+<script type="text/javascript" src="{{static_url('js/jquery.min.js')}}"></script>
+
+</head>
+
+<body class="login" mycollectionplug="bind">
+<div class="login_m">
+<p style="font-size: 20px;text-align:center">密码重置</p>
+<div class="login_boder">
+<form id="user_info">
+<div class="login_padding" id="login_model">
+  <h2>邮箱</h2>
+  <label>
+    <input type="text" id="mail" name="mail" class="txt_input txt_input2" onkeyup="mail_check(this.value)" onblur="mail_check(this.value)">
+  </label>
+        <ul id="mail_hint"></ul>
+  <h2>密码</h2>
+  <label>
+    <input type="password" name="textfield2" id="userpwd" onkeyup="passwd1_check(this.value)" onblur="passwd1_check(this.value)" class="txt_input" >
+  </label>
+    <ul id="passwd1_hint"></ul>
+
+ <h2>确认密码</h2>
+  <label>
+    <input type="password" name="textfield3" id="userpwd2" onkeyup="passwd2_check(this.value)" onblur="passwd2_check(this.value)" class="txt_input">
+  </label>
+    <ul id="passwd2_hint"></ul>
+ 
+  <div class="rem_sub">
+    <label>
+      <input type="button" class="sub_button" name="button" id="submit_form" onclick="submit_form_info()" value="重置" style="opacity: 0.7;float:left">
+    </label>
+  </div>
+    <div class="rem_sub">
+    <label>
+      <input type="submit" class="sub_button" name="button" id="clear" onclick="form_clear()" value="清空" style="opacity: 0.7;float:right">
+    </label>
+  </div>
+</div>
+</form>
+<br/><div><ul id="hint" style="text-align:center"></ul></div>
+    </div>
+</div>
+</body>
+</html>

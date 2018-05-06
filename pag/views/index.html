@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href='{{static_url("s1.css")}}'>
+    <style>li{ display:inline} </style>
+</head>
+<body>
+<h1>提交数据</h1>
+<form method="post" action="/index/{{cur_page}}">
+    用户名：<input name="user" type="text"/>
+    邮箱：<input name="email" type="text"/>
+    <input type="submit" value="提交"/>
+</form>
+<h1>显示数据</h1>
+<table border="1">
+    <thead>
+        <tr>
+            <th>用户名</th>
+            <th>邮箱</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!--循环接收到的shuju显示到表格-->
+         {% for i in data %}
+            <tr>
+                <td>{{i["user"]}}</td>
+                <td>{{i["email"]}}</td>
+            </tr>
+         {% end %}
+
+    </tbody>
+</table>
+
+<ul style="display: block;overflow: hidden; white-space:nowrap;">
+    {% raw show_page %}
+</ul>
+
+
+
+
+</body>
+</html>

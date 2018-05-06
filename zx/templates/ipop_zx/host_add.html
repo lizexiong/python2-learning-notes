@@ -1,0 +1,62 @@
+{% block content %}
+
+<div class="modal-header">
+    <h4 class="modal-title" id="myModalLabel">
+        添加主机
+    </h4>
+</div>
+
+
+<div class="page-container">
+	<form class="form form-horizontal" id="form-article-add" action="ipop_zx/host_add/" method="post">
+		{% for host in host_form_obj %}
+        <div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3">{{ host.label }}：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				{{ host }}
+                <span id="{{ host.name }}"></span>
+			</div>
+		</div>
+        {% endfor %}
+
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
+				<button  class="btn btn-secondary radius" type="button" onclick="host_add()"><i class="Hui-iconfont">&#xe632;</i> 提交</button>
+				<button  class="btn btn-default radius" type="cancle" data-dismiss="modal">&nbsp;&nbsp;取消&nbsp;&nbsp;</button>
+			            <span id="sql"></span>
+            </div>
+		</div>
+	</form>
+</div>
+
+<script type="text/javascript">
+    function host_add(){
+        $.ajax({
+            type:'post',
+            url:'ipop_zx/host_add/',
+            datatype:'json',
+            data: $('#form-article-add').serialize(),
+            success:function(callback){
+                //如果返回错误信息,那么转换成前端json格式
+                var callback = window.JSON.parse(callback)
+                if(callback['status']=='ok'){
+                    window.location.href="ipop_zx/host_list/";
+                }else if(callback['status']=='sql_error'){
+                    $("#sql").html("<li style='color:red;'>可能数据库已有该数据</li>")
+                } else{
+                      $("#name,#ip,#group,#sql").html('')
+                      if(callback['name']){
+                          $('#name').html("<li style='color:red;'>" + callback['name'][0] + "</li>")
+                      }
+                      if(callback['ip']){
+                          $('#ip').html("<li style='color:red;'>" + callback['ip'][0] + "</li>")
+                      }
+                      if(callback['group']){
+                          $('#group').html("<li style='color:red;'>" + callback['group'][0] + "</li>")
+                      }
+                }
+            }
+        })
+    }
+</script>
+{% endblock %}

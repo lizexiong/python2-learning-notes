@@ -2,7 +2,7 @@
 
 from .user import UserSqlOperation
 
-from docker_auto.handler.base import BaseHandler
+from handler.base import BaseHandler
 
 class Check(BaseHandler):
     @staticmethod
@@ -11,6 +11,24 @@ class Check(BaseHandler):
         m = hashlib.md5()
         m.update(result.encode('utf-8'))
         return m.hexdigest()
+
+    @staticmethod
+    def user_register(input_username,input_password):
+        user_add_ret = UserSqlOperation.user_add(input_username,input_password)
+        #isinstance即使返回元祖为空,那么也代表插入成功
+        if isinstance(user_add_ret, tuple):
+            return 'successfully added'
+        elif user_add_ret == 'exist':
+            return 'fail'
+
+    @staticmethod
+    def user_pwd_reset(input_username,input_password):
+        user_pwd_reset_ret = UserSqlOperation.user_pwd_reset(input_username,input_password)
+        print (type(user_pwd_reset_ret))
+        if isinstance(user_pwd_reset_ret,tuple):
+            return 'successfully reset'
+        elif user_pwd_reset_ret == 'error':
+            return 'fail'
 
     @staticmethod
     def login_check(input_username,input_password):
@@ -24,3 +42,11 @@ class Check(BaseHandler):
                 return "Incorrect password"
         else:
             return "Invalid username"
+
+    @staticmethod
+    def mail_check(mail):
+        mail_result = UserSqlOperation.mail(mail)
+        return mail_result
+
+
+

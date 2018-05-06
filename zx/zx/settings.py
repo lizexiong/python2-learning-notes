@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'svn_zx',
+    'ipop_zx',
 ]
 
 MIDDLEWARE = [
@@ -118,7 +119,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+# USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
@@ -131,3 +132,6 @@ STATICFILES_DIRS = (
 
 
 LOGIN_URL = "/login/"
+
+TIME_ZONE = 'Asia/Shanghai'
+USE_TZ = False

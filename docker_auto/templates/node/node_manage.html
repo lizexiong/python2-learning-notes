@@ -3,7 +3,28 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
-    $('#nodelist').DataTable();
+    $('#nodelist').DataTable({
+{#        "bProcessing" : true, //DataTables载入数据时，是否显示‘进度’提示#}
+{#        "bServerSide" : true, //是否启动服务器端数据导入#}
+{#        "aLengthMenu" : [[5, 15, 20, -1], [5, 15, 20, "All"]], //更改显示记录数选项#}
+{#        "bPaginate" : true, //是否显示（应用）分页器#}
+{#        "serverSide":true,  //true代表后台处理分页，false代表前台处理分页#}
+{#        "sAjaxDataProp" : "aData",//是服务器分页的标志，必须有#}
+{#        sAjaxSource : '/pag', //请求资源路径#}
+{#        "bPaginate": true, //翻页功能#}
+{#        fnServerData: function(sSource,aoData,fnCallback){#}
+{#            $.ajax({#}
+{#                'type': 'get',#}
+{#                'url':sSource,#}
+{#                'dataType':"json",#}
+{#                "data": { "aodata" : JSON.stringify(aoData) },#}
+{#                success:function(resp){#}
+{#                    fnCallback(resp)#}
+{#                }#}
+{#            })#}
+{#        },#}
+
+    });
 } );
 </script>
 <div id="content">
@@ -20,11 +41,13 @@ $(document).ready(function() {
              <a href="/nodemanage?action=online"> <input type="button" class="btn btn-default"  value="在线节点"></a>
             <a href="/nodemanage?action=offline"> <input type="button" class="btn btn-default"  value="离线节点"></a>
         </div>
+        {% if action == None %}
         <div style="text-align:right;" >
             <button  id='refresh' type="button" class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off" >
-                    刷新
+                    刷新节点状态
             </button>
         </div>
+        {% end %}
     </div>
 
 
@@ -49,7 +72,7 @@ $(document).ready(function() {
             <th >操作</th>
         </tr>
         </thead>
-        <tbody>
+        <tbody id="value">
         {% for node in node_data %}
         <tr>
             <td>{{node}}</td>
@@ -79,7 +102,7 @@ $(document).ready(function() {
 </table>
 </div>
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" style="width:450px;margin:0 auto;" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
    <div class="modal-dialog">
       <div class="modal-content">
          <div class="modal-header">
@@ -101,8 +124,21 @@ $(document).ready(function() {
     });
 
     $(function(){
-        $('refresh').click(function(){
-            var node_ip =
+        $('#refresh').click(function(){
+            $.ajax({
+                type:"get",
+                url:'/nodemanagehoststatus',
+                datatype:'json',
+                success:function(callback){
+                    //转换成前端json格式
+                    var status_list = window.JSON.parse(callback)
+                    $.each(status_list,function(index,ele){
+                        $('table').each(function() {
+                            $('tr').eq(index).children('td').eq(7).text(ele['state'])
+                        })
+                    })
+                }
+            })
         })
     })
 </script>

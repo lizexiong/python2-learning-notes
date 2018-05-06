@@ -3,16 +3,33 @@
 
 {% block left %}
 
+
 <aside class="Hui-aside">
+
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingTwo">
+
+        <a  role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+          <p class="glyphicon glyphicon-star-empty">&thinsp;主机分类</p>&thinsp;&thinsp;&thinsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <i class="Hui-iconfont menu_dropdown-arrow"></i>
+        </a>
+
+    </div>
+
+    <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
+        <ul id="treeDemo" class="ztree" style="height:100%;"></ul>
+    </div>
 	<div class="menu_dropdown bk_2">
 
 		<dl id="menu-product">
-			<dt><i class="Hui-iconfont">&#xe620;</i> 产品管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+
+			<dt><i class="Hui-iconfont">&#xe620;</i> 常用工具<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
+
 				<ul>
-					<li><a data-href="product-brand.html" target="_top" data-title="品牌管理" href="/ipop_zx/test">品牌管理</a></li>
+                    <li><a data-href="/ipop_zx/ip_calculate"  data-title="IP地址分配" href="javascript:void(0)">IP地址分配</a></li>
 					<li><a data-href="product-category.html" data-title="分类管理" href="javascript:void(0)">分类管理</a></li>
-					<li><a data-href="product-list.html" data-title="产品管理" href="javascript:void(0)">产品管理</a></li>
+					<li><a data-href="/ipop_zx/host_list" data-title="产品管理" href="javascript:void(0)">产品管理</a></li>
 			</ul>
 		</dd>
 	</dl>
@@ -60,6 +77,7 @@
 </aside>
 
 
+
 {% endblock %}
 
 
@@ -70,18 +88,20 @@
 		<div class="Hui-tabNav-wp">
 			<ul id="min_title_list" class="acrossTab cl">
 				<li class="active">
-					<span title="我的桌面" data-href="welcome.html">我的桌面</span>
+					<a href="ipop_zx/welcome" target="RightFrame"><span title="主页" data-href="ipop_zx/welcome">主页</span></a>
 					<em></em></li>
 		</ul>
 	</div>
-		<div class="Hui-tabNav-more btn-group"><a id="js-tabNav-prev" class="btn radius btn-default size-S" href="javascript:;"><i class="Hui-iconfont">&#xe6d4;</i></a><a id="js-tabNav-next" class="btn radius btn-default size-S" href="javascript:;"><i class="Hui-iconfont">&#xe6d7;</i></a></div>
+		<div name='zexiong' class="Hui-tabNav-more btn-group"><a id="js-tabNav-prev" class="btn radius btn-default size-S" href="javascript:;"><i class="Hui-iconfont">&#xe6d4;</i></a><a id="js-tabNav-next" class="btn radius btn-default size-S" href="javascript:;"><i class="Hui-iconfont">&#xe6d7;</i></a></div>
 </div>
 	<div id="iframe_box" class="Hui-article">
 		<div class="show_iframe">
 			<div style="display:none" class="loading"></div>
-			<iframe scrolling="yes" frameborder="0" src="welcome.html"></iframe>
+			<iframe id="RightFrame" name='RightFrame' title="RightFrame" scrolling="yes" frameborder="0" src="ipop_zx/welcome"></iframe>
 	</div>
 </div>
 </section>
+
+
 
 {% endblock %}

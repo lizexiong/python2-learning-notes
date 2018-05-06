@@ -6,18 +6,38 @@ import pymysql
 pymysql.install_as_MySQLdb()
 from DBUtils.PooledDB import PooledDB
 
+
+'''
+logging中可以选择很多消息级别，如debug、info、warning、error以及critical。
+通过赋予logger或者handler不同的级别，开发者就可以只输出错误信息到特定的
+记录文件，或者在调试时只记录调试信息。
+
+__name__就是本程序自己,只显示info以上的信息
+https://www.cnblogs.com/zhbzz2007/p/5943685.html
+
+'''
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
+'''
+	pymysql操作顺序
+		1.打开数据库连接。
+		2.生成一个游标
+		3.用生成的游标去操作sql动作
+
+'''
 
 class MysqlServer(object):
     '''连接数据库服务器'''
 
     def __init__(self,db_config):
         try:
+			#数据库配置文件
             self.db_config = db_config
+			#打开数据库连接
             self._conn = self.__get_conn()
+			#用打开的数据库连接生成一个游标
             self._cursor = self._conn.cursor()
             logger.info(u"connected the db")
         except Exception:

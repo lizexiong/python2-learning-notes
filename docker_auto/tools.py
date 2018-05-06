@@ -19,7 +19,7 @@ class port_allot(object):
 
     def initial_put(self):
         self.key_name = queue.Queue()
-        for i in range(2045,2100):
+        for i in range(2045,3100):
             self.key_name.put(i)
 
     def put_q(self,value=None):

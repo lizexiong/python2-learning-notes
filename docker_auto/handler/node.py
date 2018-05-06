@@ -13,6 +13,7 @@ from myswarm import Myswarm
 from model.data_manage import DataManage
 from config import basejson
 from model import mysql_server
+from myswarm import online_check
 
 class Main(BaseHandler):
 
@@ -28,12 +29,11 @@ class NodeManage(BaseHandler):
         node_status_check = online_check('image')
         node_status_check.trigger()
 
-
-        action = self.get_argument('action','None')
+        action = self.get_argument('action',None)
         node_data = NodeInfo.node_info(action)
         node_data_handled = DataManage.manage_node_info(node_data)
         is_admin = self.is_admin()[0][0] #取出组id，admin的组外键id为1
-        self.render("node/node_manage.html", node_data = node_data_handled,is_admin = is_admin)
+        self.render("node/node_manage.html", node_data = node_data_handled,is_admin = is_admin,action=action)
 
 class Top(BaseHandler):
 
@@ -46,7 +46,8 @@ class LeftGroup(BaseHandler):
 
     @tornado.web.authenticated
     def get(self):
-        self.render('node/leftgroup.html')
+        is_admin = self.is_admin()[0][0] #取出组id，admin的组外键id为1
+        self.render('node/leftgroup.html',is_admin=is_admin)
 
 
 class GroupList(BaseHandler):
@@ -56,7 +57,7 @@ class GroupList(BaseHandler):
         id = self.get_argument("id", None)
         name = self.get_argument("n", None)
         lv = self.get_argument('lv', None)
-        print ("id:",id,"name:",name,"lv:",lv)
+        # print ("id:",id,"name:",name,"lv:",lv)
         alldata = []
         if id == None and lv == None and name == None:
             alldata = self._getgroup()
@@ -96,6 +97,7 @@ class ConManage(BaseHandler):
 
         online_node_list = NodeInfo.node_info('online')
         # print (online_node_list)
+        cur_page = self.get_argument('page',1)
 
         if online_node_list:
             myswarm = Myswarm()
@@ -115,15 +117,24 @@ class ConManage(BaseHandler):
                 else:
                     NodeInfo.insert_con_usage(id_num,con_ip,node_ip,state)
 
+
             #以下代码为判断是渲染所有容器还是有容器id的内容
             con_id = self.get_argument('con_id', 'none')
             if con_id == 'none':
-                con_data = NodeInfo.con_usage_info()
+
+                cur_page = self.get_argument('page',1)
+                from handler.paging import pag
+                con_num = NodeInfo.get_con_usage_modify(count=1)
+                obj = pag(cur_page,con_num[0][0],10,10,5,'/conmanage?page=')
+                con_data = obj.scope_of_data()
+                page_info = obj.page_info()
+                page_list = obj.display_page_numbers()
+                # con_data = NodeInfo.con_usage_info()
             else:
                 con_data = NodeInfo.get_con_usage_modify(con_id)
             # print (con_data)
             con_data_handled = DataManage.manage_con_usage_info(con_data)
-            self.render("node/con_list.html",name=template_variables, con_data = con_data_handled)
+            self.render("node/con_list.html",name=template_variables, con_data = con_data_handled,page_list=page_list,page_info=page_info)
         else:
             self.write('没有节点在线')
 
@@ -292,6 +303,8 @@ class ConAction(BaseHandler):
         try:
             con_data_handled = myswarm.container_info(node_ip, node_port, con_id)
             show_port = myswarm.show_port(node_ip,node_port,con_id)
+            print ('show_port',show_port)
+
         except BaseException as e:
             NodeInfo.delete_con_usage(con_id)
             tmp_dict = {'url':'conmanage'}
@@ -482,7 +495,7 @@ class NodeModify(BaseHandler):
             con_dict['node_status'] = 'online'
         else:
             con_dict['node_status'] = 'offline'
-        print ("ping_ret:",ping_ret,"con_dict[node_status]",con_dict['node_status'])
+        # print ("ping_ret:",ping_ret,"con_dict[node_status]",con_dict['node_status'])
         ret = NodeInfo.node_update(con_dict)
         print ('ret:',ret)
         if not ret:
@@ -493,50 +506,22 @@ class NodeModify(BaseHandler):
             ret_url = url_script.url_fail(argument=tmp_dict)
             self.write(ret_url)
 
-class online_check(object):
-    def __init__(self,action=None):
-        self.action = action
 
-    def trigger(self):
-        threads = []
-        node_update = threading.Thread(target=self._update_node())
-        threads.append(node_update)
-        print (1)
+class GroupGraph(BaseHandler):
+   def get(self,*args,**kwargs):
+       group_name = self.get_argument('group_id',None)
+       if group_name is not None:
+           online_node_list = NodeInfo.node_list(group_name)
+           if len(online_node_list) >= 1:
+                myswarm = Myswarm()
+                docker_info = myswarm.docker_info(online_node_list)
+                # print ('docker_info',docker_info)
+                self.render("node/groupgraph.html",docker_info = docker_info)
+           else:
+               self.write("该组没有节点在线")
+       else:
+        self.write('没有此组信息')
 
-        for t in threads:
-            #设置这些线程为守护线程，当所有常规线程运行完毕以后，守护线程不管运行到哪里，虚拟机都会退出运行。
-            t.setDaemon(True)
-            t.start()
-
-    #原代码中,这里的函数就是为了检测节点是否在线,else后面的语句没有任何作用
-    #检查节点是否为空
-    def _update_node(self):
-        node_data =NodeInfo.node_info(all)
-        myswarm = Myswarm()
-
-        for line in node_data:
-            node_ip = line[2]
-            node_port = line[3]
-            if myswarm.ping_port(node_ip,node_port) == 1:
-                result = {'status':'offline','node_ip':node_ip}
-                NodeInfo.node_status_update(result)
-            else:
-                result = {'status':'online','node_ip':node_ip}
-                NodeInfo.node_status_update(result)
-        if self.action == "image":
-            online_node_ip = NodeInfo.node_info('online')
-            result = {}
-            for line in online_node_ip:
-                online_node_ip = line[2]
-                online_node_port = line[3]
-                images = myswarm.images_list(online_node_ip,online_node_port)
-                containers = myswarm.container_list(online_node_ip,online_node_port)
-                result['online_node_ip'] = online_node_ip
-                result['online_node_port'] = online_node_port
-                result['images'] = len(images)
-                result['containers'] = len(containers)
-
-                NodeInfo.node_update(result)
 
 class url_script(object):
 
@@ -566,7 +551,6 @@ class url_script(object):
     @staticmethod
     def url_fail(*args, **kwargs):
         node_ip = kwargs['argument'].get('node_ip',None)
-        print (node_ip)
         if node_ip:
             url_cmd =   ("<script language='javascript'>alert('" + kwargs['argument']['str'] + "')"
                         ";window.location.href='/" + kwargs['argument']['url'] + "?node_ip=" + node_ip +"';</script>")
@@ -575,3 +559,35 @@ class url_script(object):
                         ";window.location.href='/" + kwargs['argument']['url'] +"';</script>")
         return url_cmd
 
+class MultiContainerOperation(BaseHandler):
+
+    def get(self,*args,**kwargs):
+        host_dict_json = self.get_argument('data')
+        #讲前端传来的json转换成字典格式
+        host_dict = eval(host_dict_json)
+        action = self.get_argument('action')
+        print (host_dict)
+        myswarm = Myswarm()
+        for node_ip,con_id_dic in host_dict.items():
+            node_port = NodeInfo.get_node_port(node_ip)
+            if action == 'start':
+                if len(con_id_dic) > 0:
+                    for con_id in con_id_dic:
+                        myswarm.start_container(node_ip,node_port[0][0],con_id)
+                    self.write('start_succed')
+                else:
+                    self.write('not_id')
+            elif action == 'stop':
+                if len(con_id_dic) > 0:
+                    for con_id in con_id_dic:
+                        myswarm.stop_container(node_ip,node_port[0][0],con_id)
+                    self.write('stop_succed')
+                else:
+                    self.write('not_id')
+            elif action == 'rem':
+                if len(con_id_dic) > 0:
+                    for con_id in con_id_dic:
+                        myswarm.destroy_container(node_ip,node_port[0][0],con_id)
+                    self.write('rem_succed')
+                else:
+                    self.write('not_id')

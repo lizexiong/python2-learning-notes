@@ -54,20 +54,25 @@
         </tr>
     </tbody>
 </table>
-<div class="alert alert-success" role="alert">容器映射至主机端口对应表</div>
 
-<table class="table table-striped">
-    <tbody>
-    {% for port_group in show_port %}
-        <tr>
-            <td>服务器</td>
-            <td>{{show_port[port_group]['ser_port']}}&nbsp;&nbsp;&nbsp;&nbsp;</td>
-            <td>容器</td>
-            <td>{{show_port[port_group]['con_port']}}&nbsp;&nbsp;&nbsp;&nbsp;</td>
-        </tr>
-    {% end %}
-    </tbody>
-</table>
+{% if show_port %}
+    <div class="alert alert-success" role="alert">容器映射至主机端口对应表</div>
+
+    <table class="table table-striped">
+        <tbody>
+        {% for port_group in show_port %}
+            <tr>
+                <td>服务器</td>
+                <td>{{show_port[port_group]['ser_port']}}&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                <td>容器</td>
+                <td>{{show_port[port_group]['con_port']}}&nbsp;&nbsp;&nbsp;&nbsp;</td>
+            </tr>
+        {% end %}
+        </tbody>
+    </table>
+{% else %}
+    <div class="alert alert-success" role="alert">该主机没有端口映射或改容器没有启动</div>
+{% end %}
 
 <script type="text/javascript">
 $(document).ready(function() {

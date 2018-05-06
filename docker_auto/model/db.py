@@ -6,10 +6,10 @@ from sqlalchemy import Column,String,Integer,ForeignKey
 from sqlalchemy.ext.declarative import declarative_base
 #创建DB的会话类型,就是传一些连接信息里面去
 from sqlalchemy.orm import sessionmaker
+import pymysql
+pymysql.install_as_MySQLdb()
 
-
-engine = create_engine('mysql://root:huawei@localhost:3306/docker',
-                       pool_size=1000,echo=False
+engine = create_engine('mysql://root:huawei@localhost:3306/juntechGW',
                        )
 
 Base = declarative_base()
@@ -94,6 +94,16 @@ class UserDB(Base):
             self.name,
             self.user_group,
             self.is_active
+        )
+
+class MailVerification(Base):
+    __tablename__ = 'mail_verification'
+    id = Column(Integer,primary_key=True)
+    mail = Column(String(32))
+
+    def __repr__(self):
+        return ("<Mail_verification(mail = '%mail')") %(
+            self.mail
         )
 
 if __name__ == "__main__":

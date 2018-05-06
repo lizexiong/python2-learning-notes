@@ -10,12 +10,13 @@ import pymysql
 class NodeInfo(object):
     @staticmethod
     #返回node的所有信息
-    def node_info(status):
+    def node_info(status,start=None,end=None):
         db = MysqlServer(DATABASES)
         if  status == "online" or status == "offline":
             sql = "select * from node where state = '%s'" %(status)
         else:
             sql = "select * from node"
+            # sql = "select * from node limit %d,%d" %(start,end+1)
         ret = db.run_sql(sql)
         db.close()
         return ret
@@ -36,8 +37,6 @@ class NodeInfo(object):
         db.close()
         return ret
 
-
-
     @staticmethod
     def group_list():
         db = MysqlServer(DATABASES)
@@ -48,10 +47,10 @@ class NodeInfo(object):
         return ret
 
     @staticmethod
-    #查询这个组里面的node信息
+    #查询这个组里面的在线node_ip信息
     def node_list(node_group):
         db = MysqlServer(DATABASES)
-        sql = "select `node_ip` from node where node_group=" + '"' + node_group + '"' "and state = 'online'"
+        sql = "select `node_ip`,`port` from node where node_group=" + '"' + node_group + '"' "and state = 'online'"
         ret = db.run_sql(sql)
         db.close()
         return ret
@@ -67,7 +66,7 @@ class NodeInfo(object):
 
     @staticmethod
     #新增容器
-    def insert_con_usage(con_id, con_ip, node_ip,state):
+    def insert_con_usage(con_id, con_ip, node_ip,state=None):
         db = MysqlServer(DATABASES)
         sql = "insert into con_usage(con_id, con_ip, node_ip,state) values('%s','%s','%s','%s')" % (con_id, con_ip, node_ip,state)
         db.execute_sql(sql)
@@ -92,17 +91,20 @@ class NodeInfo(object):
         return 0
 
     @staticmethod
-    def con_usage_info():
+    def con_usage_info(start=1,end=5):
         db = MysqlServer(DATABASES)
-        sql = "select `con_id`,`con_ip`,`node_ip`,`state`,`user_name`,`con_app`,`con_desc` from con_usage"
+        sql = "select `con_id`,`con_ip`,`node_ip`,`state`,`user_name`,`con_app`,`con_desc` from con_usage limit %d,%d" %(start,end)
         result = db.run_sql(sql)
         db.close()
         return result
 
     @staticmethod
-    def get_con_usage_modify(result):
+    def get_con_usage_modify(result=None,count=None):
         db = MysqlServer(DATABASES)
-        sql = "select `con_id`,`con_ip`,`node_ip`,`state`,`user_name`,`con_app`,`con_desc` from con_usage where con_id='%s'" % result
+        if count is None:
+            sql = "select `con_id`,`con_ip`,`node_ip`,`state`,`user_name`,`con_app`,`con_desc` from con_usage where con_id='%s'" % result
+        else:
+            sql = "select count(id) from con_usage"
         ret = db.run_sql(sql)
         # db.close()
         return ret
@@ -194,5 +196,12 @@ class NodeInfo(object):
     def node_status_update(result):
         db = MysqlServer(DATABASES)
         sql = "update node set state='%s' where node_ip = '%s'" %(result['status'],result['node_ip'])
+        ret = db.run_sql(sql)
+        return ret
+
+    @staticmethod
+    def group_node_ip_list(result):
+        db=MysqlServer(DATABASES)
+        sql = "select node_ip from node where node_group = %s" %(result)
         ret = db.run_sql(sql)
         return ret

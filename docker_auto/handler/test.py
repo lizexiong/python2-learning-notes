@@ -73,16 +73,24 @@
 
 
 
+#
+# from myswarm import Myswarm
+# obj = Myswarm()
+# port_list = []
+# con_list = obj.container_list('192.168.100.200','2375',all)
+# print (con_list)
+# for port_key in con_list.values():
+#      port_dict = port_key['port']
+#      print (port_dict)
+#      for cport in port_dict.values():
+#          for i in cport:
+#              port_list.append(i['HostPort'])
+# print (port_list)
 
-from myswarm import Myswarm
-obj = Myswarm()
-port_list = []
-con_list = obj.container_list('192.168.100.200','2375',all)
-print (con_list)
-for port_key in con_list.values():
-     port_dict = port_key['port']
-     print (port_dict)
-     for cport in port_dict.values():
-         for i in cport:
-             port_list.append(i['HostPort'])
-print (port_list)
+
+from model.node import NodeInfo
+
+for i in range(1000):
+    import random
+    con_id = str(random.randint(100000222220,23323232333333))
+    NodeInfo.insert_con_usage(con_id,"192.168.1."+str(i),"192.168.1."+str(i))

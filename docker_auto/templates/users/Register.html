@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Docker 注册</title>
+
+    <!--<link href="../static/css/bootstrap.min.css" rel="stylesheet">-->
+    <link href="{{static_url("css/bootstrap.min.css")}}" rel="stylesheet">
+    <script type="text/javascript" src="{{static_url('js/jquery.min.js')}}"></script>
+    <link rel="stylesheet" type="text/css" href="{{static_url("css/LoginCustom.css")}}">
+    <script src="{{  static_url('js/register.js') }}"></script>
+</head>
+<body >
+
+
+<div>
+    <div  class="backgrounddiv">
+        <img  class="backgroundimg" src="{{static_url("unity/img/docker.jpg")}}"   />
+    </div>
+
+    <div><h1 class="indexdescribe">上海询诺 Docker 注册</h1></div>
+
+    <table  class="fromtable" >
+        <tr>
+            <td>
+                <div class="logindiv">
+                <!--<img class="loginimg"  src="{{static_url("unity/img/docker.jpg")}}" />-->
+                </div>
+                <form class="form-horizontal" method="post">
+                  <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">邮箱</label>
+                    <div class="col-sm-10">
+                      <input style="display:inline" type="email" class="form-control" onkeyup="mail_verifcation(this.value)" onblur="mail_verifcation(this.value)" id="inputEmail3" name="username" placeholder="邮箱" required>
+{#                        <font class='email' style="display:inline" size="3" color="red" face="verdana" ></font>#}
+                            <ul class="mail_hint"></ul>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
+                    <div class="col-sm-10">
+{#                        onblur 事件会在对象失去焦点时发生。#}
+                      <input style="display:inline" type="password" class="form-control" id="inputPassword3" onkeyup="res_passwd1_check(this.value)" onblur="res_passwd1_check(this.value)" onchange="res_passwd1_check(this.value)" name='password' placeholder="密码" required>
+{#                       这里很多标签如，font，li都是没用的，这里主要为了演示input 和p怎么在一行显示，以便后期使用#}
+{#                        <font class='password' style="display:inline" size="3" color="red" face="verdana" ><li style="display: inline; float:right"></li></font>#}
+                        <ul class="passwd1_hint"></ul>
+                    </div>
+                  </div>
+                    <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">确认密码</label>
+                    <div class="col-sm-10">
+                      <input style="display:inline" type="password" class="form-control" id="inputPassword4" onkeyup="res_passwd2_check(this.value)" onblur="res_passwd2_check(this.value)" onchange="res_passwd2_check(this.value)" name='password2' placeholder="确认密码" required>
+{#                    <font class='password_affirm' style="display:inline" size="3" color="red" face="verdana"></font>#}
+                        <ul class="passwd2_hint"></ul>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button id='register' onclick="submit_reg()"  type="button" class="btn btn-default" style="margin-left:80px;">注册</button>
+{#                        <font class='register' style="display:inline" size="4" color="red" face="verdana"></font>#}
+                        <ul class="hint"></ul>
+                    </div>
+                  </div>
+                </form>
+
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+</body>
+</html>

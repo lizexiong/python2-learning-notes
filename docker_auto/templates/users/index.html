@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="edge" />
+<title>jQuery EasyUI 1.5.x Of Insdep theme examples</title>
+<!--
+    注意样式表优先级
+    主题样式必须在easyui组件样式后。
+-->
+  
+<link href="https://cdn.insdep.com/themes/1.0.0/easyui.css" rel="stylesheet" type="text/css">
+<link href="https://cdn.insdep.com/themes/1.0.0/easyui_animation.css" rel="stylesheet" type="text/css">
+<!--
+    easyui_animation.css
+    Insdep对easyui的额外增加的动画效果样式，根据需求引入或不引入，此样式不会对easyui产生影响
+-->
+ 
+<link href="https://cdn.insdep.com/themes/1.0.0/easyui_plus.css" rel="stylesheet" type="text/css">
+<!--
+    easyui_plus.css
+    Insdep对easyui的额外增强样式,内涵所有 insdep_xxx.css 的所有组件样式
+    根据需求可单独引入insdep_xxx.css或不引入，此样式不会对easyui产生影响
+-->
+ 
+<link href="https://cdn.insdep.com/themes/1.0.0/insdep_theme_default.css" rel="stylesheet" type="text/css">
+<!--
+    insdep_theme_default.css
+    Insdep官方默认主题样式,更新需要自行引入，此样式不会对easyui产生影响
+-->
+ 
+<link href="https://cdn.insdep.com/themes/1.0.0/icon.css" rel="stylesheet" type="text/css">
+<!--
+    icon.css
+    美化过的easyui官方icons样式，根据需要自行引入
+-->
+ 
+<script type="text/javascript" src="https://cdn.insdep.com/jquery/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="https://cdn.insdep.com/easyui/jquery.easyui-1.5.1.min.js"></script>
+<script type="text/javascript" src="https://cdn.insdep.com/themes/1.0.0/jquery.insdep-extend.min.js"></script>
+  
+  
+</head>
+<body> 
+  
+    <div style="margin:20px 0;"></div>    
+    <div class="easyui-panel" title="用户密码重置" style="width:100%;max-width:400px;padding:30px 60px;">    
+        <form id="ff" class="easyui-form" method="post" data-options="novalidate:true">    
+            <div style="margin-bottom:20px ">
+                <input class="easyui-textbox" name="name" style="width:90% " data-options="label:'Name:',required:true">
+            </div>
+            <div>
+                <input class="easyui-textbox" name="email" style="width:90% " data-options="label:'Email:',required:true,validType:'email'">
+            </div>    
+            <div style="margin-bottom:20px">    
+                <input class="easyui-textbox" name="subject" style="width:100%" data-options="label:'Subject:',required:true">    
+            </div>    
+        </form>    
+        <div style="text-align:center;padding:5px 0">    
+            <a href="javascript：void(0)" class="easyui-linkbutton" onclick="submitForm()" style="width:80px">Submit</a>    
+            <a href="javascript：void(0)" class="easyui-linkbutton" onclick="clearForm()" style="width:80px">Clear</a>    
+        </div>    
+    </div>    
+    <script>    
+        function submitForm(){    
+            $('#ff').form('submit',{    
+                onSubmit:function(){    
+                    return $(this).form('enableValidation').form('validate');    
+                }    
+            });    
+        }    
+        function clearForm(){    
+            $('#ff').form('clear');    
+        }    
+    </script>    
+
+</body>
+</html>

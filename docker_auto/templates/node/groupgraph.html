@@ -1,0 +1,44 @@
+{% extends "../head.html" %}
+{% block div %}
+
+
+
+<div>
+        {% for i,j in docker_info.items() %}
+            <div  id="ip_{{ i }}"  style="width: 550px;height:400px;display: inline-block;border:3px dashed #0F0"></div>
+        {% end %}
+</div>
+
+
+<script>
+// 图表配置
+{%  for i,j in docker_info.items() %}
+    var options = {
+        chart: {
+            type: 'column'                          //指定图表的类型，默认是折线图（line）
+        },
+        title: {
+         text : "{{ i }}"         // 标题
+        },
+        xAxis: {
+            categories: ['容器总数', '启动中容器', '镜像数','总空间','空闲空间','总内存']   // x 轴分类
+        },
+        yAxis: {
+            title: {
+                text: 'num/G'                // y 轴标题
+            }
+        },
+        series: [{                              // 数据列
+            name: "{{ i }}",                        // 数据列名
+            data: [{{ j['Containers'] }},{{ j['ContainersRunning'] }},{{ j['Images'] }}]                     // 数据
+        },]
+    };
+    // 图表初始化函数
+    var chart = Highcharts.chart("ip_{{ i }}", options);
+{% end %}
+
+</script>
+
+
+
+{% end %}

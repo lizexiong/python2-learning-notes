@@ -9,6 +9,10 @@
 {#    });#}
 {#</script>#}
 
+
+{#<style>li{ display:inline}</style>#}
+
+
 <head>
     <ul>
         <h2>容器用途管理</h2>
@@ -45,8 +49,22 @@
         {% end %}
     </tbody>
 </table>
+{#<ul style="display: block;overflow: hidden; white-space:nowrap;">#}
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+{% if page_info is not None %}
+       数据总量:{{ page_info['total_data_num']}},分页总数:{{ page_info['number_of_total_pages']}}
+{% end %}
+
+
+<nav aria-label="Page navigation" style="display:inline;" >
+    <ul style="float:right;" class="pagination">
+        {% raw page_list %}
+    </ul>
+</nav>
+
+
+
+<div class="modal fade" style="width:400px;margin:0 auto;" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
    <div class="modal-dialog">
       <div class="modal-content">
          <div class="modal-header">
@@ -60,9 +78,13 @@
 </div><!-- /.modal -->
 </div>
 
+
 <script type="text/javascript">
 $(document).ready(function() {
-    $('#conlist').DataTable();
+    $('#conlist').DataTable({
+        "paging":false,
+        "bInfo" : false, //是否显示页脚信息，DataTables插件左下角显示记录数
+    });
 } );
 </script>
 
@@ -70,8 +92,13 @@ $(document).ready(function() {
     $("#myModal").on("hidden.bs.modal", function() {
         $(this).removeData("bs.modal");
     });
-
-
 </script>
+
+{#这里本来准备用button和ajax来做分页跳转,后面觉得没用,所以废弃#}
+{#<script>#}
+{#  function print() {#}
+{#      var a = document.getElementById("nn").value;#}
+{#  }#}
+{#</script>#}
 
 {% end %}

@@ -1,0 +1,118 @@
+
+
+{% block content %}
+
+
+
+    <div class="panel-header">{{ host.name}}</div>
+
+
+    <div class="panel-body">
+					<table class="table table-border table-bordered table-striped mt-20">
+						<thead>
+							<tr >
+								<th style="width: 30%">类别</th>
+								<th class="col2">内容</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th class="col1">id</th>
+								<td class="col2">{{ host.id }}</td>
+							</tr>
+							<tr>
+								<th class="col1">name</th>
+								<td class="col2">{{ host.name }}</td>
+							</tr>
+                        	<tr>
+								<th class="col1">ip</th>
+								<td class="col2">{{ host.ip }}</td>
+							</tr>
+                            <tr>
+								<th class="col1">mask</th>
+								<td class="col2">{{ host.mask }}</td>
+							</tr>
+                            <tr>
+								<th class="col1">mac</th>
+								<td class="col2">{{ host.mac }}</td>
+							</tr>
+                            <tr>
+								<th class="col1">hostname</th>
+								<td class="col2">{{ host.hostname }}</td>
+							</tr>
+                            <tr>
+								<th class="col1">操作系统类型</th>
+								<td class="col2">{{ host.os_type }}</td>
+							</tr>
+                            <tr>
+								<th class="col1">服务器帐号</th>
+								<td class="col2">{{ host.username }}</td>
+							</tr>
+                            <tr>
+								<th class="col1">服务器密码</th>
+								<td class="col2">{{ host.password }}</td>
+							</tr>
+                            <tr>
+								<th class="col1">数据库帐号</th>
+								<td class="col2">{{ host.mysql_username }}</td>
+							</tr>
+                            <tr>
+								<th class="col1">数据库密码</th>
+								<td class="col2">{{ host.mysql_password }}</td>
+							</tr>
+                             <tr>
+								<th class="col1">其它帐号</th>
+								<td class="col2">{{ host.other_username }}</td>
+							</tr>
+                            <tr>
+								<th class="col1">其它密码</th>
+								<td class="col2">{{ host.other_password }}</td>
+							</tr>
+                            <tr>
+								<th class="col1">删除时间</th>
+								<td class="col2">{{ host.createtime |date:"Y-m-d H:i:s" }}</td>
+							</tr>
+                             <tr>
+								<th class="col1">接口</th>
+								<td class="col2">{{ host.interface }}</td>
+							</tr>
+                            <tr>
+								<th class="col1">网段</th>
+								<td class="col2">{{ host.network }}</td>
+							</tr>
+                            <tr>
+								<th class="col1">开放端口</th>
+								<td class="col2">{{ host.port }}</td>
+							</tr>
+                            <tr>
+								<th class="col1">url</th>
+								<td class="col2"><a href="{{ host.url }}" target="_blank">{{ host.url }}</a></td>
+							</tr>
+                            <tr>
+								<th class="col1">url2</th>
+								<td class="col2"><a href="{{ host.url }}" target="_blank">{{ host.url2 }}</a></td>
+							</tr>
+                            <tr>
+								<th class="col1">url3</th>
+								<td class="col2">{{ host.url3 }}</td>
+							</tr>
+                            <tr>
+								<th class="col1">group</th>
+								<td class="col2">{{ host.group }}</td>
+							</tr>
+                            <tr>
+								<th class="col1">状态</th>
+								<td class="col2">{{ host.status }}</td>
+							</tr>
+                            <tr>
+								<th class="col1">备注</th>
+								<td class="col2">{{ host.content }}</td>
+							</tr>
+						</tbody>
+					</table>
+                    <button type="cancle" class="btn btn-red" data-dismiss="modal">关闭</button>
+				</div>
+
+
+{% endblock %}
+

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>密码重置</title>
+
+    <!--注意样式表优先级,主题样式必须在easyui组件样式后。-->
+    <link href="{{static_url("EasyUI/themes/insdep/easyui.css")}}" rel="stylesheet" type="text/css">
+    <!--easyui_animation.css  Insdep对easyui的额外增加的动画效果样式，根据需求引入或不引入，此样式不会对easyui产生影响 -->
+    <link href="{{static_url("EasyUI/themes/insdep/easyui_animation.css")}}" rel="stylesheet" type="text/css">
+    <!--
+    easyui_plus.css
+    Insdep对easyui的额外增强样式,内涵所有 insdep_xxx.css 的所有组件样式
+    根据需求可单独引入insdep_xxx.css或不引入，此样式不会对easyui产生影响
+    -->
+    <link href="{{static_url("EasyUI/themes/insdep/easyui_plus.css")}}" rel="stylesheet" type="text/css">
+    <!-- icon.css 美化过的easyui官方icons样式，根据需要自行引入-->
+    <link href="{{static_url("EasyUI/themes/insdep/icon.css")}}" rel="stylesheet" type="text/css">
+    <!--
+    insdep_theme_default.css
+    Insdep官方默认主题样式,更新需要自行引入，此样式不会对easyui产生影响
+    -->
+    <link href="{{static_url("EasyUI/themes/insdep/insdep_theme_default.css")}}" rel="stylesheet" type="text/css">
+
+    <script type="text/javascript" src="{{static_url('js/jquery.min.js')}}"></script>
+    <script type="text/javascript" src="{{static_url('EasyUI/jquery.easyui.min.js')}}"></script>
+    <script type="text/javascript" src="{{static_url('EasyUI/themes/insdep/jquery.insdep-extend.min.js')}}"></script>
+
+
+    <script type="text/javascript" src="{{static_url('js/bootstrap.min.js')}}"></script>
+    <link href="{{static_url('css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
+
+    <script type="text/javascript" src="{{static_url('js/userreset.js')}}"></script>
+
+<style>body{text-align:center}</style>
+</head>
+<body>
+
+
+
+<div style="margin: auto; margin-top:100px;width:396px;height:400px">
+
+    <div class="easyui-panel" title="用户密码重置" style="width:99%;max-width:400px;padding:30px 60px; ">
+        <form id="ff" class="easyui-form" method="post" data-options="novalidate:true">
+
+            <div style="margin-bottom:20px">
+                <input class="easyui-textbox mail"  name="name" style="width:100%" data-options="label:'mail:',required:true">
+                <p class="mail_hint" style="font-size: 13px"></p>
+            </div>
+
+            <div style="margin-bottom:20px">
+                <input class="easyui-textbox" id="passwd1" style="width:99%" onblur="" data-options="label:'密码:',required:true,validType:'email'">
+            </div>
+            <div style="margin-bottom:20px">
+                <input class="easyui-textbox" id="passwd2" style="width:99%" data-options="label:'确认密码:',required:true">
+            </div>
+        </form>
+        <div style="text-align:center;padding:5px 0">
+            <a href="#" class="easyui-linkbutton" onclick="submitForm()" style="width:80px">重置</a>
+            <a href="#" class="easyui-linkbutton" onclick="clearForm()" style="width:80px">Clear</a>
+        </div>
+    </div>
+    </div>
+</body>
+</html>
